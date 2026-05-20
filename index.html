@@ -3,52 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechScript | Test Page</title>
+    <title>Tcode-Motion | System Architecture</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg-base: #030712;
+            --panel-bg: rgba(17, 24, 39, 0.7);
+            --cyan-glow: #06b6d4;
+            --blue-glow: #3b82f6;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --terminal-font: 'Share Tech Mono', monospace;
+            --header-font: 'Rajdhani', sans-serif;
+        }
+
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--header-font);
+            overflow-x: hidden;
         }
+
+        /* 3D Background Container */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0f172a 0%, #030712 100%);
+        }
+
+        /* Scanline Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .container {
-            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 2rem;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            background-color: #1e293b;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
-        h1 {
-            color: #38bdf8;
-            margin-bottom: 0.5rem;
+
+        /* Header / Terminal Bar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            padding-bottom: 1rem;
         }
-        p {
-            color: #94a3b8;
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
-        .status {
-            display: inline-block;
-            margin-top: 1rem;
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            border: 1px solid var(--cyan-glow);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+        }
+
+        .brand-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+        }
+
+        .sys-status {
+            font-family: var(--terminal-font);
+            color: var(--cyan-glow);
+            font-size: 0.9rem;
+            background: rgba(6, 182, 212, 0.1);
             padding: 0.5rem 1rem;
-            background-color: #065f46;
-            color: #34d399;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Core Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            font-family: var(--terminal-font);
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan-glow);
+            border: 1px solid var(--cyan-glow);
+            background: rgba(6, 182, 212, 0.05);
+            box-shadow: inset 0 0 10px rgba(6, 182, 212, 0.2);
+        }
+
+        /* Benchmark Hero */
+        .benchmark-panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-left: 4px solid var(--blue-glow);
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benchmark-panel::before {
+            content: 'SYS.METRIC.01';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: var(--terminal-font);
+            color: rgba(59, 130, 246, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .big-number {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-main);
+            background: linear-gradient(to right, var(--cyan-glow), var(--blue-glow));
+            -webkit-background-clip: text;
+            margin: 0;
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .benchmark-label {
+            font-family: var(--terminal-font);
+            font-size: 1.2rem;
+            color: var(--cyan-glow);
+            margin-top: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .sub-label {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        /* Projects Grid */
+        .section-header {
+            font-family: var(--terminal-font);
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            border-color: var(--cyan-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--text-muted);
+            border-right: 2px solid var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover::after {
+            border-color: var(--cyan-glow);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: white;
+            margin: 0 0 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .card-title i {
+            color: var(--cyan-glow);
+            font-size: 1.2rem;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            font-family: var(--terminal-font);
+            font-size: 0.85rem;
+            color: var(--blue-glow);
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .big-number { font-size: 3rem; }
+            .nav-links { display: none; } /* Mobile menu could be added here */
         }
     </style>
 </head>
 <body>
 
+    <div id="canvas-container"></div>
+    <div class="scanlines"></div>
+
     <div class="container">
-        <h1>TechScript Test Page</h1>
-        <p>If you can see this, your GitHub Pages hosting is officially live!</p>
-        <div class="status">✓ System Operational</div>
+        <header>
+            <div class="brand-container">
+                <img src="https://github.com/Tcode-Motion.png" alt="Tcode-Motion" class="avatar">
+                <div class="brand-text">Tcode-Motion</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="https://github.com/Tcode-Motion" target="_blank"><i class="fab fa-github"></i> [GITHUB]</a>
+                <a href="#"><i class="far fa-user"></i> [PROFILE]</a>
+                <a href="#"><i class="fas fa-download"></i> [DOWNLOAD_CV]</a>
+            </div>
+
+            <div class="sys-status">
+                <i class="fas fa-satellite-dish"></i> SYS.ONLINE // PORT:8080
+            </div>
+        </header>
+
+        <div class="benchmark-panel">
+            <h1 class="big-number">1,000,000</h1>
+            <div class="benchmark-label">NATIVE VM ITERATIONS COMPLETED</div>
+            <p class="sub-label">Performance benchmark executed on custom TechScript Virtual Machine architecture. Validating core loop efficiency and system stability.</p>
+        </div>
+
+        <div class="section-header">
+            <span>[ ACTIVE_DIRECTORIES ]</span>
+            <span>2 ITEMS FOUND</span>
+        </div>
+
+        <div class="grid">
+            <div class="project-card">
+                <h2 class="card-title">
+                    <a href="https://github.com/Tcode-Motion">TechScript</a>
+                    <i class="fas fa-microchip"></i>
+                </h2>
+                <div class="card-desc">
+                    A proprietary programming language and high-performance Virtual Machine. Built to run modular iterations, optimized background computations, and automated system scripts efficiently.
+                </div>
+                <div class="tech-stack">
+                    <span>> VM_ARCHITECTURE</span>
+                    <span>> COMPILER_DESIGN</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2 class="card-title">
+                    <a href="https://github.com/Tcode-Motion/os-wallpapers" target="_blank">OS-Wallpapers</a>
+                    <i class="fas fa-layer-group"></i>
+                </h2>
+                <div class="card-desc">
+                    A high-fidelity, curated collection of 600+ wallpapers (~3GB). Structured for high-speed delivery via JSDelivr CDN, optimized for sci-fi, cyberpunk, and Stark OS desktop shells.
+                </div>
+                <div class="tech-stack">
+                    <span>> CDN_DELIVERY</span>
+                    <span>> ASSET_MANAGEMENT</span>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Setup Scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Create Particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1500;
+        
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for(let i = 0; i < particlesCount * 3; i++) {
+            // Spread particles across a wide area
+            posArray[i] = (Math.random() - 0.5) * 15;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        
+        // Premium cyan glowing material
+        const material = new THREE.PointsMaterial({
+            size: 0.015,
+            color: 0x06b6d4,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+        
+        const particlesMesh = new THREE.Points(particlesGeometry, material);
+        scene.add(particlesMesh);
+        
+        camera.position.z = 3;
+
+        // Mouse interaction tracking
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2);
+            mouseY = (event.clientY - window.innerHeight / 2);
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+            
+            targetX = mouseX * 0.001;
+            targetY = mouseY * 0.001;
+
+            // Slow continuous rotation
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.0005;
+
+            // Smooth mouse parallax effect
+            particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
+            particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+            
+            // Subtle wave effect
+            particlesMesh.position.y = Math.sin(elapsedTime * 0.5) * 0.1;
+
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
