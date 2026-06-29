@@ -389,33 +389,44 @@ def select_preview_image(url: str, repo_name: str, meta: Dict[str, str]) -> str:
     if meta.get("og_image") and check_url_exists(meta["og_image"]):
         return meta["og_image"]
         
-    # 2. favicon (only if it is a larger image or if we have to)
-    if meta.get("favicon") and check_url_exists(meta["favicon"]):
-        # Check if favicon is svg or png (skip small ico files if we can, but use as 2nd tier fallback)
-        if not meta["favicon"].endswith(".ico"):
-            return meta["favicon"]
+    # 2. Repo-name based images (e.g. NovOS.png, NovOS.webp, novos.png)
+    repo_img_candidates = [
+        f"{repo_name}.png", f"{repo_name}.webp", f"{repo_name}.jpg", f"{repo_name}.jpeg",
+        f"{repo_name.lower()}.png", f"{repo_name.lower()}.webp", f"{repo_name.lower()}.jpg", f"{repo_name.lower()}.jpeg"
+    ]
+    for cand in repo_img_candidates:
+        cand_url = urljoin(url, cand)
+        if check_url_exists(cand_url):
+            return cand_url
             
-    # 3-11. Candidate image paths
+    # 3. Standard high-res banner and cover candidates
     candidates = [
         "banner.webp", "banner.png", "banner.jpg", "banner.jpeg",
         "cover.webp", "cover.png", "cover.jpg", "cover.jpeg",
         "preview.webp", "preview.png", "preview.jpg", "preview.jpeg",
         "thumbnail.webp", "thumbnail.png", "thumbnail.jpg", "thumbnail.jpeg",
-        "logo.webp", "logo.png", "logo.jpg", "logo.jpeg",
-        "icon.png", "icon.webp", "icon.jpg", "icon.jpeg"
+        "logo.webp", "logo.png", "logo.jpg", "logo.jpeg"
     ]
-    
     for cand in candidates:
         cand_url = urljoin(url, cand)
         if check_url_exists(cand_url):
             return cand_url
             
-    # Include favicon .ico as secondary fallback if candidate paths are down
+    # 4. GitHub OpenGraph Image (high resolution 1200x600 social preview)
+    github_og_url = f"https://opengraph.githubassets.com/1/{GITHUB_OWNER}/{repo_name}"
+    if check_url_exists(github_og_url):
+        return github_og_url
+        
+    # 5. Icon/Favicon as a final low-quality fallback if everything else fails
+    icon_candidates = ["icon.png", "icon.webp", "icon.jpg", "icon.jpeg"]
+    for cand in icon_candidates:
+        cand_url = urljoin(url, cand)
+        if check_url_exists(cand_url):
+            return cand_url
+            
     if meta.get("favicon") and check_url_exists(meta["favicon"]):
         return meta["favicon"]
         
-    # 12. GitHub OpenGraph Image (verified to exist)
-    github_og_url = f"https://opengraph.githubassets.com/1/{GITHUB_OWNER}/{repo_name}"
     return github_og_url
 
 def load_existing_projects(json_path: Path) -> Dict[str, Dict[str, Any]]:

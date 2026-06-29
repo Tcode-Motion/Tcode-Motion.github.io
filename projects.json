@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T05:48:39.187613Z",
+  "generatedAt": "2026-06-29T06:00:33.980642Z",
   "generatorVersion": "1.0.0",
   "totalProjects": 11,
   "projects": [
@@ -137,7 +137,7 @@
       "pushed": "2026-04-28",
       "owner": "Tcode-Motion",
       "avatar_url": "https://avatars.githubusercontent.com/u/188012755?v=4",
-      "preview_image": "https://tcode-motion.github.io/NovOS/novos-icon.svg",
+      "preview_image": "https://tcode-motion.github.io/NovOS/NovOS.png",
       "favicon": "https://tcode-motion.github.io/NovOS/novos-icon.svg",
       "theme_color": "",
       "html_title": "NovOS",
@@ -168,7 +168,7 @@
       "pushed": "2026-03-08",
       "owner": "Tcode-Motion",
       "avatar_url": "https://avatars.githubusercontent.com/u/188012755?v=4",
-      "preview_image": "https://tcode-motion.github.io/animejs-clone/assets/images/favicon.png",
+      "preview_image": "https://opengraph.githubassets.com/1/Tcode-Motion/animejs-clone",
       "favicon": "https://tcode-motion.github.io/animejs-clone/assets/images/favicon.png",
       "theme_color": "",
       "html_title": "Anime.js | JavaScript Animation Engine",
