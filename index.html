@@ -187,6 +187,7 @@ beginner code, first code, start coding, learn programming fast
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="projects.css">
 
 <style>
 /* ═══════════════════════════════════════
@@ -1026,6 +1027,7 @@ Tanmoy Majumder Tcode-Motion techscript github
     <li><a href="#features">Features</a></li>
     <li><a href="#compare">Compare</a></li>
     <li><a href="#releases">Releases</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     <li>
@@ -1050,6 +1052,7 @@ Tanmoy Majumder Tcode-Motion techscript github
   <a href="#features" onclick="closeNav()">Features</a>
   <a href="#compare" onclick="closeNav()">Compare</a>
   <a href="#releases" onclick="closeNav()">Releases</a>
+  <a href="#projects" onclick="closeNav()">Projects</a>
   <a href="#faq" onclick="closeNav()">FAQ</a>
   <a href="#contribute" onclick="closeNav()">Contribute</a>
   <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener" onclick="closeNav()">GitHub ↗</a>
@@ -1684,6 +1687,58 @@ Tanmoy Majumder Tcode-Motion techscript github
 </section>
 
 <!-- ═══════════════════════════════════════
+     PROJECTS SHOWCASE
+     ═══════════════════════════════════════ -->
+<section id="projects" class="proj-section" aria-labelledby="projects-heading">
+  <div class="container">
+    <header class="sec-hdr">
+      <p class="sec-eyebrow">// software showcase</p>
+      <h2 class="sec-title" id="projects-heading">Other Projects</h2>
+      <p class="sec-sub">Explore active, hosted web applications and tools built by Tcode-Motion, automatically synchronized with GitHub.</p>
+    </header>
+    
+    <!-- Namespaced controls: search, sort, filters -->
+    <div class="proj-controls">
+      <div class="proj-controls-row">
+        <div class="proj-search-wrapper">
+          <span class="proj-search-icon" aria-hidden="true">🔍</span>
+          <input type="search" id="proj-search" class="proj-search-input" placeholder="Search projects by name, description, or topics..." aria-controls="proj-grid">
+        </div>
+        
+        <div class="proj-sort-wrapper">
+          <label for="proj-sort" class="proj-sort-label">Sort By:</label>
+          <select id="proj-sort" class="proj-select" aria-controls="proj-grid">
+            <option value="newest">Newest Updated</option>
+            <option value="oldest">Oldest Updated</option>
+            <option value="stars">Most Stars</option>
+            <option value="name">Alphabetical</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="proj-filter-group" style="margin-top: 16px;">
+        <span class="proj-filter-title">Languages</span>
+        <div id="proj-lang-chips" class="proj-chips-container" role="group" aria-label="Filter by Language">
+          <!-- Dynamic language chips -->
+        </div>
+      </div>
+      
+      <div class="proj-filter-group" style="margin-top: 16px;">
+        <span class="proj-filter-title">Topics</span>
+        <div id="proj-topic-chips" class="proj-chips-container" role="group" aria-label="Filter by Topic">
+          <!-- Dynamic topic chips -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dynamic grid for project cards -->
+    <div id="proj-grid" class="proj-grid" aria-live="polite">
+      <!-- Loaded dynamically from script.js -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
      FAQ — SEO Rich Content
      ═══════════════════════════════════════ -->
 <section id="faq" aria-labelledby="faq-heading" style="background:var(--bg2);">
@@ -2215,5 +2270,6 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 </script>
+<script src="script.js" defer></script>
 </body>
 </html>

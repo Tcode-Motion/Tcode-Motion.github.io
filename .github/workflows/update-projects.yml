@@ -1,0 +1,55 @@
+name: Update Hosted Projects List
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight UTC
+  workflow_dispatch:
+
+concurrency:
+  group: update-projects
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  update-portfolio:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Run generator script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generate_projects.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if projects.json was modified
+          if git diff --name-only | grep -q "projects.json"; then
+            echo "Changes detected in projects.json. Committing..."
+            git add projects.json
+            git commit -m "auto: Update hosted projects list [skip ci]"
+            git push
+          else
+            echo "No changes detected in projects.json. Skipping commit."
+          fi
