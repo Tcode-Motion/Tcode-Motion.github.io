@@ -249,12 +249,16 @@ window.addEventListener('load', () => {
         splash.remove();
         initOrbFollow();
         initTerminalTyping();
+        initCubeTilt();
+        initPillsStagger();
       }, 800);
     }, 1600);
   } else {
     // Fallback if splash screen is missing
     initOrbFollow();
     initTerminalTyping();
+    initCubeTilt();
+    initPillsStagger();
   }
 });
 
@@ -305,5 +309,50 @@ function initTerminalTyping() {
       line.style.opacity = '1';
       line.style.transform = 'translateY(0)';
     }, idx * 150);
+  });
+}
+
+// 4. Interactive 3D Cube mouse track
+function initCubeTilt() {
+  const cubeContainer = document.querySelector('.cube-container');
+  if (cubeContainer) {
+    let currentX = 0, currentY = 0;
+    let targetX = 0, targetY = 0;
+    
+    window.addEventListener('mousemove', (e) => {
+      // Calculate angles relative to center of screen (clamped max to prevent too much rotation)
+      const xAngle = (e.clientY - window.innerHeight / 2) * -0.06;
+      const yAngle = (e.clientX - window.innerWidth / 2) * 0.06;
+      
+      targetX = xAngle;
+      targetY = yAngle;
+    });
+
+    function animateCubeTilt() {
+      // Lerp for smooth lag tilt response
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      
+      // Apply rotation on tilt
+      cubeContainer.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg)`;
+      
+      requestAnimationFrame(animateCubeTilt);
+    }
+    animateCubeTilt();
+  }
+}
+
+// 5. Stagger reveal hero pills
+function initPillsStagger() {
+  const pills = document.querySelectorAll('.kw-pills span');
+  pills.forEach((pill, idx) => {
+    pill.style.opacity = '0';
+    pill.style.transform = 'scale(0.8) translateY(6px)';
+    pill.style.transition = 'opacity 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    
+    setTimeout(() => {
+      pill.style.opacity = '1';
+      pill.style.transform = 'scale(1) translateY(0)';
+    }, idx * 100);
   });
 }

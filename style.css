@@ -813,6 +813,7 @@ footer{
   .play-split{grid-template-columns:1fr;}
   .play-code{border-right:none;border-bottom:1px solid var(--border);}
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
+  .cube-container{display:none;}
 }
 @media(max-width:620px){
   .hero-h1{font-size:2.5rem;}
@@ -934,3 +935,91 @@ footer{
   80% { width: 90%; }
   100% { width: 100%; }
 }
+
+/* ═══════════════════════════════════════
+   3D CYBERNETIC CUBE DECORATION
+   ═══════════════════════════════════════ */
+.cube-container {
+  position: absolute;
+  top: 18%;
+  right: 10%;
+  width: 130px;
+  height: 130px;
+  perspective: 800px;
+  pointer-events: auto;
+  z-index: 2;
+  animation: floatCube 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+.cube-container:active {
+  cursor: grabbing;
+}
+
+@keyframes floatCube {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -15px; }
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 28s linear infinite;
+  transition: transform 0.5s ease-out;
+}
+
+@keyframes rotateCube {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
+}
+
+.cube .face {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  background: rgba(4, 6, 15, 0.78);
+  border: 1px solid rgba(13, 242, 139, 0.35);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: inset 0 0 16px rgba(13, 242, 139, 0.15), 0 0 10px rgba(13, 242, 139, 0.05);
+  backface-visibility: visible;
+  transition: border-color 0.4s, box-shadow 0.4s, color 0.4s;
+  user-select: none;
+}
+
+/* 3D Face Positions */
+.cube .face.front  { transform: rotateY(0deg) translateZ(65px); }
+.cube .face.back   { transform: rotateY(180deg) translateZ(65px); border-color: rgba(56, 189, 248, 0.35); color: var(--accent2); box-shadow: inset 0 0 16px rgba(56, 189, 248, 0.15); }
+.cube .face.right  { transform: rotateY(90deg) translateZ(65px); }
+.cube .face.left   { transform: rotateY(-90deg) translateZ(65px); border-color: rgba(167, 139, 250, 0.35); color: #a78bfa; box-shadow: inset 0 0 16px rgba(167, 139, 250, 0.15); }
+.cube .face.top    { transform: rotateX(90deg) translateZ(65px); }
+.cube .face.bottom { transform: rotateX(-90deg) translateZ(65px); }
+
+/* Glowing effects on hover */
+.cube-container:hover .cube .face {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: inset 0 0 24px rgba(13, 242, 139, 0.3), 0 0 20px rgba(13, 242, 139, 0.18);
+}
+.cube-container:hover .cube .face.back {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  box-shadow: inset 0 0 24px rgba(56, 189, 248, 0.3), 0 0 20px rgba(56, 189, 248, 0.18);
+}
+.cube-container:hover .cube .face.left {
+  border-color: #a78bfa;
+  color: #a78bfa;
+  box-shadow: inset 0 0 24px rgba(167, 139, 250, 0.3), 0 0 20px rgba(167, 139, 250, 0.18);
+}
+
