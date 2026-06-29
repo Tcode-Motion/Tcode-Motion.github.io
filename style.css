@@ -936,31 +936,4 @@ footer{
   100% { width: 100%; }
 }
 
-/* ═══════════════════════════════════════
-   3D WEBGL PARSER CANVAS BACKGROUND
-   ═══════════════════════════════════════ */
-.hero-canvas-container {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-#hero-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  opacity: 0.6;
-  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 85%);
-}
-
-@media(max-width: 960px) {
-  .hero-canvas-container {
-    display: none;
-  }
-}
 
