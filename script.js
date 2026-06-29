@@ -1,593 +1,234 @@
-/**
- * Dynamic GitHub Portfolio Script.
- * Fully automated project loading, caching, filtering, and sorting.
- */
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
 
-(function () {
-  'use strict';
+// ── MOBILE NAV ──
+function toggleNav() {
+  const menu = document.getElementById('mobMenu');
+  const btn = document.getElementById('hamBtn');
+  const isOpen = menu.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.setAttribute('aria-expanded', isOpen);
+}
+function closeNav() {
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('hamBtn').classList.remove('open');
+  document.getElementById('hamBtn').setAttribute('aria-expanded', 'false');
+}
+document.getElementById('mobMenu').querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', closeNav);
+});
 
-  // Constants
-  const CACHE_KEY = 'proj_portfolio_cache';
-  const CACHE_TIME_KEY = 'proj_portfolio_cache_time';
-  const AUTO_REFRESH_INTERVAL = 3600000; // 1 hour in ms
-
-  // State
-  let projectsData = null;
-  let activeLanguage = 'all';
-  let activeTopic = 'all';
-  let searchQuery = '';
-  let activeSort = 'newest';
-
-  // DOM Elements
-  let gridContainer = null;
-  let searchInput = null;
-  let sortSelect = null;
-  let langChipsContainer = null;
-  let topicChipsContainer = null;
-
-  // Initialize on DOM load
-  document.addEventListener('DOMContentLoaded', () => {
-    initElements();
-    setupEventListeners();
-    setupOfflineHandlers();
-    loadProjects();
+// ── COPY TEXT ──
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    btn.style.background = 'rgba(13,242,139,.25)';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1800);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;ta.style.cssText='position:fixed;opacity:0;';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 1800);
   });
+}
 
-  function initElements() {
-    gridContainer = document.getElementById('proj-grid');
-    searchInput = document.getElementById('proj-search');
-    sortSelect = document.getElementById('proj-sort');
-    langChipsContainer = document.getElementById('proj-lang-chips');
-    topicChipsContainer = document.getElementById('proj-topic-chips');
+// ── PLAYGROUND ──
+const EX = {
+  hello: {
+    file: 'hello.txs',
+    code: `<span class="cmt">// Your first TechScript program</span><br>
+<span class="cmt">// 'say' prints text to screen</span><br><br>
+<span><span class="kw">say</span> <span class="str">"Hello, World!"</span></span><br>
+<span><span class="kw">say</span> <span class="str">"TechScript is easy! 🐉"</span></span><br><br>
+<span class="cmt">// 'ask' reads user input</span><br>
+<span><span class="kw2">make</span> name <span class="op">be</span> <span class="kw">ask</span> <span class="str">"Your name? "</span></span><br>
+<span><span class="kw">say</span> <span class="str">f"Nice to meet you, {name}!"</span></span>`,
+    out: `<span class="out-ln">Hello, World!</span><span class="out-ln">TechScript is easy! 🐉</span><span class="out-ln">Your name? <span class="out-dim">Alex</span></span><span class="out-ln">Nice to meet you, Alex!</span>`
+  },
+  vars: {
+    file: 'variables.txs',
+    code: `<span class="cmt">// 'make' creates a variable</span><br>
+<span><span class="kw2">make</span> name <span class="op">be</span> <span class="str">"Alice"</span></span><br>
+<span><span class="kw2">make</span> age <span class="op">be</span> <span class="num">25</span></span><br>
+<span><span class="kw2">make</span> scores <span class="op">be</span> [<span class="num">88</span>, <span class="num">94</span>, <span class="num">77</span>]</span><br><br>
+<span class="cmt">// 'keep' creates a constant — cannot be changed</span><br>
+<span><span class="kw2">keep</span> PI <span class="op">be</span> <span class="num">3.14159</span></span><br><br>
+<span><span class="kw">say</span> <span class="str">f"Name: {name}, Age: {age}"</span></span><br>
+<span><span class="kw">say</span> <span class="str">f"Pi is always {PI}"</span></span><br>
+<span><span class="kw">say</span> scores</span>`,
+    out: `<span class="out-ln">Name: Alice, Age: 25</span><span class="out-ln">Pi is always 3.14159</span><span class="out-ln">[88, 94, 77]</span>`
+  },
+  cond: {
+    file: 'conditions.txs',
+    code: `<span class="cmt">// 'when' is TechScript's if statement</span><br>
+<span class="cmt">// 'or when' = else if, 'else' = else</span><br><br>
+<span><span class="kw2">make</span> age <span class="op">be</span> <span class="num">20</span></span><br><br>
+<span><span class="kw2">when</span> age >= <span class="num">18</span> {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">"You are an adult!"</span></span><br>
+<span>} <span class="kw2">or when</span> age >= <span class="num">13</span> {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">"You are a teenager!"</span></span><br>
+<span>} <span class="kw2">else</span> {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">"You are a child!"</span></span><br>
+<span>}</span>`,
+    out: `<span class="out-ln">You are an adult!</span>`
+  },
+  loops: {
+    file: 'loops.txs',
+    code: `<span class="cmt">// 'each' loop over a numeric range</span><br>
+<span><span class="kw2">each</span> i <span class="op">in</span> <span class="num">1</span>..<span class="num">5</span> {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">f"Count: {i}"</span></span><br>
+<span>}</span><br><br>
+<span class="cmt">// Loop through a list</span><br>
+<span><span class="kw2">each</span> fruit <span class="op">in</span> [<span class="str">"apple"</span>, <span class="str">"mango"</span>, <span class="str">"kiwi"</span>] {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">f"I like {fruit}!"</span></span><br>
+<span>}</span>`,
+    out: `<span class="out-ln">Count: 1</span><span class="out-ln">Count: 2</span><span class="out-ln">Count: 3</span><span class="out-ln">Count: 4</span><span class="out-ln">Count: 5</span><span class="out-ln">I like apple!</span><span class="out-ln">I like mango!</span><span class="out-ln">I like kiwi!</span>`
+  },
+  funcs: {
+    file: 'functions.txs',
+    code: `<span class="cmt">// 'build' defines a reusable function</span><br>
+<span class="cmt">// 'give' returns a value</span><br><br>
+<span><span class="fn-c">build</span> greet(name, greeting <span class="op">=</span> <span class="str">"Hello"</span>) {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">f"{greeting}, {name}!"</span></span><br>
+<span>}</span><br><br>
+<span><span class="fn-c">build</span> add(a, b) {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">give</span> a + b</span><br>
+<span>}</span><br><br>
+<span>greet(<span class="str">"Alice"</span>)</span><br>
+<span>greet(<span class="str">"Bob"</span>, <span class="str">"Hey"</span>)</span><br>
+<span><span class="kw">say</span> add(<span class="num">10</span>, <span class="num">20</span>)</span>`,
+    out: `<span class="out-ln">Hello, Alice!</span><span class="out-ln">Hey, Bob!</span><span class="out-ln">30</span>`
+  },
+  classes: {
+    file: 'classes.txs',
+    code: `<span class="cmt">// 'model' defines a class (OOP)</span><br>
+<span><span class="kw2">model</span> Dog {</span><br>
+<span>&nbsp;&nbsp;<span class="fn-c">build</span> init(self, name, breed) {</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;self.name <span class="op">=</span> name</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;self.breed <span class="op">=</span> breed</span><br>
+<span>&nbsp;&nbsp;}</span><br>
+<span>&nbsp;&nbsp;<span class="fn-c">build</span> speak(self) {</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">say</span> <span class="str">f"{self.name} ({self.breed}): Woof! 🐕"</span></span><br>
+<span>&nbsp;&nbsp;}</span><br>
+<span>}</span><br><br>
+<span><span class="kw2">make</span> rex <span class="op">be</span> Dog(<span class="str">"Rex"</span>, <span class="str">"Shepherd"</span>)</span><br>
+<span>rex.speak()</span>`,
+    out: `<span class="out-ln">Rex (Shepherd): Woof! 🐕</span>`
+  },
+  errors: {
+    file: 'error_handling.txs',
+    code: `<span class="cmt">// 'attempt' = try safely</span><br>
+<span class="cmt">// 'catch err' handles the error</span><br><br>
+<span><span class="kw2">attempt</span> {</span><br>
+<span>&nbsp;&nbsp;<span class="kw2">make</span> result <span class="op">be</span> <span class="num">10</span> / <span class="num">0</span></span><br>
+<span>} <span class="op">catch</span> err {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">f"Caught: {err.message}"</span></span><br>
+<span>}</span><br><br>
+<span><span class="kw">say</span> <span class="str">"Program continues normally ✓"</span></span>`,
+    out: `<span class="out-ln">Caught: division by zero</span><span class="out-ln">Program continues normally ✓</span>`
+  },
+  web: {
+    file: 'my_website.txs',
+    code: `<span class="cmt">// Build a website — zero HTML needed!</span><br>
+<span><span class="kw2">use</span> web</span><br><br>
+<span><span class="kw2">make</span> page <span class="op">be</span> WebPage(<span class="str">"My First Site"</span>)</span><br><br>
+<span>page.style(<span class="str">"body"</span>, {</span><br>
+<span>&nbsp;&nbsp;<span class="str">"background"</span>: <span class="str">"#04060f"</span>,</span><br>
+<span>&nbsp;&nbsp;<span class="str">"color"</span>: <span class="str">"#0df28b"</span>,</span><br>
+<span>&nbsp;&nbsp;<span class="str">"font-family"</span>: <span class="str">"sans-serif"</span></span><br>
+<span>})</span><br><br>
+<span>page.body([</span><br>
+<span>&nbsp;&nbsp;page.h1(<span class="str">"Hello from TechScript! 🐉"</span>),</span><br>
+<span>&nbsp;&nbsp;page.p(<span class="str">"No HTML. No CSS files. Just .txs"</span>)</span><br>
+<span>])</span><br>
+<span>page.run()</span>`,
+    out: `<span class="out-ln">🌐 Server running on http://localhost:5000</span><span class="out-ln">✓ Browser opened automatically</span><span class="out-dim">[Ctrl+C to stop]</span>`
+  },
+  fib: {
+    file: 'fibonacci.txs',
+    code: `<span class="cmt">// Classic Fibonacci — clean recursion</span><br>
+<span><span class="fn-c">build</span> fib(n) {</span><br>
+<span>&nbsp;&nbsp;<span class="kw2">when</span> n &lt;= <span class="num">1</span> { <span class="kw">give</span> n }</span><br>
+<span>&nbsp;&nbsp;<span class="kw">give</span> fib(n-<span class="num">1</span>) + fib(n-<span class="num">2</span>)</span><br>
+<span>}</span><br><br>
+<span><span class="kw2">each</span> i <span class="op">in</span> <span class="num">0</span>..<span class="num">9</span> {</span><br>
+<span>&nbsp;&nbsp;<span class="kw">say</span> <span class="str">f"fib({i}) = {fib(i)}"</span></span><br>
+<span>}</span>`,
+    out: `<span class="out-ln">fib(0) = 0</span><span class="out-ln">fib(1) = 1</span><span class="out-ln">fib(2) = 1</span><span class="out-ln">fib(3) = 2</span><span class="out-ln">fib(4) = 3</span><span class="out-ln">fib(5) = 5</span><span class="out-ln">fib(6) = 8</span><span class="out-ln">fib(7) = 13</span><span class="out-ln">fib(8) = 21</span><span class="out-ln">fib(9) = 34</span>`
+  },
+  crypto: {
+    file: 'cryptography.txs',
+    code: `<span class="cmt">// Built-in cryptography — no imports needed!</span><br>
+<span><span class="kw2">make</span> msg <span class="op">be</span> <span class="str">"TechScript is awesome"</span></span><br><br>
+<span class="cmt">// SHA-256 hash</span><br>
+<span><span class="kw2">make</span> hash <span class="op">be</span> sha256(msg)</span><br>
+<span><span class="kw">say</span> <span class="str">f"SHA-256: {hash}"</span></span><br><br>
+<span class="cmt">// Base64 encode and decode</span><br>
+<span><span class="kw2">make</span> encoded <span class="op">be</span> base64_encode(msg)</span><br>
+<span><span class="kw">say</span> <span class="str">f"Base64: {encoded}"</span></span><br><br>
+<span><span class="kw2">make</span> decoded <span class="op">be</span> base64_decode(encoded)</span><br>
+<span><span class="kw">say</span> <span class="str">f"Decoded: {decoded}"</span></span>`,
+    out: `<span class="out-ln">SHA-256: a3f8b2c1d4...</span><span class="out-ln">Base64: VGVjaFNjcmlwdCBpcyBhd2Vzb21l</span><span class="out-ln">Decoded: TechScript is awesome</span>`
   }
+};
 
-  function setupEventListeners() {
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        renderFilteredProjects();
-      });
-    }
+function showEx(key, btn) {
+  const ex = EX[key]; if (!ex) return;
+  document.getElementById('play-code').innerHTML = ex.code;
+  document.getElementById('play-out').innerHTML = ex.out;
+  document.getElementById('play-fname').textContent = ex.file;
+  document.querySelectorAll('.exbtn').forEach(b => {
+    b.classList.remove('active');
+    b.removeAttribute('aria-current');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-current', 'true');
+}
+showEx('hello', document.querySelector('.exbtn.active'));
 
-    if (sortSelect) {
-      sortSelect.addEventListener('change', (e) => {
-        activeSort = e.target.value;
-        renderFilteredProjects();
-      });
-    }
+// ── FAQ ACCORDION ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-a');
+  const isOpen = item.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+  answer.hidden = !isOpen;
+}
 
-    // Auto-refresh periodically
-    setInterval(() => {
-      fetchFreshProjects(true);
-    }, AUTO_REFRESH_INTERVAL);
-  }
-
-  function setupOfflineHandlers() {
-    window.addEventListener('offline', () => {
-      showToast('You are offline. Showing cached projects.', 'offline');
-    });
-
-    window.addEventListener('online', () => {
-      showToast('Connection restored. Updating projects...', 'online');
-      fetchFreshProjects(true);
-    });
-  }
-
-  /**
-   * Loads projects from cache first, then fetches fresh data.
-   */
-  function loadProjects() {
-    const cached = localStorage.getItem(CACHE_KEY);
-    
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (parsed && Array.isArray(parsed.projects)) {
-          projectsData = parsed;
-          logger('Loaded from localStorage cache.');
-          generateFilterChips();
-          renderFilteredProjects();
-          
-          // Fetch fresh data in background
-          fetchFreshProjects(false);
-          return;
-        }
-      } catch (e) {
-        logger('Error parsing cache, fetching fresh data...', e);
+// ── SCROLL REVEAL ──
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
       }
-    }
-
-    // No cache, show skeletons and fetch
-    renderSkeletons();
-    fetchFreshProjects(true);
-  }
-
-  /**
-   * Fetches the latest projects.json from server.
-   */
-  function fetchFreshProjects(forceRender = false) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
-
-    fetch('projects.json', { signal: controller.signal })
-      .then(res => {
-        clearTimeout(timeoutId);
-        if (!res.ok) throw new Error(`HTTP status ${res.status}`);
-        return res.json();
-      })
-      .then(data => {
-        if (!data || !Array.isArray(data.projects)) {
-          throw new Error('Invalid schema in fetched JSON');
-        }
-
-        const isDifferent = checkDataChanged(projectsData, data);
-        
-        // Save to cache
-        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-        localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
-        projectsData = data;
-
-        if (isDifferent || forceRender) {
-          logger('Projects updated. Rendering fresh data.');
-          generateFilterChips();
-          renderFilteredProjects();
-        } else {
-          logger('No updates found in projects list.');
-        }
-      })
-      .catch(err => {
-        clearTimeout(timeoutId);
-        logger('Fetch failed: ', err);
-        if (!projectsData) {
-          renderErrorState();
-        } else if (forceRender) {
-          showToast('Failed to update projects. Running in offline mode.', 'offline');
-        }
-      });
-  }
-
-  function checkDataChanged(oldData, newData) {
-    if (!oldData) return true;
-    if (oldData.projects.length !== newData.projects.length) return true;
-    
-    // Compare dates/pushed timestamps of all projects to check for changes
-    for (let i = 0; i < newData.projects.length; i++) {
-      const newP = newData.projects[i];
-      const oldP = oldData.projects.find(p => p.name === newP.name);
-      if (!oldP || oldP.pushed !== newP.pushed || oldP.stars !== newP.stars || oldP.forks !== newP.forks) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * Extracts languages and popular topics to create filter chips dynamically.
-   */
-  function generateFilterChips() {
-    if (!projectsData || !projectsData.projects) return;
-    
-    const projects = projectsData.projects;
-
-    // 1. Generate Languages
-    const languages = new Set();
-    projects.forEach(p => {
-      if (p.language) languages.add(p.language);
     });
-    
-    // 2. Generate Topics (Only count topics with > 1 occurrence for cleaner filters)
-    const topicCounts = {};
-    projects.forEach(p => {
-      if (Array.isArray(p.topics)) {
-        p.topics.forEach(t => {
-          topicCounts[t] = (topicCounts[t] || 0) + 1;
-        });
-      }
-    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -36px 0px' });
 
-    const popularTopics = Object.keys(topicCounts)
-      .filter(t => topicCounts[t] >= 1)
-      .sort((a, b) => topicCounts[b] - topicCounts[a])
-      .slice(0, 10); // Limit to top 10 topics for layout sanity
+  document.querySelectorAll('.feat-card, .rel-card, .ccard, .faq-item, .rcard, .install-card, .steps-card').forEach(el => {
+    el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;';
+    io.observe(el);
+  });
+}
 
-    // 3. Render Language Chips
-    if (langChipsContainer) {
-      langChipsContainer.innerHTML = '';
-      
-      // All chip
-      const allChip = createChip('All Languages', 'all', activeLanguage === 'all', (val) => {
-        activeLanguage = val;
-        updateChipsActiveState(langChipsContainer, val);
-        renderFilteredProjects();
-      });
-      langChipsContainer.appendChild(allChip);
+// ── ACTIVE NAV LINK HIGHLIGHTING ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
 
-      languages.forEach(lang => {
-        const chip = createChip(lang, lang, activeLanguage === lang, (val) => {
-          activeLanguage = val;
-          updateChipsActiveState(langChipsContainer, val);
-          renderFilteredProjects();
-        });
-        langChipsContainer.appendChild(chip);
-      });
-    }
-
-    // 4. Render Topic Chips
-    if (topicChipsContainer) {
-      topicChipsContainer.innerHTML = '';
-      
-      // All chip
-      const allChip = createChip('All Topics', 'all', activeTopic === 'all', (val) => {
-        activeTopic = val;
-        updateChipsActiveState(topicChipsContainer, val);
-        renderFilteredProjects();
-      });
-      topicChipsContainer.appendChild(allChip);
-
-      popularTopics.forEach(top => {
-        const chip = createChip(`#${top}`, top, activeTopic === top, (val) => {
-          activeTopic = val;
-          updateChipsActiveState(topicChipsContainer, val);
-          renderFilteredProjects();
-        });
-        topicChipsContainer.appendChild(chip);
-      });
-    }
-  }
-
-  function createChip(text, val, isActive, onClick) {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'proj-chip' + (isActive ? ' proj-active' : '');
-    btn.textContent = text;
-    btn.setAttribute('data-value', val);
-    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    btn.addEventListener('click', () => onClick(val));
-    return btn;
-  }
-
-  function updateChipsActiveState(container, activeVal) {
-    container.querySelectorAll('.proj-chip').forEach(chip => {
-      const chipVal = chip.getAttribute('data-value');
-      const isActive = chipVal === activeVal;
-      chip.classList.toggle('proj-active', isActive);
-      chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-  }
-
-  /**
-   * Filter and Sort Projects, then Render Cards.
-   */
-  function renderFilteredProjects() {
-    if (!projectsData || !projectsData.projects) return;
-
-    let filtered = [...projectsData.projects];
-
-    // 1. Language Filter
-    if (activeLanguage !== 'all') {
-      filtered = filtered.filter(p => p.language === activeLanguage);
-    }
-
-    // 2. Topic Filter
-    if (activeTopic !== 'all') {
-      filtered = filtered.filter(p => Array.isArray(p.topics) && p.topics.includes(activeTopic));
-    }
-
-    // 3. Search Query Filter
-    if (searchQuery) {
-      filtered = filtered.filter(p => {
-        const nameMatch = p.name && p.name.toLowerCase().includes(searchQuery);
-        const descMatch = p.description && p.description.toLowerCase().includes(searchQuery);
-        const langMatch = p.language && p.language.toLowerCase().includes(searchQuery);
-        const topicMatch = Array.isArray(p.topics) && p.topics.some(t => t.toLowerCase().includes(searchQuery));
-        return nameMatch || descMatch || langMatch || topicMatch;
-      });
-    }
-
-    // 4. Sort
-    if (activeSort === 'newest') {
-      // Sort updated desc, name asc
-      filtered.sort((a, b) => {
-        if (b.updated === a.updated) {
-          return a.name.localeCompare(b.name);
-        }
-        return b.updated.localeCompare(a.updated);
-      });
-    } else if (activeSort === 'oldest') {
-      // Sort updated asc, name asc
-      filtered.sort((a, b) => {
-        if (a.updated === b.updated) {
-          return a.name.localeCompare(b.name);
-        }
-        return a.updated.localeCompare(b.updated);
-      });
-    } else if (activeSort === 'stars') {
-      // Sort stars desc, name asc
-      filtered.sort((a, b) => {
-        if (b.stars === a.stars) {
-          return a.name.localeCompare(b.name);
-        }
-        return b.stars - a.stars;
-      });
-    } else if (activeSort === 'name') {
-      // Sort name asc
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    // 5. Render
-    renderCards(filtered);
-  }
-
-  function renderCards(projects) {
-    if (!gridContainer) return;
-    
-    gridContainer.innerHTML = '';
-
-    if (projects.length === 0) {
-      renderEmptyState();
-      return;
-    }
-
-    const fragment = document.createDocumentFragment();
-
-    projects.forEach((proj, idx) => {
-      const card = document.createElement('article');
-      card.className = 'proj-card';
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('aria-label', `Project card: ${proj.display_title || proj.name}`);
-      
-      // Determine if newly updated (within 30 days)
-      const isNew = checkIsNew(proj.updated);
-
-      // Create card structure
-      card.innerHTML = `
-        <div class="proj-img-wrapper">
-          <div class="proj-img-fallback">${proj.name.substring(0, 2).toUpperCase()}</div>
-          <img class="proj-img" data-src="${proj.preview_image}" alt="Preview screenshot of ${proj.name}" loading="lazy">
-          <div class="proj-badges">
-            ${proj.language ? `<span class="proj-badge proj-badge-lang">${proj.language}</span>` : ''}
-            ${isNew ? `<span class="proj-badge proj-badge-new" aria-label="Newly updated project">New</span>` : ''}
-          </div>
-        </div>
-        <div class="proj-card-content">
-          <div class="proj-card-header">
-            ${proj.favicon ? `<img class="proj-favicon" src="${proj.favicon}" alt="" aria-hidden="true" onerror="this.remove()">` : ''}
-            <h3 class="proj-card-title">${proj.display_title || proj.name}</h3>
-          </div>
-          <p class="proj-card-desc">${proj.description || 'No description available.'}</p>
-          
-          ${Array.isArray(proj.topics) && proj.topics.length > 0 ? `
-            <div class="proj-card-topics" aria-label="Project topics">
-              ${proj.topics.slice(0, 4).map(t => `<span class="proj-topic">#${t}</span>`).join('')}
-            </div>
-          ` : ''}
-          
-          <div class="proj-card-metrics">
-            <span class="proj-metric" aria-label="${proj.stars} stars">★ ${proj.stars}</span>
-            <span class="proj-metric" aria-label="${proj.forks} forks">⑂ ${proj.forks}</span>
-            <span class="proj-updated" aria-label="Last updated on ${proj.updated}">Updated: ${proj.updated}</span>
-          </div>
-          <div class="proj-card-actions">
-            <a href="${proj.website}" target="_blank" rel="noopener noreferrer" class="btn btn-primary proj-btn" aria-label="Open live demo for ${proj.name}">Live Demo</a>
-            <a href="${proj.repo}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary proj-btn" aria-label="View repository for ${proj.name} on GitHub">GitHub</a>
-          </div>
-        </div>
-      `;
-
-      // Set up lazy-loading and fallback on image elements
-      const img = card.querySelector('.proj-img');
-      const fallback = card.querySelector('.proj-img-fallback');
-      
-      // Fallback visual generation
-      const fallbackSrc = generateFallbackImage(proj.name);
-      if (fallback) {
-        fallback.style.background = `linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%)`;
-      }
-
-      img.addEventListener('load', () => {
-        img.classList.add('proj-loaded');
-        if (fallback) fallback.style.display = 'none';
-      });
-
-      img.addEventListener('error', () => {
-        img.src = fallbackSrc;
-        img.classList.add('proj-loaded');
-        if (fallback) fallback.style.display = 'none';
-      });
-
-      // Keyboard support: activate first action button on Enter
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && e.target === card) {
-          const firstLink = card.querySelector('.proj-card-actions a');
-          if (firstLink) firstLink.click();
-        }
-      });
-
-      fragment.appendChild(card);
-    });
-
-    gridContainer.appendChild(fragment);
-    
-    // Trigger lazy loading observer for dynamic loading attribute fallback
-    observeImages();
-  }
-
-  function checkIsNew(dateStr) {
-    if (!dateStr) return false;
-    try {
-      const updated = new Date(dateStr);
-      const diffTime = Math.abs(new Date() - updated);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      return diffDays <= 30;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  /**
-   * Observes images and swaps data-src to src when entering viewport.
-   */
-  function observeImages() {
-    const images = gridContainer.querySelectorAll('.proj-img[data-src]');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.getAttribute('data-src');
-            img.removeAttribute('data-src');
-            observer.unobserve(img);
-          }
-        });
-      }, { rootMargin: '0px 0px 100px 0px' });
-
-      images.forEach(img => io.observe(img));
-    } else {
-      // Fallback
-      images.forEach(img => {
-        img.src = img.getAttribute('data-src');
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  /**
-   * Generates a canvas fallback image with project initials.
-   */
-  function generateFallbackImage(projectName) {
-    try {
-      const canvas = document.createElement('canvas');
-      canvas.width = 480;
-      canvas.height = 270;
-      const ctx = canvas.getContext('2d');
-      
-      // Gradient background
-      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, '#04060f');
-      grad.addColorStop(1, '#101828');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw grid
-      ctx.strokeStyle = 'rgba(13, 242, 139, 0.03)';
-      ctx.lineWidth = 1;
-      const gridSize = 30;
-      for (let x = 0; x < canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
-      
-      // Form initials
-      const cleanName = projectName.replace(/[-_.]/g, ' ').trim();
-      const words = cleanName.split(' ');
-      const initials = words.length > 1 
-        ? (words[0][0] + words[1][0]).toUpperCase() 
-        : cleanName.substring(0, 2).toUpperCase();
-        
-      // Shadow and text
-      ctx.shadowColor = 'rgba(13, 242, 139, 0.25)';
-      ctx.shadowBlur = 12;
-      ctx.fillStyle = '#0df28b'; // var(--accent)
-      ctx.font = 'bold 64px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(initials, canvas.width / 2, canvas.height / 2);
-      
-      return canvas.toDataURL();
-    } catch (e) {
-      // Return simple SVG fallback
-      return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" style="background:%2304060f"><text x="50%" y="50%" fill="%230df28b" font-size="64" font-weight="bold" text-anchor="middle" dominant-baseline="middle">${projectName.substring(0, 2).toUpperCase()}</text></svg>`;
-    }
-  }
-
-  function renderSkeletons() {
-    if (!gridContainer) return;
-    gridContainer.innerHTML = '';
-    
-    for (let i = 0; i < 6; i++) {
-      const sk = document.createElement('div');
-      sk.className = 'proj-card proj-skeleton';
-      sk.innerHTML = `
-        <div class="proj-img-wrapper">
-          <div class="proj-skeleton-img proj-shimmer"></div>
-        </div>
-        <div class="proj-card-content">
-          <div class="proj-skeleton-title proj-shimmer"></div>
-          <div class="proj-skeleton-desc proj-shimmer"></div>
-          <div class="proj-skeleton-desc-2 proj-shimmer"></div>
-          <div class="proj-skeleton-metrics proj-shimmer"></div>
-        </div>
-      `;
-      gridContainer.appendChild(sk);
-    }
-  }
-
-  function renderEmptyState() {
-    if (!gridContainer) return;
-    gridContainer.innerHTML = `
-      <div class="proj-empty-state">
-        <div class="proj-empty-title">No Projects Found</div>
-        <div class="proj-empty-desc">No projects match the active search query or filter settings.</div>
-      </div>
-    `;
-  }
-
-  function renderErrorState() {
-    if (!gridContainer) return;
-    gridContainer.innerHTML = `
-      <div class="proj-empty-state" style="border-color: var(--accent4);">
-        <div class="proj-empty-title" style="color: var(--accent4);">Unable to Load Projects</div>
-        <div class="proj-empty-desc" style="margin-bottom: 16px;">There was an error fetching the projects list. Please check your network connection.</div>
-        <button type="button" class="btn btn-secondary" onclick="window.location.reload()">Retry</button>
-      </div>
-    `;
-  }
-
-  /**
-   * Helper to display non-intrusive toast messages.
-   */
-  function showToast(message, type) {
-    let container = document.getElementById('proj-toast-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'proj-toast-container';
-      container.className = 'proj-toast-container';
-      document.body.appendChild(container);
-    }
-
-    const toast = document.createElement('div');
-    toast.className = 'proj-toast';
-    
-    const iconClass = type === 'offline' ? 'proj-toast-icon-offline' : 'proj-toast-icon-online';
-    const iconSymbol = type === 'offline' ? '⚠️' : '⚡';
-
-    toast.innerHTML = `
-      <span class="${iconClass}">${iconSymbol}</span>
-      <span>${message}</span>
-    `;
-
-    container.appendChild(toast);
-    
-    // Animate in
-    setTimeout(() => toast.classList.add('show'), 50);
-
-    // Remove after 4s
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => toast.remove(), 300);
-    }, 4000);
-  }
-
-  function logger(...args) {
-    console.log('[Portfolio Dashboard]', ...args);
-  }
-
-})();
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+}, { passive: true });
