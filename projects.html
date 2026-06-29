@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore active web applications and open source tools built by Tanmoy Majumder (@Tcode-Motion), dynamically synchronized from GitHub.">
+  <title>Tcode-Motion — Hosted Projects Showcase</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://github.com/Tcode-Motion/techscript/raw/v1.0.8/techscript-logo.png">
+  <link rel="apple-touch-icon" href="https://github.com/Tcode-Motion/techscript/raw/v1.0.8/techscript-logo.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core and Component Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body class="proj-body">
+
+  <!-- Main Navigation Bar -->
+  <nav id="mainNav" role="navigation" aria-label="Projects Navigation">
+    <a class="nav-logo" href="index.html" aria-label="TechScript home">
+      <img src="https://github.com/Tcode-Motion/techscript/raw/v1.0.8/techscript-logo.png" alt="TechScript Logo" width="34" height="34">
+      <span class="wordmark">TechScript</span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="index.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px 16px;">
+        ← Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Showcase Content Container -->
+  <main class="proj-main-container">
+    <div class="container">
+      
+      <!-- Hero Intro & Title -->
+      <header class="proj-hero-hdr">
+        <p class="proj-eyebrow">// software directory</p>
+        <h1 class="proj-title">Projects Showcase</h1>
+        <p class="proj-sub">
+          Explore production-ready web platforms, operating system simulators, tools, and graphics engines built by 
+          <a href="https://github.com/Tcode-Motion" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">@Tcode-Motion</a>. 
+          This page automatically synchronizes with live GitHub deployments.
+        </p>
+      </header>
+
+      <!-- Dashboard Metrics Panel (Real-time animated counters) -->
+      <section class="proj-metrics-dashboard" aria-label="Showcase Metrics">
+        <div class="proj-metric-card" tabindex="0">
+          <div class="proj-metric-icon">📂</div>
+          <div class="proj-metric-data">
+            <span id="metric-repos" class="proj-metric-val">0</span>
+            <span class="proj-metric-lbl">Hosted Apps</span>
+          </div>
+        </div>
+        <div class="proj-metric-card" tabindex="0">
+          <div class="proj-metric-icon">⭐</div>
+          <div class="proj-metric-data">
+            <span id="metric-stars" class="proj-metric-val">0</span>
+            <span class="proj-metric-lbl">Total Stars</span>
+          </div>
+        </div>
+        <div class="proj-metric-card" tabindex="0">
+          <div class="proj-metric-icon">🛠️</div>
+          <div class="proj-metric-data">
+            <span id="metric-langs" class="proj-metric-val">0</span>
+            <span class="proj-metric-lbl">Languages &amp; Tech</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Control Bar: Search, Filters & Sorting -->
+      <section class="proj-controls" aria-label="Filters and search">
+        <div class="proj-controls-row">
+          <div class="proj-search-wrapper">
+            <span class="proj-search-icon" aria-hidden="true">🔍</span>
+            <input type="search" id="proj-search" class="proj-search-input" placeholder="Search projects by name, description, compiler, or topics..." aria-controls="proj-grid">
+            <span id="proj-result-count" class="proj-result-count" aria-live="polite">Showing all projects</span>
+          </div>
+          
+          <div class="proj-sort-wrapper">
+            <label for="proj-sort" class="proj-sort-label">Sort By:</label>
+            <select id="proj-sort" class="proj-select" aria-controls="proj-grid">
+              <option value="newest">Newest Updated</option>
+              <option value="oldest">Oldest Updated</option>
+              <option value="stars">Most Stars</option>
+              <option value="name">Alphabetical</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Filter chips for Languages -->
+        <div class="proj-filter-group" style="margin-top: 24px;">
+          <span class="proj-filter-title">Filter by Language:</span>
+          <div id="proj-lang-chips" class="proj-chips-container" role="group" aria-label="Languages">
+            <!-- Dynamically generated chips -->
+          </div>
+        </div>
+        
+        <!-- Filter chips for Topics -->
+        <div class="proj-filter-group" style="margin-top: 16px;">
+          <span class="proj-filter-title">Filter by Topic:</span>
+          <div id="proj-topic-chips" class="proj-chips-container" role="group" aria-label="Topics">
+            <!-- Dynamically generated chips -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic Cards Grid -->
+      <section aria-label="Repository showcase grid">
+        <div id="proj-grid" class="proj-grid" aria-live="polite">
+          <!-- Loading skeletons generated dynamically -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Dedicated Projects Footer -->
+  <footer role="contentinfo" style="margin-top: 96px;">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p>
+          🐉 Automated Portfolio Showcase · Made with passion by
+          <a href="https://github.com/Tcode-Motion" target="_blank" rel="noopener noreferrer">Tanmoy Majumder (@Tcode-Motion)</a>
+        </p>
+        <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text3)">
+          Version 1.1.0 · Integrated GitHub REST Client
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="projects.js" defer></script>
+</body>
+</html>

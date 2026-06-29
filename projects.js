@@ -86,6 +86,7 @@
           projectsData = parsed;
           logger('Loaded from localStorage cache.');
           generateFilterChips();
+          updateMetricsDashboard(projectsData.projects);
           renderFilteredProjects();
           
           // Fetch fresh data in background
@@ -130,6 +131,7 @@
         if (isDifferent || forceRender) {
           logger('Projects updated. Rendering fresh data.');
           generateFilterChips();
+          updateMetricsDashboard(data.projects);
           renderFilteredProjects();
         } else {
           logger('No updates found in projects list.');
@@ -256,6 +258,75 @@
   }
 
   /**
+   * Updates and animates the top metrics dashboard cards.
+   */
+  function updateMetricsDashboard(projects) {
+    if (!projects || !Array.isArray(projects)) return;
+    
+    const totalRepos = projects.length;
+    const totalStars = projects.reduce((acc, p) => acc + (p.stars || 0), 0);
+    
+    const languages = new Set();
+    projects.forEach(p => {
+      if (p.language) languages.add(p.language);
+    });
+    const totalLangs = languages.size;
+    
+    // Animate the counters
+    animateCounter('metric-repos', totalRepos);
+    animateCounter('metric-stars', totalStars);
+    animateCounter('metric-langs', totalLangs);
+    
+    // Setup hover glow effects
+    setupMetricCardGlow();
+  }
+
+  /**
+   * Animates counting numbers from 0 to target value.
+   */
+  function animateCounter(elementId, targetValue) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    const duration = 1000; // ms
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Easing out quad
+      const easeProgress = progress * (2 - progress);
+      const currentVal = Math.floor(easeProgress * targetValue);
+      
+      el.textContent = currentVal;
+      
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = targetValue;
+      }
+    }
+    
+    requestAnimationFrame(update);
+  }
+
+  /**
+   * Sets up mouse-move event handlers to update the coordinates of CSS glow gradients.
+   */
+  function setupMetricCardGlow() {
+    const cards = document.querySelectorAll('.proj-metric-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  }
+
+  /**
    * Filter and Sort Projects, then Render Cards.
    */
   function renderFilteredProjects() {
@@ -314,7 +385,17 @@
       filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    // 5. Render
+    // 5. Update result count
+    const resultCounter = document.getElementById('proj-result-count');
+    if (resultCounter) {
+      if (searchQuery || activeLanguage !== 'all' || activeTopic !== 'all') {
+        resultCounter.textContent = `Showing ${filtered.length} of ${projectsData.projects.length}`;
+      } else {
+        resultCounter.textContent = `Showing all ${projectsData.projects.length} projects`;
+      }
+    }
+
+    // 6. Render
     renderCards(filtered);
   }
 
