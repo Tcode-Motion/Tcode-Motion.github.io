@@ -229,6 +229,81 @@ window.addEventListener('scroll', () => {
     if (window.scrollY >= s.offsetTop - 80) current = s.id;
   });
   navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      a.style.color = href === '#' + current ? 'var(--accent)' : '';
+    }
   });
 }, { passive: true });
+
+// ── FIRST IMPRESSION WELCOME SCREEN & INTERACTIONS ──
+
+// 1. Splash Screen Hide & Terminal Reveal
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash');
+  if (splash) {
+    setTimeout(() => {
+      splash.classList.add('fade-out');
+      // Initialize terminal animations and orb tracking once splash starts fading
+      setTimeout(() => {
+        splash.remove();
+        initOrbFollow();
+        initTerminalTyping();
+      }, 800);
+    }, 1600);
+  } else {
+    // Fallback if splash screen is missing
+    initOrbFollow();
+    initTerminalTyping();
+  }
+});
+
+// 2. Interactive Mouse Follow Orbs
+function initOrbFollow() {
+  const orbs = [
+    { el: document.querySelector('.orb-1'), factorX: -0.05, factorY: -0.05, currentX: 0, currentY: 0, targetX: 0, targetY: 0 },
+    { el: document.querySelector('.orb-2'), factorX: 0.04, factorY: 0.04, currentX: 0, currentY: 0, targetX: 0, targetY: 0 },
+    { el: document.querySelector('.orb-3'), factorX: 0.03, factorY: -0.03, currentX: 0, currentY: 0, targetX: 0, targetY: 0 }
+  ];
+
+  window.addEventListener('mousemove', (e) => {
+    const mx = e.clientX - window.innerWidth / 2;
+    const my = e.clientY - window.innerHeight / 2;
+    
+    orbs[0].targetX = mx * orbs[0].factorX;
+    orbs[0].targetY = my * orbs[0].factorY;
+    
+    orbs[1].targetX = mx * orbs[1].factorX;
+    orbs[1].targetY = my * orbs[1].factorY;
+    
+    orbs[2].targetX = mx * orbs[2].factorX;
+    orbs[2].targetY = my * orbs[2].factorY;
+  });
+
+  function animateOrbs() {
+    orbs.forEach(orb => {
+      if (!orb.el) return;
+      // Linear interpolation (Lerp) for ultra-smooth movement lag
+      orb.currentX += (orb.targetX - orb.currentX) * 0.05;
+      orb.currentY += (orb.targetY - orb.currentY) * 0.05;
+      orb.el.style.transform = `translate(${orb.currentX}px, ${orb.currentY}px)`;
+    });
+    requestAnimationFrame(animateOrbs);
+  }
+  animateOrbs();
+}
+
+// 3. Staggered Terminal Line Reveal Animation
+function initTerminalTyping() {
+  const lines = document.querySelectorAll('.terminal .tbody > span');
+  lines.forEach((line, idx) => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateY(6px)';
+    line.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    
+    setTimeout(() => {
+      line.style.opacity = '1';
+      line.style.transform = 'translateY(0)';
+    }, idx * 150);
+  });
+}
