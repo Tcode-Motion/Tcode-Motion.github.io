@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T04:48:51.441374Z",
+  "generatedAt": "2026-06-30T05:06:38.705770Z",
   "generatorVersion": "1.0.0",
   "totalProjects": 12,
   "projects": [
@@ -8,8 +8,8 @@
       "display_title": "Vortyx Typhoon Tracker – TY UWAN",
       "description": "Vortyx is a modern Android media downloader and download manager built with Kotlin and Jetpack Compose. Download videos, audio, images, and files from supported websites with a beautiful Material 3 interface, fast downloads, smart file management, and a seamless user experience.",
       "repo": "https://github.com/Tcode-Motion/Vortyx",
-      "website": "https://vortyx.vercel.app",
-      "homepage_url": "https://vortyx.vercel.app",
+      "website": "http://techscript.is-a.dev/Vortyx/",
+      "homepage_url": "http://techscript.is-a.dev/Vortyx/",
       "hosted": true,
       "language": "TypeScript",
       "topics": [
