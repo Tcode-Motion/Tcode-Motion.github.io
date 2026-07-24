@@ -1,0 +1,89 @@
+# TechScript
+
+> TechScript is the world's most beginner-friendly, plain-English programming language. Write code with natural keywords: `say`, `make`, `when`, `each`, `build`. Powered by a native Rust virtual machine.
+
+## Key Links
+
+- [Official Website](https://techscript.is-a.dev/)
+- [GitHub Repository](https://github.com/Tcode-Motion/techscript)
+- [Latest Releases & Download](https://github.com/Tcode-Motion/techscript/releases/latest)
+- [Language Reference Docs](https://github.com/Tcode-Motion/techscript/blob/master/docs/REFERENCE.md)
+- [Quick Start Guide](https://github.com/Tcode-Motion/techscript/blob/master/docs/QUICKSTART.md)
+- [Web Module Docs](https://github.com/Tcode-Motion/techscript/blob/master/docs/WEB_MODULE.md)
+- [Projects Showcase](https://techscript.is-a.dev/projects.html)
+
+## Language Philosophy
+- **Natural Language Readability**: Keywords form spoken English structures (e.g. `say "hello"`, `make score be 100`, `when age >= 18`).
+- **No Punctuation Barriers**: Eliminates semicolons and brackets wherever practical to remove syntax friction for absolute beginners.
+- **High Performance VM**: Compiles to bytecode and executes on a memory-safe, blazing-fast native Rust virtual machine.
+- **Ecosystem Ready**: Ships with TechScript Studio IDE, a CLI toolchain (repl, transpile, check), and a ZeroHTML web builder.
+
+## CLI Command toolchain
+- `tech run <file.txs>`: Executes a TechScript source file.
+- `tech repl`: Starts the interactive REPL.
+- `tech check <file.txs>`: Validates syntax without executing.
+- `tech transpile <file.txs>`: Transpiles TechScript source code into Python.
+- `tech version`: Shows version information.
+
+## Syntax Quick Reference
+
+### Print to screen
+```techscript
+say "Hello, World!"
+```
+
+### Variables & Constants
+```techscript
+make x be 10
+keep PI be 3.14159
+```
+
+### Conditionals
+```techscript
+when age >= 18 {
+  say "Adult"
+} or when age >= 13 {
+  say "Teenager"
+} else {
+  say "Child"
+}
+```
+
+### Loops
+```techscript
+each i in 1..5 {
+  say f"Count: {i}"
+}
+```
+
+### Functions
+```techscript
+build greet(name) {
+  say f"Hello, {name}!"
+}
+```
+
+### Classes (OOP)
+```techscript
+model Dog {
+  build init(self, name) {
+    self.name = name
+  }
+  build speak(self) {
+    say f"{self.name}: Woof!"
+  }
+}
+```
+
+### Error Handling
+```techscript
+attempt {
+  make x be 10 / 0
+} catch err {
+  say err.message
+}
+```
+
+## Licensing & Version
+- **License**: MIT License (free, open source, and modification-friendly).
+- **Current Version**: v1.0.8 (Rust VM Edition).
