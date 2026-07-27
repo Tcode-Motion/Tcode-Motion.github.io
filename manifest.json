@@ -1,14 +1,19 @@
 {
   "name": "TechScript",
   "short_name": "TechScript",
-  "description": "TechScript is the world's most readable programming language. Write code in plain English, powered by a native Rust VM.",
+  "description": "TechScript is a modern programming language that lets you write code like English. Fast, safe, open source, and powered by Rust.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#04060f",
-  "theme_color": "#0df28b",
+  "background_color": "#030014",
+  "theme_color": "#030014",
   "icons": [
     {
-      "src": "/assets/techscript-logo.png",
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
