@@ -6,54 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ═══════════════════════════════════════════════════════════
-       PRIMARY SEO — TITLE & DESCRIPTION
+       PRIMARY SEO — TITLE, METADATA & CANONICALS
        ═══════════════════════════════════════════════════════════ -->
-  <title>TechScript | World's Easiest Programming Language</title>
-  <meta name="description" content="TechScript is a modern programming language that lets you write code like English. Fast, safe, open source, and powered by Rust.">
-  <meta name="keywords" content="TechScript, TechScript Programming Language, Programming Language, Rust Language, Compiler, Open Source, TechScript GitHub, plain English code, coding for beginners">
+  <title>TechScript — Plain-English Programming Language | Written in Rust</title>
+  <meta name="description" content="TechScript is a general-purpose, human-first programming language with zero syntax clutter. Powered by a high-performance stack VM written in Rust and an LLVM native compilation backend.">
+  <meta name="keywords" content="TechScript, TechScript programming language, plain English code, Rust VM, LLVM compiler, tsc compiler driver, zero syntax clutter, open source programming language, developer tools, compiler architecture, virtual machine">
   <meta name="author" content="Tanmoy Majumder (@Tcode-Motion)">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#0df28b">
+  <meta name="theme-color" content="#0DF28B">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com;">
 
-  <!-- Meta tags for Search Site Name and mobile icons -->
+  <!-- Canonical URL & RSS Feed -->
+  <link rel="canonical" href="https://techscript.is-a.dev/">
+  <link rel="alternate" type="application/rss+xml" title="TechScript Releases RSS" href="https://github.com/Tcode-Motion/techscript/releases.atom">
+
+  <!-- Search Site Name and Mobile Meta -->
   <meta property="og:site_name" content="TechScript">
   <meta name="application-name" content="TechScript">
   <meta name="apple-mobile-web-app-title" content="TechScript">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://techscript.is-a.dev/">
 
-  <!-- Favicons & Manifest -->
+  <!-- Favicons & Web App Manifest -->
   <link rel="icon" href="https://techscript.is-a.dev/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="https://techscript.is-a.dev/favicon.svg">
   <link rel="apple-touch-icon" href="https://techscript.is-a.dev/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Apple Web App Support -->
+  <!-- Apple Web App Options -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- ── OPEN GRAPH ── -->
+  <!-- ── OPEN GRAPH (SOCIAL PREVIEW) ── -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://techscript.is-a.dev/">
-  <meta property="og:title" content="TechScript | World's Easiest Programming Language">
-  <meta property="og:description" content="TechScript is a modern programming language that lets you write code like English. Fast, safe, open source, and powered by Rust.">
+  <meta property="og:title" content="TechScript — Plain-English Programming Language | Written in Rust">
+  <meta property="og:description" content="Write like a Human. Run like Rust. Plain-English syntax, zero syntax clutter, custom stack VM, and native LLVM backend.">
   <meta property="og:image" content="https://techscript.is-a.dev/assets/icons/icon-512.png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
-  <meta property="og:image:alt" content="TechScript programming language logo">
+  <meta property="og:image:alt" content="TechScript logo">
   <meta property="og:locale" content="en_US">
 
-  <!-- ── TWITTER CARD ── -->
+  <!-- ── TWITTER CARDS ── -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TechScript | World's Easiest Programming Language">
-  <meta name="twitter:description" content="TechScript is a modern programming language that lets you write code like English. Fast, safe, open source, and powered by Rust.">
+  <meta name="twitter:site" content="@Tcode-Motion">
+  <meta name="twitter:creator" content="@Tcode-Motion">
+  <meta name="twitter:title" content="TechScript — Plain-English Programming Language">
+  <meta name="twitter:description" content="TechScript is a general-purpose programming language. Zero symbols. Zero overhead. Native Rust VM & LLVM backend.">
   <meta name="twitter:image" content="https://techscript.is-a.dev/assets/icons/icon-512.png">
 
-  <!-- ── STRUCTURED DATA (JSON-LD) ── -->
+  <!-- ── STRUCTURED DATA (JSON-LD SCHEMAS) ── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,24 +66,26 @@
         "url": "https://techscript.is-a.dev/",
         "name": "TechScript",
         "alternateName": "TechScript Programming Language",
-        "description": "TechScript is a modern programming language that lets you write code like English. Fast, safe, open source, and powered by Rust.",
+        "description": "TechScript is a general-purpose, human-first programming language with zero syntax clutter. Powered by a high-performance stack VM written in Rust and an LLVM native backend.",
         "publisher": {
-          "@type": "Person",
-          "name": "Tanmoy Majumder",
-          "url": "https://github.com/Tcode-Motion"
+          "@type": "Organization",
+          "name": "TechScript Project",
+          "url": "https://techscript.is-a.dev/",
+          "logo": "https://techscript.is-a.dev/assets/techscript-logo.png"
         }
       },
       {
         "@type": "SoftwareApplication",
+        "@id": "https://techscript.is-a.dev/#software",
         "name": "TechScript",
-        "alternateName": ["TechScript Language", "techscript-lang", ".txs"],
-        "description": "TechScript is the world's most beginner-friendly, plain-English programming language. Write code with natural keywords: say, make, when, each, build. Powered by a native Rust VM. Includes TechScript Studio IDE. Free and open source under MIT license.",
+        "alternateName": ["TechScript Compiler", "tsc", "techscript-lang", ".txs"],
+        "description": "Human-first programming language compiler and stack VM written in Rust with LLVM backend.",
         "url": "https://techscript.is-a.dev/",
         "downloadUrl": "https://github.com/Tcode-Motion/techscript/releases/latest",
-        "softwareVersion": "1.0.8",
+        "softwareVersion": "Latest Stable",
         "applicationCategory": "DeveloperApplication",
-        "applicationSubCategory": "Programming Language",
-        "operatingSystem": "Windows 10, Windows 11, Linux, macOS (via pip)",
+        "applicationSubCategory": "Compiler & Programming Language",
+        "operatingSystem": "Windows 10, Windows 11, Linux, macOS, Android (Termux)",
         "offers": { 
           "@type": "Offer", 
           "price": "0", 
@@ -93,62 +97,191 @@
           "name": "Tanmoy Majumder",
           "url": "https://github.com/Tcode-Motion"
         },
-        "license": "https://github.com/Tcode-Motion/techscript/blob/master/LICENSE",
+        "license": "https://github.com/Tcode-Motion/techscript/blob/main/LICENSE",
         "codeRepository": "https://github.com/Tcode-Motion/techscript",
-        "softwareHelp": "https://github.com/Tcode-Motion/techscript/blob/master/docs/REFERENCE.md",
-        "programmingLanguage": "Rust",
-        "keywords": "programming language, beginner friendly, plain English, easy coding, Rust VM, world's easiest language, learn to code"
+        "programmingLanguage": "Rust"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://techscript.is-a.dev/#organization",
+        "name": "TechScript Open Source Community",
+        "url": "https://techscript.is-a.dev/",
+        "sameAs": [
+          "https://github.com/Tcode-Motion/techscript",
+          "https://discord.gg/tRtNbuDUr"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://techscript.is-a.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Documentation", "item": "https://techscript.is-a.dev/#docs" },
+          { "@type": "ListItem", "position": 3, "name": "Downloads", "item": "https://techscript.is-a.dev/#install" },
+          { "@type": "ListItem", "position": 4, "name": "Roadmap", "item": "https://techscript.is-a.dev/#roadmap" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is TechScript?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TechScript is a general-purpose, human-first programming language designed to eliminate syntax clutter. Instead of curly braces and cryptic symbols, TechScript uses clean, keyword-based English grammar executed on a high-speed stack VM written in Rust."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I run TechScript code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use the unified `tsc` compiler driver toolchain. For example: `tsc run script.txs` compiles and runs your code, while `tsc build` packages your workspace project."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What platforms are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TechScript runs natively on Windows, Linux, macOS, and Android (Termux). You can install it via native installer binaries, automated shell scripts, or PyPI (`pip install techscript`)."
+            }
+          }
+        ]
       }
     ]
   }
   </script>
 
-  <!-- ── PRELOAD LOGO FOR PERFORMANCE ── -->
-  <link rel="preload" as="image" href="assets/branding/logo-package/source/logo-master-transparent.png">
-
-  <!-- ── FONTS ── -->
+  <!-- Preconnect & Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Main Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
+
+  <!-- Analytics Script -->
   <script src="analytics.js" defer></script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- ── STICKY HEADER NAVBAR ── -->
+  <!-- ── STICKY TOP NAVBAR ── -->
   <nav id="mainNav" role="navigation" aria-label="Main navigation">
-    <a class="nav-logo" href="#hero" aria-label="TechScript home">
-      <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript logo" width="34" height="34" decoding="async">
-      <span class="wordmark">TechScript</span>
-    </a>
+    <div class="nav-left">
+      <a class="nav-logo" href="#hero" aria-label="TechScript Home">
+        <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript logo" width="34" height="34" decoding="async">
+        <span class="wordmark">TechScript</span>
+      </a>
 
+      <!-- Version Switcher Dropdown Pill -->
+      <div class="version-switcher" title="Select TechScript Version Target">
+        <button id="versionBtn" class="version-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="version-badge-dot"></span>
+          <span id="navVersionTag">v2.0.0</span>
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+        </button>
+        <div id="versionDropdown" class="version-dropdown" hidden role="menu">
+          <a href="#hero" class="version-opt active" role="menuitem">
+            <strong>Latest Stable Release</strong>
+            <small id="dropLatestVer">v2.0.0 (GitHub Release)</small>
+          </a>
+          <a href="https://github.com/Tcode-Motion/techscript/tree/main" target="_blank" rel="noopener noreferrer" class="version-opt" role="menuitem">
+            <strong>Nightly (Main Branch)</strong>
+            <small>Development Cutting-Edge</small>
+          </a>
+          <a href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer" class="version-opt" role="menuitem">
+            <strong>v1.0 Legacy Archive</strong>
+            <small>Historical releases</small>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 Main Navigation Items with Hover Sub-Navigation -->
     <ul class="nav-links" role="list">
       <li><a href="#hero">Home</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#playground">Playground</a></li>
-      <li><a href="#compare">Comparison</a></li>
-      <li><a href="#install">Download</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#contribute">Community</a></li>
+
+      <!-- Docs Dropdown Sub-Navigation -->
+      <li class="nav-item-dropdown">
+        <a href="#docs" class="nav-drop-trigger">Docs <span class="drop-arr">▾</span></a>
+        <div class="nav-sub-menu">
+          <a href="#docs" class="sub-link doc-link-btn" data-doc="getting-started">
+            <strong>⚡ Quick Start Guide</strong>
+            <small>Write script in 10s</small>
+          </a>
+          <a href="#docs" class="sub-link doc-link-btn" data-doc="syntax">
+            <strong>📘 Syntax Reference</strong>
+            <small>Keywords &amp; statements</small>
+          </a>
+          <a href="#compiler" class="sub-link">
+            <strong>🦀 Compiler Architecture</strong>
+            <small>Rust Stack VM &amp; LLVM</small>
+          </a>
+          <a href="#compare" class="sub-link">
+            <strong>⚖️ Readability Comparison</strong>
+            <small>TechScript vs Python/JS</small>
+          </a>
+        </div>
+      </li>
+
+      <!-- Download Dropdown Sub-Navigation -->
+      <li class="nav-item-dropdown">
+        <a href="#install" class="nav-drop-trigger">Download <span class="drop-arr">▾</span></a>
+        <div class="nav-sub-menu">
+          <a href="#install" class="sub-link">
+            <strong>🪟 Windows Setup</strong>
+            <small>Native Installer &amp; Portable</small>
+          </a>
+          <a href="#install" class="sub-link">
+            <strong>🐧 Linux &amp; macOS</strong>
+            <small>Automated shell script</small>
+          </a>
+          <a href="#install" class="sub-link">
+            <strong>🤖 Android Termux</strong>
+            <small>Mobile execution CLI</small>
+          </a>
+          <a href="#install" class="sub-link">
+            <strong>🐍 PyPI Package</strong>
+            <small>pip install techscript</small>
+          </a>
+        </div>
+      </li>
+
+      <!-- Ecosystem Dropdown Sub-Navigation -->
+      <li class="nav-item-dropdown">
+        <a href="#community" class="nav-drop-trigger">Ecosystem <span class="drop-arr">▾</span></a>
+        <div class="nav-sub-menu">
+          <a href="#roadmap" class="sub-link">
+            <strong>🚀 Project Roadmap</strong>
+            <small>Phases &amp; Milestones</small>
+          </a>
+          <a href="#releases" class="sub-link">
+            <strong>📋 Release Notes</strong>
+            <small>GitHub Release Changelog</small>
+          </a>
+          <a href="#community" class="sub-link">
+            <strong>💬 Community &amp; Discord</strong>
+            <small>Developer chat &amp; discussions</small>
+          </a>
+          <a href="projects.html" class="sub-link">
+            <strong>🌐 Hosted Showcase Page</strong>
+            <small>Tcode-Motion web apps</small>
+          </a>
+        </div>
+      </li>
+
       <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="nav-proj-highlight">GitHub ★</a></li>
     </ul>
 
     <div class="nav-ctas">
       <button id="searchTrigger" class="search-trigger" aria-label="Search site (Ctrl+K)">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
       </button>
-      <button id="themeToggle" class="theme-toggle" aria-label="Toggle light and dark theme">
-        <!-- Sun Icon -->
-        <svg class="sun" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 16 8zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0z"/></svg>
-        <!-- Moon Icon -->
-        <svg class="moon" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>
-      </button>
+
       <button class="ham" id="hamBtn" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -156,18 +289,21 @@
   </nav>
 
   <!-- Mobile Dropdown Navigation -->
-  <nav class="mob-menu" id="mobMenu" aria-label="Mobile navigation dropdown">
+  <nav class="mob-menu" id="mobMenu" aria-label="Mobile navigation menu">
     <a href="#hero">Home</a>
     <a href="#features">Features</a>
     <a href="#playground">Playground</a>
+    <a href="#docs">Documentation</a>
     <a href="#compare">Comparison</a>
+    <a href="#compiler">Compiler Pipeline</a>
     <a href="#install">Download</a>
     <a href="#roadmap">Roadmap</a>
-    <a href="#contribute">Community</a>
-    <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">GitHub Project</a>
+    <a href="#releases">Releases</a>
+    <a href="#community">Community</a>
+    <a href="projects.html">Showcase ↗</a>
   </nav>
 
-  <!-- ── MAIN CONTENT SECTIONS ── -->
+  <!-- ── MAIN CONTENT ── -->
   <main id="main-content">
 
     <!-- 1. HERO SECTION -->
@@ -176,188 +312,235 @@
       <div class="orb orb-1" aria-hidden="true"></div>
       <div class="orb orb-2" aria-hidden="true"></div>
       <div class="orb orb-3" aria-hidden="true"></div>
-      
+
       <div class="hero-inner container">
         <div class="badge-container">
-          <a href="#roadmap" class="badge-link" aria-label="Read TechScript 2.0 Roadmap">
-            <span class="badge-glow-pill">🚀 TechScript 2.0 Roadmap Released <span class="arr">→</span></span>
+          <a href="#releases" class="badge-link" aria-label="View latest release highlights">
+            <span class="badge-glow-pill">
+              <span class="pill-dot"></span>
+              <span id="heroReleaseBadge">Latest Stable Release Available</span>
+              <span class="arr">→</span>
+            </span>
           </a>
         </div>
 
-        <img src="/assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" class="hero-logo" decoding="async">
-        
+        <div class="hero-brand">
+          <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Dragon Logo" class="hero-logo" decoding="async">
+        </div>
+
         <h1 class="hero-h1" id="hero-title">
           <span class="ln1">TechScript</span>
-          <span class="ln2">Write Code Like English</span>
+          <span class="ln2">Write like a Human. Run like Rust.</span>
         </h1>
 
         <p class="hero-sub">
-          TechScript is a premium, open-source programming language that lets you write code like natural sentences. No bracket confusion, no semicolons. Powered by a high-speed, native Rust VM.
+          The plain-English programming language. Zero symbols. Zero overhead. TechScript replaces cryptic syntax clutter with clear keyword grammar, compiling into bytecode executed on a high-speed stack VM written in Rust or native machine code via an LLVM backend.
         </p>
 
-        <div class="quick-benefits" role="list" aria-label="Language attributes">
-          <div class="benefit-chip" role="listitem">⚡ Zero-GC Rust VM</div>
-          <div class="benefit-chip" role="listitem">🛡️ Memory Safe</div>
-          <div class="benefit-chip" role="listitem">🐍 Python Transpiler</div>
+        <div class="quick-benefits" role="list" aria-label="Language Key Strengths">
+          <div class="benefit-chip" role="listitem">🦀 Custom Rust Stack VM</div>
+          <div class="benefit-chip" role="listitem">⚡ LLVM Native Backend</div>
+          <div class="benefit-chip" role="listitem">📦 Single Toolchain (<code style="color:var(--accent-cyan);">tsc</code>)</div>
+          <div class="benefit-chip" role="listitem">🤖 Native AI (<code style="color:var(--accent-cyan);">use ai</code>)</div>
+          <div class="benefit-chip" role="listitem">🛡️ Zero Syntax Clutter</div>
         </div>
 
         <div class="hero-cta">
-          <a href="#install" class="btn btn-primary">⬇ Download CLI</a>
-          <a href="https://github.com/Tcode-Motion/techscript/blob/master/docs/REFERENCE.md" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Documentation</a>
-          <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" aria-label="GitHub Repository">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
-            Star on GitHub
+          <a href="#install" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Download <span id="btnReleaseVer">Latest</span>
+          </a>
+          <a href="#docs" class="btn btn-secondary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            Documentation Portal
+          </a>
+          <a href="#playground" class="btn btn-secondary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Interactive Examples
+          </a>
+          <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub Repository
           </a>
         </div>
 
-        <!-- Simulated typing IDE terminal -->
-        <div class="terminal" role="img" aria-label="Terminal screen simulating TechScript execution">
+        <!-- Dynamic Repository Status Banner -->
+        <div class="repo-status-bar" id="repoStatusBar" role="region" aria-label="Repository Live Status">
+          <div class="status-item">
+            <span class="status-label">Latest Version</span>
+            <span id="statVer" class="status-val highlight">Fetching...</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Build Status</span>
+            <a href="https://github.com/Tcode-Motion/techscript/actions" target="_blank" rel="noopener noreferrer" class="status-val green">
+              <span class="status-dot"></span> Passing
+            </a>
+          </div>
+          <div class="status-item">
+            <span class="status-label">GitHub Stars</span>
+            <span id="statStars" class="status-val">...</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Open Issues</span>
+            <span id="statIssues" class="status-val">...</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">License</span>
+            <span class="status-val">MIT</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Platforms</span>
+            <span class="status-val text-dim">Win • Linux • macOS • Termux</span>
+          </div>
+        </div>
+
+        <!-- Terminal Window Simulation -->
+        <div class="terminal" role="img" aria-label="TechScript CLI terminal output simulation">
           <div class="tbar">
             <div class="tdot r"></div>
             <div class="tdot y"></div>
             <div class="tdot g"></div>
-            <span class="ttitle">welcome_script.txs — TechScript Studio IDE</span>
+            <span class="ttitle">welcome.txs — tsc driver VM</span>
           </div>
-          <div class="tbody">
-            <!-- Handled dynamically by script.js -->
-            <span class="cmt">// TechScript - Loading compiler VM...</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. STATISTICSHorizontal Ticker -->
-    <section id="stats" class="stats-sec" aria-label="Core Statistics Banner">
-      <div class="container">
-        <div class="stats-banner-grid" role="list">
-          <div class="stat-box" role="listitem">
-            <span class="stat-num">v1.0.8</span>
-            <span class="stat-desc">Active Version</span>
-          </div>
-          <div class="stat-box" role="listitem">
-            <span class="stat-num">100%</span>
-            <span class="stat-desc">Open Source MIT</span>
-          </div>
-          <div class="stat-box" role="listitem">
-            <span class="stat-num">150+</span>
-            <span class="stat-desc">Standard Functions</span>
-          </div>
-          <div class="stat-box" role="listitem">
-            <span class="stat-num">Rust VM</span>
-            <span class="stat-desc">Execution Engine</span>
+          <div class="tbody" id="terminalOutput">
+            <span class="cmt"># Compiling welcome.txs with tsc driver...</span>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="ticker-wrap" aria-hidden="true">
-      <div class="ticker-inner">
-        <span class="tick-item"><span class="dot">✦</span> Plain English Syntax</span>
-        <span class="tick-item"><span class="dot">✦</span> Native Rust Virtual Machine</span>
-        <span class="tick-item"><span class="dot">✦</span> Zero Semicolons Required</span>
-        <span class="tick-item"><span class="dot">✦</span> Bundled TechScript Studio Desktop IDE</span>
-        <span class="tick-item"><span class="dot">✦</span> 150+ Native Functions</span>
-        <span class="tick-item"><span class="dot">✦</span> build web Zero-HTML page support</span>
-        <!-- Duplicated items for infinite loop -->
-        <span class="tick-item"><span class="dot">✦</span> Plain English Syntax</span>
-        <span class="tick-item"><span class="dot">✦</span> Native Rust Virtual Machine</span>
-        <span class="tick-item"><span class="dot">✦</span> Zero Semicolons Required</span>
-        <span class="tick-item"><span class="dot">✦</span> Bundled TechScript Studio Desktop IDE</span>
-      </div>
-    </div>
-
-    <!-- 3. WHY TECHSCRIPT & FEATURES -->
+    <!-- 2. ANIMATED FEATURES SECTION -->
     <section id="features" aria-labelledby="features-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// compiler advantages</p>
-          <h2 class="sec-title" id="features-title">Easiest Syntax, Powerful Engine</h2>
-          <p class="sec-sub">Get access to professional compiler features packaged with the easiest syntax in computing.</p>
+          <p class="sec-eyebrow">// language capabilities</p>
+          <h2 class="sec-title" id="features-title">Designed for Humans. Built for Speed.</h2>
+          <p class="sec-sub">Experience the power of modern compiler engineering combined with readable English grammar.</p>
         </header>
 
         <div class="feat-grid">
           <article class="feat-card">
-            <span class="feat-icon" aria-hidden="true">🦀</span>
-            <h3 class="feat-title">Native Rust Virtual Machine</h3>
-            <p class="feat-desc">Built completely in Rust. High execution performance, zero garbage collection pauses, and built-in memory safety bounds.</p>
-            <span class="feat-tag">High Performance</span>
+            <div class="feat-icon-wrap"><span>🐉</span></div>
+            <h3 class="feat-title">Zero Syntax Clutter</h3>
+            <p class="feat-desc">Replace curly braces, semicolons, and cryptic operator symbols with clean keywords like <code style="color:var(--accent-cyan)">do</code>, <code style="color:var(--accent-cyan)">end</code>, <code style="color:var(--accent-cyan)">when</code>, <code style="color:var(--accent-cyan)">else</code>, <code style="color:var(--accent-cyan)">say</code>, and <code style="color:var(--accent-cyan)">send</code>.</p>
+            <span class="feat-tag">Syntax Engine</span>
           </article>
 
           <article class="feat-card accent2-card">
-            <span class="feat-icon" aria-hidden="true">📖</span>
-            <h3 class="feat-title">Plain English Scripting</h3>
-            <p class="feat-desc">Every instruction reads like an English statement. Declare variables with make, functions with build, and loops with each.</p>
-            <span class="feat-tag">Syntax system</span>
+            <div class="feat-icon-wrap"><span>🦀</span></div>
+            <h3 class="feat-title">Custom Rust Stack VM</h3>
+            <p class="feat-desc">Powered by a high-performance stack-based Virtual Machine written in Rust. Utilizes NaN-boxed value representations and an integrated tracing Garbage Collector.</p>
+            <span class="feat-tag">Virtual Machine</span>
           </article>
 
           <article class="feat-card accent3-card">
-            <span class="feat-icon" aria-hidden="true">🌐</span>
-            <h3 class="feat-title">ZeroHTML Web Framework</h3>
-            <p class="feat-desc">Use the web module to compile and host functional responsive webpages directly from one .txs file. Zero HTML or CSS required.</p>
-            <span class="feat-tag">Web Engine</span>
+            <div class="feat-icon-wrap"><span>⚡</span></div>
+            <h3 class="feat-title">Native LLVM Backend</h3>
+            <p class="feat-desc">Compile TechScript programs into optimized native machine code executables for maximum hardware speed via the dedicated LLVM crate generator.</p>
+            <span class="feat-tag">Native Compiler</span>
           </article>
 
           <article class="feat-card">
-            <span class="feat-icon" aria-hidden="true">🖥️</span>
-            <h3 class="feat-title">TechScript Studio IDE</h3>
-            <p class="feat-desc">Bundled in the Windows installer. Features resizable docking layouts, multi-channel terminal tabbed outputs, and visual AST graph view.</p>
-            <span class="feat-tag">Developer UI</span>
+            <div class="feat-icon-wrap"><span>🛠️</span></div>
+            <h3 class="feat-title">Unified Compiler Driver</h3>
+            <p class="feat-desc">Single toolchain driver executable <code style="color:var(--accent-cyan)">tsc</code> handles running, building, testing, linting, formatting, package publishing, and AST dumping.</p>
+            <span class="feat-tag">Toolchain CLI</span>
           </article>
 
           <article class="feat-card accent2-card">
-            <span class="feat-icon" aria-hidden="true">🎨</span>
-            <h3 class="feat-title">VS Code Extension</h3>
-            <p class="feat-desc">Official extension containing full lexical color themes, auto-completions, snippets, and dragon icons for files.</p>
-            <span class="feat-tag">Editor Support</span>
+            <div class="feat-icon-wrap"><span>🤖</span></div>
+            <h3 class="feat-title">Native AI Integration</h3>
+            <p class="feat-desc">Built-in <code style="color:var(--accent-cyan)">ai</code> standard library module provides seamless Gemini model prompting and text generation directly inside scripts.</p>
+            <span class="feat-tag">Stdlib AI</span>
           </article>
 
           <article class="feat-card accent3-card">
-            <span class="feat-icon" aria-hidden="true">🔐</span>
-            <h3 class="feat-title">Cryptographic Library</h3>
-            <p class="feat-desc">Perform SHA-256 secure hashing, MD5 message digests, and Base64 translations directly from native built-in commands.</p>
-            <span class="feat-tag">Security Tools</span>
+            <div class="feat-icon-wrap"><span>📚</span></div>
+            <h3 class="feat-title">11 Core Stdlib Modules</h3>
+            <p class="feat-desc">Batteries included out of the box: <code style="color:var(--text-muted)">math</code>, <code style="color:var(--text-muted)">collections</code>, <code style="color:var(--text-muted)">file</code>, <code style="color:var(--text-muted)">json</code>, <code style="color:var(--text-muted)">http</code>, <code style="color:var(--text-muted)">sqlite</code>, <code style="color:var(--text-muted)">canvas</code>, <code style="color:var(--text-muted)">time</code>, <code style="color:var(--text-muted)">thread</code>, <code style="color:var(--text-muted)">ai</code>, and <code style="color:var(--text-muted)">testing</code>.</p>
+            <span class="feat-tag">Standard Library</span>
+          </article>
+
+          <article class="feat-card">
+            <div class="feat-icon-wrap"><span>🎨</span></div>
+            <h3 class="feat-title">VS Code &amp; LSP Support</h3>
+            <p class="feat-desc">Full Language Server Protocol support (<code style="color:var(--accent-cyan)">techscript-lsp</code>) with official VS Code extensions available on Visual Studio Marketplace and Open VSX.</p>
+            <span class="feat-tag">IDE Ecosystem</span>
+          </article>
+
+          <article class="feat-card accent2-card">
+            <div class="feat-icon-wrap"><span>🌐</span></div>
+            <h3 class="feat-title">Cross-Platform Runtime</h3>
+            <p class="feat-desc">Runs anywhere. Download ready-to-run installers for Windows, Linux, macOS, Android (Termux), or PyPI python package (<code style="color:var(--accent-cyan)">pip install techscript</code>).</p>
+            <span class="feat-tag">Universal Support</span>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 4. INTERACTIVE PLAYGROUND -->
+    <!-- 3. INTERACTIVE PLAYGROUND -->
     <section id="playground" aria-labelledby="play-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// live editor simulation</p>
-          <h2 class="sec-title" id="play-title">Explore TechScript Live</h2>
-          <p class="sec-sub">Select code examples below to view syntax highlights and simulated terminal stdout.</p>
+          <p class="sec-eyebrow">// live editor &amp; interactive execution</p>
+          <h2 class="sec-title" id="play-title">Interactive TechScript Playground</h2>
+          <p class="sec-sub">Select code examples below to view syntax, modify code, and execute simulated VM bytecode outputs live in your browser.</p>
         </header>
 
-        <div class="playground" role="region" aria-label="Interactive code editor">
-          <div class="play-sidebar" role="navigation" aria-label="Select code examples">
-            <h3>Examples</h3>
-            <button class="exbtn" data-example="hello" aria-current="true">👋 Hello World</button>
-            <button class="exbtn" data-example="vars">📦 Variables</button>
-            <button class="exbtn" data-example="cond">🔀 Conditions</button>
-            <button class="exbtn" data-example="loops">🔁 Loops</button>
-            <button class="exbtn" data-example="funcs">🔧 Functions</button>
-            <button class="exbtn" data-example="classes">🏗️ Classes (OOP)</button>
-            <button class="exbtn" data-example="errors">⚠️ Error Handling</button>
-            <button class="exbtn" data-example="web">🌐 Build Website</button>
-            <button class="exbtn" data-example="crypto">🔐 Cryptography</button>
+        <div class="playground" role="region" aria-label="Interactive TechScript Code Runner">
+          <div class="play-sidebar" role="navigation" aria-label="Select Code Example Category">
+            <div class="play-cat-hdr">Examples</div>
+            <button class="exbtn active" data-example="hello">👋 Hello World</button>
+            <button class="exbtn" data-example="vars">📦 Variables &amp; Consts</button>
+            <button class="exbtn" data-example="cond">🔀 Conditions (when)</button>
+            <button class="exbtn" data-example="loops">🔁 For Loops (for)</button>
+            <button class="exbtn" data-example="funcs">🔧 Functions (do/send)</button>
+            <button class="exbtn" data-example="ai">🤖 AI Prompt (use ai)</button>
+            <button class="exbtn" data-example="canvas">🎨 2D Canvas (use canvas)</button>
+            <button class="exbtn" data-example="db">🗄️ SQLite DB (use sqlite)</button>
+            <button class="exbtn" data-example="async">⚡ Async &amp; Await</button>
+            <button class="exbtn" data-example="threads">🧵 OS Threads (use thread)</button>
+            <button class="exbtn" data-example="errors">⚠️ Exception Handling</button>
           </div>
 
-          <div class="play-editor">
-            <div class="play-topbar">
-              <div class="wdot r"></div>
-              <div class="wdot y"></div>
-              <div class="wdot g"></div>
-              <span id="play-fname" class="play-fname">script.txs</span>
+          <div class="play-editor-wrap">
+            <div class="play-toolbar">
+              <div class="play-fname-wrap">
+                <span class="tdot r"></span>
+                <span class="tdot y"></span>
+                <span class="tdot g"></span>
+                <span id="playFname" class="play-fname">hello.txs</span>
+              </div>
+              <div class="play-actions">
+                <button id="btnRunCode" class="play-act-btn run" title="Compile and run script in simulated Rust VM">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/></svg>
+                  Run Code
+                </button>
+                <button id="btnCopyCode" class="play-act-btn" title="Copy script to clipboard">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                  Copy
+                </button>
+                <button id="btnResetCode" class="play-act-btn" title="Reset snippet to original default">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                  Reset
+                </button>
+                <button id="btnShareCode" class="play-act-btn" title="Generate shareable code link">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                  Share
+                </button>
+              </div>
             </div>
+
             <div class="play-split">
-              <div id="play-code" class="play-code" aria-label="Code source area"></div>
-              <div class="play-out">
-                <span class="out-label">Simulated Stdout</span>
-                <pre id="play-out" aria-label="Stdout console"></pre>
+              <div class="play-code-box">
+                <textarea id="playEditor" class="play-textarea" spellcheck="false" aria-label="Code Editor"></textarea>
+              </div>
+              <div class="play-out-box">
+                <div class="out-hdr">
+                  <span>Simulated Terminal Stdout</span>
+                  <span class="out-status-pill">Exit Code: 0</span>
+                </div>
+                <pre id="playStdout" class="play-stdout" aria-label="Terminal stdout console"></pre>
               </div>
             </div>
           </div>
@@ -365,61 +548,61 @@
       </div>
     </section>
 
-    <!-- 5. COMPARISON SECTION -->
+    <!-- 4. COMPARISON SECTION -->
     <section id="compare" aria-labelledby="compare-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// side-by-side comparison</p>
-          <h2 class="sec-title" id="compare-title">Compare the Readability</h2>
-          <p class="sec-sub">See how TechScript syntax simplifies typical instructions compared with Python and JavaScript.</p>
+          <p class="sec-eyebrow">// side-by-side readability</p>
+          <h2 class="sec-title" id="compare-title">Compare Readability</h2>
+          <p class="sec-sub">See how TechScript syntax eliminates punctuation clutter compared with Python and JavaScript.</p>
         </header>
 
-        <div class="tbl-wrap" role="region" aria-label="Comparison Table">
+        <div class="tbl-wrap" role="region" aria-label="Syntax Comparison Matrix">
           <table class="cmp-tbl">
             <thead>
               <tr>
-                <th style="width: 25%;">Operation</th>
-                <th class="txs-col" style="width: 25%;">🐉 TechScript</th>
+                <th style="width: 20%;">Feature</th>
+                <th class="txs-col" style="width: 30%;">🐉 TechScript</th>
                 <th style="width: 25%;">🐍 Python</th>
                 <th style="width: 25%;">🌐 JavaScript</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Console Log</strong></td>
-                <td class="txs-col">
-                  <span class="ck">✓ Plain English statement</span>
-                  <code class="mc"><span class="kw">say</span> <span class="str">"Hello!"</span></code>
-                </td>
-                <td><code class="mc">print("Hello!")</code></td>
-                <td><code class="mc">console.log("Hello!")</code></td>
-              </tr>
-              <tr>
-                <td><strong>Variable Declaration</strong></td>
-                <td class="txs-col">
-                  <span class="ck">✓ Clear action</span>
-                  <code class="mc"><span class="kw2">make</span> x <span class="op">be</span> <span class="num">10</span></code>
-                </td>
+                <td><strong>Variable</strong></td>
+                <td class="txs-col"><code class="mc">x = 10</code></td>
                 <td><code class="mc">x = 10</code></td>
                 <td><code class="mc">let x = 10;</code></td>
               </tr>
               <tr>
-                <td><strong>Constant Bounds</strong></td>
-                <td class="txs-col">
-                  <span class="ck">✓ Immutable bind</span>
-                  <code class="mc"><span class="kw2">keep</span> PI <span class="op">be</span> <span class="num">3.14</span></code>
-                </td>
-                <td><code class="mc">PI = 3.14 # conv. only</code></td>
-                <td><code class="mc">const PI = 3.14;</code></td>
+                <td><strong>Constant</strong></td>
+                <td class="txs-col"><code class="mc"><span class="kw">const</span> PI = <span class="num">3.14159</span></code></td>
+                <td><code class="mc">PI = 3.14159 # convention</code></td>
+                <td><code class="mc">const PI = 3.14159;</code></td>
               </tr>
               <tr>
-                <td><strong>Loops</strong></td>
-                <td class="txs-col">
-                  <span class="ck">✓ Direct range syntax</span>
-                  <code class="mc"><span class="kw2">each</span> i <span class="op">in</span> <span class="num">1</span>..<span class="num">5</span></code>
-                </td>
-                <td><code class="mc">for i in range(1, 6):</code></td>
-                <td><code class="mc">for(let i=1;i&lt;=5;i++)</code></td>
+                <td><strong>Function</strong></td>
+                <td class="txs-col"><code class="mc"><span class="kw">do</span> greet(name)<br>&nbsp;&nbsp;<span class="kw">send</span> <span class="str">"Hi "</span> + name<br><span class="kw">end</span></code></td>
+                <td><code class="mc">def greet(name):<br>&nbsp;&nbsp;return "Hi " + name</code></td>
+                <td><code class="mc">function greet(name) {<br>&nbsp;&nbsp;return "Hi " + name;<br>}</code></td>
+              </tr>
+              <tr>
+                <td><strong>Condition</strong></td>
+                <td class="txs-col"><code class="mc"><span class="kw">when</span> x &gt; <span class="num">5</span><br>&nbsp;&nbsp;say <span class="str">"Big"</span><br><span class="kw">else</span><br>&nbsp;&nbsp;say <span class="str">"Small"</span><br><span class="kw">end</span></code></td>
+                <td><code class="mc">if x &gt; 5:<br>&nbsp;&nbsp;print("Big")<br>else:<br>&nbsp;&nbsp;print("Small")</code></td>
+                <td><code class="mc">if (x &gt; 5) {<br>&nbsp;&nbsp;console.log("Big");<br>} else {<br>&nbsp;&nbsp;console.log("Small");<br>}</code></td>
+              </tr>
+              <tr>
+                <td><strong>For Loop</strong></td>
+                <td class="txs-col"><code class="mc"><span class="kw">for</span> item <span class="kw">in</span> list<br>&nbsp;&nbsp;say item<br><span class="kw">end</span></code></td>
+                <td><code class="mc">for item in list:<br>&nbsp;&nbsp;print(item)</code></td>
+                <td><code class="mc">for (let item of list) {<br>&nbsp;&nbsp;console.log(item);<br>}</code></td>
+              </tr>
+              <tr>
+                <td><strong>Try / Catch</strong></td>
+                <td class="txs-col"><code class="mc"><span class="kw">try</span><br>&nbsp;&nbsp;res = divide(<span class="num">10</span>, <span class="num">0</span>)<br><span class="kw">catch</span> error<br>&nbsp;&nbsp;say error<br><span class="kw">end</span></code></td>
+                <td><code class="mc">try:<br>&nbsp;&nbsp;res = divide(10, 0)<br>except Exception as error:<br>&nbsp;&nbsp;print(error)</code></td>
+                <td><code class="mc">try {<br>&nbsp;&nbsp;let res = divide(10, 0);<br>} catch (error) {<br>&nbsp;&nbsp;console.error(error);<br>}</code></td>
               </tr>
             </tbody>
           </table>
@@ -428,31 +611,34 @@
         <div class="code-compare" aria-label="Fibonacci recursion in three languages">
           <div class="cc-block txs-b">
             <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">🐉 TechScript</h3>
-            <pre class="cc-code"><code><span class="cmt">// Fibonacci recursion</span>
-<span class="fn-c">build</span> fib(n) {
-  <span class="kw2">when</span> n &lt;= <span class="num">1</span> { <span class="kw">give</span> n }
-  <span class="kw">give</span> fib(n-<span class="num">1</span>) + fib(n-<span class="num">2</span>)
-}
-<span class="kw">say</span> fib(<span class="num">10</span>) <span class="cmt">// 55</span></code></pre>
+            <pre class="cc-code"><code><span class="cmt"># Fibonacci recursion in TechScript</span>
+<span class="kw">do</span> fib(n)
+  <span class="kw">when</span> n &lt;= 1
+    <span class="kw">send</span> n
+  <span class="kw">end</span>
+  <span class="kw">send</span> fib(n - 1) + fib(n - 2)
+<span class="kw">end</span>
+
+say fib(10) <span class="cmt"># 55</span></code></pre>
           </div>
 
           <div class="cc-block">
             <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">🐍 Python</h3>
-            <pre class="cc-code" style="color: var(--text-muted);"><code># Fibonacci recursion
+            <pre class="cc-code" style="color: var(--text-muted);"><code># Fibonacci recursion in Python
 def fib(n):
     if n &lt;= 1:
         return n
-    return fib(n-1) + fib(n-2)
+    return fib(n - 1) + fib(n - 2)
 
 print(fib(10)) # 55</code></pre>
           </div>
 
           <div class="cc-block">
             <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">🌐 JavaScript</h3>
-            <pre class="cc-code" style="color: var(--text-muted);"><code>// Fibonacci recursion
+            <pre class="cc-code" style="color: var(--text-muted);"><code>// Fibonacci recursion in JavaScript
 function fib(n) {
   if (n &lt;= 1) return n;
-  return fib(n-1) + fib(n-2);
+  return fib(n - 1) + fib(n - 2);
 }
 
 console.log(fib(10)); // 55</code></pre>
@@ -461,172 +647,298 @@ console.log(fib(10)); // 55</code></pre>
       </div>
     </section>
 
-    <!-- 6. COMPILER & PERFORMANCE PIPELINE -->
+    <!-- 5. COMPILER PIPELINE -->
     <section id="compiler" aria-labelledby="compiler-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// compilation pipeline</p>
-          <h2 class="sec-title" id="compiler-title">Under the Hood: Pure Rust VM</h2>
-          <p class="sec-sub">TechScript converts plain English source text into compiled bytecode designed for VM execution.</p>
+          <p class="sec-eyebrow">// architecture pipeline</p>
+          <h2 class="sec-title" id="compiler-title">Under the Hood: <code style="color:var(--accent-cyan)">tsc</code> Pipeline</h2>
+          <p class="sec-sub">The TechScript compiler driver transforms source code into optimized VM bytecode or native machine code binaries.</p>
         </header>
 
-        <div class="pipeline-flow" role="region" aria-label="Compiler step flowchart">
+        <div class="pipeline-flow" role="region" aria-label="Compiler Pipeline Diagram">
           <div class="pipeline-step">
             <div class="pipe-num">1</div>
-            <h3>Source File</h3>
-            <p>Developer writes plain-text instructions in a .txs extension script.</p>
+            <h3>Source Code</h3>
+            <p><code style="color:var(--accent-cyan)">.txs</code> plain English script file.</p>
           </div>
-          <span class="pipe-arrow" aria-hidden="true">→</span>
+          <span class="pipe-arrow" aria-hidden="true">➔</span>
 
           <div class="pipeline-step">
             <div class="pipe-num">2</div>
-            <h3>Lexer &amp; Parser</h3>
-            <p>Characters form tokens. The parser creates an Abstract Syntax Tree (AST).</p>
+            <h3>Lexer &amp; Pratt Parser</h3>
+            <p>Logos tokenizing &amp; Pratt expression AST construction.</p>
           </div>
-          <span class="pipe-arrow" aria-hidden="true">→</span>
+          <span class="pipe-arrow" aria-hidden="true">➔</span>
 
           <div class="pipeline-step">
             <div class="pipe-num">3</div>
-            <h3>Bytecode</h3>
-            <p>TechScript compiler translates AST structures into binary instructions.</p>
+            <h3>Semantic Audit &amp; Optimizer</h3>
+            <p>Lexical scope validation &amp; compile-time constant folding.</p>
           </div>
-          <span class="pipe-arrow" aria-hidden="true">→</span>
+          <span class="pipe-arrow" aria-hidden="true">➔</span>
 
           <div class="pipeline-step">
             <div class="pipe-num">4</div>
-            <h3>Rust VM</h3>
-            <p>Our custom Virtual Machine runs the bytecode instructions safely at high speed.</p>
+            <h3>IR Crate Generation</h3>
+            <p>Produces Intermediate Representation for execution targets.</p>
+          </div>
+          <span class="pipe-arrow" aria-hidden="true">➔</span>
+
+          <div class="pipeline-step feature-split">
+            <div class="pipe-num">5</div>
+            <h3>Execution Targets</h3>
+            <p><strong>VM Target:</strong> Bytecode VM with tracing GC.<br><strong>Native Target:</strong> LLVM binary emit.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 7. INSTALLATION SECTION -->
+    <!-- 6. DOWNLOAD & INSTALLATION CENTER -->
     <section id="install" aria-labelledby="install-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// installation portal</p>
-          <h2 class="sec-title" id="install-title">Deploy TechScript Locally</h2>
-          <p class="sec-sub">Windows gets the full Desktop Studio IDE workspace. Other systems get the CLI utility via python pip package.</p>
+          <p class="sec-eyebrow">// installation center</p>
+          <h2 class="sec-title" id="install-title">Install TechScript</h2>
+          <p class="sec-sub">Download native installer packages or install via single command shell scripts on your operating system.</p>
         </header>
 
+        <!-- Dynamic Release Info Banner -->
+        <div class="dl-release-hdr" id="dlReleaseHdr">
+          <div class="dl-rel-left">
+            <span class="dl-rel-badge">Latest Release</span>
+            <span id="dlVersionTag" class="dl-rel-tag">Fetching...</span>
+            <span id="dlReleaseDate" class="dl-rel-date">...</span>
+          </div>
+          <div class="dl-rel-right">
+            <a id="btnGhReleasePage" href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+              View Release Notes on GitHub ↗
+            </a>
+          </div>
+        </div>
+
         <div class="install-grid">
+          <!-- Windows Card -->
           <div class="install-card featured">
-            <span class="install-badge rec">⭐ Recommended</span>
+            <span class="install-badge rec">⭐ Recommended for Windows</span>
             <h3>🪟 Windows Setup</h3>
-            <p>The complete suite. Automatic PATH settings, VS Code configurations, and the Studio Workspace IDE.</p>
+            <p>Official installer configures PATH, environment associations for <code style="color:var(--accent-cyan)">.txs</code> files, and installs the <code style="color:var(--accent-cyan)">tsc</code> toolchain.</p>
             <div class="cmd-box">
               <span class="pr">→</span>
-              <span class="ct">TechScript_v1.0.8_x64.exe</span>
-              <a href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn copy-btn" style="text-decoration:none; display:inline-block; text-align:center; padding: 6px 12px; font-size: 0.85rem; border-radius: var(--radius-sm);">⬇ Download</a>
+              <span id="winAssetLabel" class="ct">TechScript_Setup.exe</span>
+              <a id="btnWinInstaller" href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn copy-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:4px; padding: 6px 12px; font-size: 0.85rem;">⬇ Download</a>
+            </div>
+            <div class="dl-sublinks">
+              <a id="btnWinPortable" href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer">Download Zero-Install Portable ZIP</a>
             </div>
             <div class="incl-list" role="list">
-              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>TechScript Studio IDE desktop dashboard</span></div>
-              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>PATH registration for CLI commands</span></div>
-              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Official VS Code syntax extensions</span></div>
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Native <code style="color:var(--accent-cyan)">tsc</code> compiler driver &amp; stack VM</span></div>
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Automatic System PATH configuration</span></div>
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>VS Code extension integration</span></div>
             </div>
           </div>
 
+          <!-- Linux / macOS Card -->
           <div class="install-card">
-            <span class="install-badge pip">🐍 Pip Package</span>
-            <h3>📦 Cross-Platform CLI</h3>
-            <p>Runs on macOS, Linux, and Windows. Installs the language runtime via python package index.</p>
+            <span class="install-badge shell">🐧 Linux / 🍎 macOS</span>
+            <h3>Linux &amp; macOS Setup</h3>
+            <p>Auto-detects OS and processor architecture to fetch the native compiler binary instantly via curl.</p>
             <div class="cmd-box">
               <span class="pr">$</span>
-              <span id="pipCmd" class="ct">pip install techscript-lang</span>
-              <button class="copy-btn" data-copy="pip install techscript-lang">Copy</button>
+              <span id="shCmd" class="ct">curl -fsSL https://raw.githubusercontent.com/Tcode-Motion/techscript/main/scripts/install.sh | bash</span>
+              <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/Tcode-Motion/techscript/main/scripts/install.sh | bash">Copy</button>
             </div>
             <div class="incl-list" role="list">
-              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>CLI utilities (tech run, repl, check)</span></div>
-              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Full language engine execution</span></div>
-              <div class="incl-item" role="listitem"><span class="ic" style="color: var(--text-muted)">✗</span><span style="color: var(--text-muted)">Studio IDE workspace (Windows exclusive)</span></div>
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Single-command automated installation</span></div>
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>ARM64 and x86_64 pre-built binaries</span></div>
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Executes inside bash / zsh terminals</span></div>
+            </div>
+          </div>
+
+          <!-- Android Termux Card -->
+          <div class="install-card">
+            <span class="install-badge termux">🤖 Android (Termux)</span>
+            <h3>Android Termux</h3>
+            <p>Run TechScript directly on your mobile device inside Termux environment.</p>
+            <div class="cmd-box">
+              <span class="pr">$</span>
+              <span id="termuxCmd" class="ct">pkg update &amp;&amp; pkg install curl &amp;&amp; curl -fsSL https://raw.githubusercontent.com/Tcode-Motion/techscript/main/scripts/install.sh | bash</span>
+              <button class="copy-btn" data-copy="pkg update && pkg install curl && curl -fsSL https://raw.githubusercontent.com/Tcode-Motion/techscript/main/scripts/install.sh | bash">Copy</button>
+            </div>
+            <div class="incl-list" role="list">
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Full mobile CLI execution support</span></div>
+            </div>
+          </div>
+
+          <!-- PyPI Pip Card -->
+          <div class="install-card">
+            <span class="install-badge pip">🐍 Python (pip)</span>
+            <h3>PyPI Package Index</h3>
+            <p>Cross-platform wrapper package that downloads binary toolchain automatically.</p>
+            <div class="cmd-box">
+              <span class="pr">$</span>
+              <span id="pipCmd" class="ct">pip install techscript</span>
+              <button class="copy-btn" data-copy="pip install techscript">Copy</button>
+            </div>
+            <div class="incl-list" role="list">
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Installs <code style="color:var(--accent-cyan)">techscript</code> &amp; <code style="color:var(--accent-cyan)">tsc</code> CLI aliases</span></div>
+            </div>
+          </div>
+
+          <!-- Homebrew / Package Managers -->
+          <div class="install-card">
+            <span class="install-badge brew">🍺 Homebrew / Winget / Scoop</span>
+            <h3>Package Managers</h3>
+            <p>Official Homebrew bottle, Winget manifest, and Scoop bucket support.</p>
+            <div class="cmd-box">
+              <span class="pr">$</span>
+              <span class="ct">brew install techscript</span>
+              <span class="badge-coming">Coming Soon</span>
+            </div>
+            <div class="incl-list" role="list">
+              <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Managed automated software updates</span></div>
+            </div>
+          </div>
+
+          <!-- Source Code & Archives -->
+          <div class="install-card">
+            <span class="install-badge source">📦 Source Code</span>
+            <h3>Source Archives</h3>
+            <p>Build directly from Rust sources or download release source tarballs.</p>
+            <div class="cmd-box">
+              <span class="pr">$</span>
+              <span class="ct">git clone https://github.com/Tcode-Motion/techscript.git &amp;&amp; cargo build --release</span>
+            </div>
+            <div class="dl-sublinks">
+              <a id="btnSourceZip" href="https://github.com/Tcode-Motion/techscript/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer">Source ZIP</a>
+              •
+              <a id="btnSourceTar" href="https://github.com/Tcode-Motion/techscript/archive/refs/heads/main.tar.gz" target="_blank" rel="noopener noreferrer">Source TAR.GZ</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. ROADMAP TIMELINE -->
+    <!-- 7. DOCUMENTATION PORTAL WITH SIDEBAR LAYOUT -->
+    <section id="docs" aria-labelledby="docs-title">
+      <div class="container">
+        <header class="sec-hdr">
+          <p class="sec-eyebrow">// documentation portal</p>
+          <h2 class="sec-title" id="docs-title">Language Documentation &amp; Reference</h2>
+          <p class="sec-sub">Browse full guides for syntax, standard libraries, CLI commands, compiler architecture, and best practices.</p>
+        </header>
+
+        <div class="docs-portal" role="region" aria-label="Documentation Sidebar Portal">
+          <!-- Sidebar Navigation -->
+          <aside class="docs-sidebar" role="navigation" aria-label="Documentation Categories">
+            <div class="docs-group">
+              <div class="docs-group-title">🚀 Getting Started</div>
+              <button class="docs-nav-item active" data-doc="getting-started">Quick Start</button>
+              <button class="docs-nav-item" data-doc="installation">Installation</button>
+              <button class="docs-nav-item" data-doc="migration">Migration Guide</button>
+            </div>
+
+            <div class="docs-group">
+              <div class="docs-group-title">📘 Language Core</div>
+              <button class="docs-nav-item" data-doc="syntax">Syntax Guide</button>
+              <button class="docs-nav-item" data-doc="language">Language Guide</button>
+              <button class="docs-nav-item" data-doc="best-practices">Best Practices</button>
+            </div>
+
+            <div class="docs-group">
+              <div class="docs-group-title">🛠️ Toolchain &amp; Architecture</div>
+              <button class="docs-nav-item" data-doc="cli">CLI Commands (tsc)</button>
+              <button class="docs-nav-item" data-doc="compiler">Compiler Architecture</button>
+              <button class="docs-nav-item" data-doc="api">API Reference</button>
+              <button class="docs-nav-item" data-doc="performance">Performance &amp; Benchmarks</button>
+            </div>
+
+            <div class="docs-group">
+              <div class="docs-group-title">📚 Standard Library</div>
+              <button class="docs-nav-item" data-doc="stdlib">Stdlib Reference</button>
+              <button class="docs-nav-item" data-doc="canvas">Canvas Guide</button>
+              <button class="docs-nav-item" data-doc="dsl">DSL Guide</button>
+              <button class="docs-nav-item" data-doc="web">Web Builder</button>
+            </div>
+
+            <div class="docs-group">
+              <div class="docs-group-title">💡 Resources</div>
+              <button class="docs-nav-item" data-doc="examples">Examples Guide</button>
+              <button class="docs-nav-item" data-doc="faq">FAQ</button>
+              <button class="docs-nav-item" data-doc="releasenotes">Release Notes</button>
+              <button class="docs-nav-item" data-doc="roadmap">Roadmap</button>
+            </div>
+          </aside>
+
+          <!-- Documentation Content Display Panel -->
+          <article class="docs-content" id="docsContentPanel">
+            <!-- Rendered dynamically by script.js -->
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ROADMAP & MILESTONES -->
     <section id="roadmap" class="roadmap-sec" aria-labelledby="road-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// project milestones</p>
-          <h2 class="sec-title" id="road-title">TechScript 2.0 Roadmap</h2>
-          <p class="sec-sub">See completed and upcoming milestones in the language's development cycle.</p>
+          <p class="sec-eyebrow">// project development milestones</p>
+          <h2 class="sec-title" id="road-title">TechScript Roadmap</h2>
+          <p class="sec-sub">Track completed achievements and upcoming milestones in the language roadmap.</p>
         </header>
 
-        <div class="roadmap-timeline" role="region" aria-label="Development Timeline">
+        <div class="roadmap-timeline" role="region" aria-label="Development Roadmap Timeline">
           <div class="roadmap-phase completed">
             <div class="phase-header">
-              <h3>Phase 1: Core Compiler</h3>
+              <h3>Phase 1: Compiler &amp; Toolchain Foundation</h3>
               <span class="phase-status">✓ Completed</span>
             </div>
             <ul class="phase-list" role="list">
-              <li role="listitem"><span>Parser &amp; Lexer</span> — Read plain English tokens.</li>
-              <li style="opacity: 0.95;" role="listitem"><span>Bytecode Compiler</span> — Custom virtual instruction sets.</li>
-              <li style="opacity: 0.95;" role="listitem"><span>Virtual Machine</span> — Fast, isolated executions in Rust.</li>
+              <li role="listitem"><span>Pratt Expression Parser</span> — Full precedence-based expression parsing.</li>
+              <li role="listitem"><span>Async &amp; Await Event Loop</span> — Built-in non-blocking concurrency model.</li>
+              <li role="listitem"><span>Bundled Toolchain CLI (<code style="color:var(--accent-cyan)">tsc</code>)</span> — Integrated <code style="color:var(--text-muted)">fmt</code>, <code style="color:var(--text-muted)">lint</code>, <code style="color:var(--text-muted)">test</code>, <code style="color:var(--text-muted)">repl</code>, and <code style="color:var(--text-muted)">check</code> commands.</li>
             </ul>
           </div>
 
           <div class="roadmap-phase active">
             <div class="phase-glow" aria-hidden="true"></div>
             <div class="phase-header">
-              <h3>Phase 2: IDE &amp; Ecosystem</h3>
+              <h3>Phase 2: LLVM Native Backend &amp; Package Registry</h3>
               <span class="phase-status">⚡ In Progress</span>
             </div>
             <ul class="phase-list" role="list">
-              <li role="listitem"><span>TechScript Studio</span> — Transpiler &amp; AST inspector tabs.</li>
-              <li role="listitem"><span>Standard Library</span> — Hashing, mathematical modules, and OS bindings.</li>
-              <li role="listitem"><span>ZeroHTML</span> — Build browser views without writing HTML.</li>
+              <li role="listitem"><span>LLVM Code Generator</span> — Compile <code style="color:var(--accent-cyan)">.txs</code> to standalone machine binaries.</li>
+              <li role="listitem"><span>Package Manager (<code style="color:var(--accent-cyan)">tspm</code>)</span> — Submit and download ecosystem libraries.</li>
+              <li role="listitem"><span>LSP Extensions</span> — Diagnostics, hover signatures, and completion engine.</li>
             </ul>
           </div>
 
           <div class="roadmap-phase future">
             <div class="phase-header">
-              <h3>Phase 3: LLVM &amp;lsp</h3>
-              <span class="phase-status">🚀 Coming Soon</span>
+              <h3>Phase 3: Formal Verification &amp; Profiler Tools</h3>
+              <span class="phase-status">🚀 Planned</span>
             </div>
             <ul class="phase-list" role="list">
-              <li role="listitem"><span>LLVM Backend</span> — Compile directly to native machine assemblies.</li>
-              <li role="listitem"><span>LSP Services</span> — Auto-complete diagnostics for editor engines.</li>
-              <li role="listitem"><span>JIT Compiler</span> — Fast JIT compiling for repetitive VM loop cycles.</li>
+              <li role="listitem"><span>Memory Profiler &amp; Debugger</span> — Interactive stepping inside stack VM execution.</li>
+              <li role="listitem"><span>Formally Verified Core Libraries</span> — Mathematical correctness proofs for standard functions.</li>
+              <li role="listitem"><span>JIT Compilation Layer</span> — Dynamic bytecode JIT compiler for hot execution loops.</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 9. RELEASES & FAQS -->
+    <!-- 9. RELEASES & CHANGELOG -->
     <section id="releases" aria-labelledby="releases-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// version releases</p>
-          <h2 class="sec-title" id="releases-title">Release History</h2>
-          <p class="sec-sub">Browse download links and change summaries of recent compiler versions.</p>
+          <p class="sec-eyebrow">// version changelog</p>
+          <h2 class="sec-title" id="releases-title">Release History &amp; Changelog</h2>
+          <p class="sec-sub">Automatically synchronized from GitHub Releases API.</p>
         </header>
 
-        <div class="rel-list" role="list">
-          <a class="rel-card latest" href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Version 1.0.8 Release">
-            <span class="rel-ver">v1.0.8</span>
-            <span class="rel-badge">Latest</span>
-            <span class="rel-name">Egui-dock layout inside Studio IDE, unified maintenance, double-click .txs script executions.</span>
-            <span class="rel-date">May 18, 2026</span>
-            <span class="rel-dl">⬇ Download</span>
-          </a>
-          <a class="rel-card" href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Version 1.0.7 Release">
-            <span class="rel-ver">v1.0.7</span>
-            <span class="rel-badge" style="color:var(--text-secondary);border-color:var(--border-primary);background:none;">Stable</span>
-            <span class="rel-name">Production Desktop IDE releases, VM debugger window panels.</span>
-            <span class="rel-date">May 15, 2026</span>
-            <span class="rel-dl">⬇ Download</span>
-          </a>
-          <a class="rel-card" href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Version 1.0.5 Release">
-            <span class="rel-ver">v1.0.5</span>
-            <span class="rel-badge" style="color:var(--text-secondary);border-color:var(--border-primary);background:none;">Stable</span>
-            <span class="rel-name">Rust VM transition, Python transpile features, pip package releases.</span>
-            <span class="rel-date">March 17, 2026</span>
-            <span class="rel-dl">⬇ Download</span>
-          </a>
+        <div id="releaseChangelogList" class="rel-list" role="list">
+          <div class="rel-loading">Loading latest releases from GitHub API...</div>
         </div>
       </div>
     </section>
@@ -637,7 +949,7 @@ console.log(fib(10)); // 55</code></pre>
         <header class="sec-hdr">
           <p class="sec-eyebrow">// inquiries</p>
           <h2 class="sec-title" id="faq-title">Frequently Asked Questions</h2>
-          <p class="sec-sub">Answers to common questions about compiling and deploying TechScript scripts.</p>
+          <p class="sec-sub">Everything you need to know about compiling and writing TechScript applications.</p>
         </header>
 
         <div class="faq-wrap">
@@ -647,211 +959,124 @@ console.log(fib(10)); // 55</code></pre>
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
             <div class="faq-a" hidden>
-              TechScript is an open-source programming language that lets you write code using plain English sentences. Keywords are selected to match conversational words like say, make, when, and build, allowing absolute beginners to understand programs immediately. It compiles to bytecode run on a fast Rust Virtual Machine.
+              TechScript is a general-purpose, human-first programming language created to remove syntax clutter. Instead of curly braces, semicolons, and cryptic operator symbols, TechScript uses clean keyword-based English grammar (<code style="color:var(--accent-cyan)">do</code>, <code style="color:var(--accent-cyan)">end</code>, <code style="color:var(--accent-cyan)">when</code>, <code style="color:var(--accent-cyan)">say</code>, <code style="color:var(--accent-cyan)">send</code>). It is built in Rust for memory safety and execution speed.
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
-              Is TechScript compiled or interpreted?
+              How does TechScript execute my code?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
             <div class="faq-a" hidden>
-              TechScript compiles source code into custom binary bytecode. This bytecode is then loaded and executed by the TechScript VM, which is written in Rust. Additionally, developers can transpile TechScript directly into Python files using the CLI toolchain: tech transpile file.txs.
+              TechScript source scripts (<code style="color:var(--accent-cyan)">.txs</code>) are compiled by the unified compiler driver (<code style="color:var(--accent-cyan)">tsc</code>) into custom bytecode executed on a stack-based Virtual Machine written in Rust, or converted into native executables via an LLVM backend crate.
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
-              What is TechScript Studio?
+              What is the <code style="color:var(--accent-cyan)">tsc</code> CLI driver?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
             <div class="faq-a" hidden>
-              TechScript Studio is the official desktop IDE for TechScript developers, bundled in our Windows installer. It provides coding terminals, a file tree editor, a debugger inspector, and visual displays of the parsed Abstract Syntax Tree (AST) alongside compilation bytecode.
+              <code style="color:var(--accent-cyan)">tsc</code> is the single binary toolchain executable. Subcommands include <code style="color:var(--accent-cyan)">tsc run</code> (compile and run), <code style="color:var(--accent-cyan)">tsc build</code> (build project), <code style="color:var(--accent-cyan)">tsc test</code> (unit testing), <code style="color:var(--accent-cyan)">tsc fmt</code> (code formatter), <code style="color:var(--accent-cyan)">tsc lint</code> (linter analyzer), and <code style="color:var(--accent-cyan)">tsc repl</code> (interactive shell).
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
-              How does the ZeroHTML web builder function?
+              Is there VS Code &amp; Editor Support?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
             <div class="faq-a" hidden>
-              Importing 'use web' allows you to create WebPage layout instances. You can define heading nodes, paragraph sections, form inputs, and styles inside your .txs code directly. Running the script launches a local HTTP server and renders the HTML, CSS, and JS components dynamically in the browser.
+              Yes! Search for <strong>"TechScript 2.0"</strong> (published by <code style="color:var(--accent-cyan)">tanmoy</code>) in the VS Code Extensions Marketplace or Open VSX Registry for full syntax highlighting, auto-completions, snippets, and icon themes.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I run TechScript on Android or Termux?
+              <span class="faq-arr" aria-hidden="true">▶</span>
+            </button>
+            <div class="faq-a" hidden>
+              Yes. Execute <code style="color:var(--accent-cyan)">curl -fsSL https://raw.githubusercontent.com/Tcode-Motion/techscript/main/scripts/install.sh | bash</code> inside Termux to install the native ARM64 compiler binary.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 11. TESTIMONIALS -->
-    <section id="testimonials" aria-labelledby="test-title">
+    <!-- 11. COMMUNITY & ECOSYSTEM SHOWCASE -->
+    <section id="community" aria-labelledby="community-title">
       <div class="container">
         <header class="sec-hdr">
-          <p class="sec-eyebrow">// review opinions</p>
-          <h2 class="sec-title" id="test-title">User Experiences</h2>
-          <p class="sec-sub">See how educators and beginner developers find TechScript's readability structure.</p>
+          <p class="sec-eyebrow">// community &amp; ecosystem</p>
+          <h2 class="sec-title" id="community-title">Open Source Ecosystem</h2>
+          <p class="sec-sub">Join our developer community, contribute code, and build tools around TechScript.</p>
         </header>
 
-        <div class="test-grid">
-          <article class="test-card">
-            <span class="quote-mark">“</span>
-            <p class="test-text">
-              TechScript removed syntax fear for my introductory computer science students. They began writing loops and variables in minutes without missing semicolons.
-            </p>
-            <div class="test-user">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop" alt="Sarah Jenkins" class="test-avatar" loading="lazy" decoding="async">
-              <div class="user-info">
-                <h3>Sarah Jenkins</h3>
-                <p>Computer Science Educator</p>
-              </div>
-            </div>
-          </article>
+        <div class="community-grid">
+          <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="ccard">
+            <span class="ci">🐙</span>
+            <h3>GitHub Repository</h3>
+            <p>Explore source code, build targets, and submit pull requests.</p>
+            <span class="btn btn-secondary" style="font-size:0.8rem; padding:0.5rem 1rem;">View Repo ↗</span>
+          </a>
 
-          <article class="test-card">
-            <span class="quote-mark">“</span>
-            <p class="test-text">
-              Underneath the simple English syntax, the compiler VM is built in Rust. It feels robust, outputs detailed ASTs, and executes instantly.
-            </p>
-            <div class="test-user">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop" alt="Marcus Vane" class="test-avatar" loading="lazy" decoding="async">
-              <div class="user-info">
-                <h3>Marcus Vane</h3>
-                <p>Systems Developer</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="test-card">
-            <span class="quote-mark">“</span>
-            <p class="test-text">
-              The Studio IDE debugger is incredible. Being able to inspect AST structures and compiled VM bytecode makes this an amazing tool to study compilers.
-            </p>
-            <div class="test-user">
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop" alt="Elena Rostova" class="test-avatar" loading="lazy" decoding="async">
-              <div class="user-info">
-                <h3>Elena Rostova</h3>
-                <p>Curriculum Planner</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12. CONTRIBUTORS & SPONSORS -->
-    <section id="contributors" aria-labelledby="contrib-title">
-      <div class="container">
-        <header class="sec-hdr">
-          <p class="sec-eyebrow">// community builders</p>
-          <h2 class="sec-title" id="contrib-title">Language Contributors</h2>
-          <p class="sec-sub">Sincere thanks to everyone assisting in developing compiler features and IDE support.</p>
-        </header>
-
-        <div class="contrib-wrap">
-          <div class="contrib-grid" role="list">
-            <div class="contrib-card" role="listitem">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img" loading="lazy" decoding="async">
-              <div>
-                <span class="contrib-name">Tanmoy Majumder</span>
-                <span class="contrib-role">Lead Architect</span>
-              </div>
-            </div>
-            <div class="contrib-card" role="listitem">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img" loading="lazy" decoding="async">
-              <div>
-                <span class="contrib-name">Dave Miller</span>
-                <span class="contrib-role">VM Core Optimizer</span>
-              </div>
-            </div>
-            <div class="contrib-card" role="listitem">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img" loading="lazy" decoding="async">
-              <div>
-                <span class="contrib-name">Jason Parker</span>
-                <span class="contrib-role">LSP &amp; VS Code</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sponsors-wrap">
-            <h3>Sponsored and Supported By</h3>
-            <div class="sponsors-grid" role="presentation">
-              <!-- Inline mock SVG sponsor logos for clean high-fidelity display -->
-              <svg class="sponsor-logo" width="120" height="32" viewBox="0 0 120 32" fill="currentColor"><text x="10" y="22" font-weight="900" font-size="16">GITHUB SPONSOR</text></svg>
-              <svg class="sponsor-logo" width="120" height="32" viewBox="0 0 120 32" fill="currentColor"><text x="10" y="22" font-weight="900" font-size="16">OPEN COLLECTIVE</text></svg>
-              <svg class="sponsor-logo" width="120" height="32" viewBox="0 0 120 32" fill="currentColor"><text x="10" y="22" font-weight="900" font-size="16">RUST FUND</text></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 13. OPEN SOURCE & CONTRIBUTIONS -->
-    <section id="contribute" aria-labelledby="contribute-title">
-      <div class="container">
-        <header class="sec-hdr">
-          <p class="sec-eyebrow">// join project</p>
-          <h2 class="sec-title" id="contribute-title">Start Contributing</h2>
-          <p class="sec-sub">TechScript is fully open source. Here is how you can submit code and documentation enhancements.</p>
-        </header>
-
-        <div class="contrib-btn-grid">
-          <article class="ccard">
-            <span class="ci">🐛</span>
-            <h3>Report Bug</h3>
-            <p>Report issues with VM outputs or editor highlighting.</p>
-            <a href="https://github.com/Tcode-Motion/techscript/issues" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;">Open Issue</a>
-          </article>
-
-          <article class="ccard">
+          <a href="https://github.com/Tcode-Motion/techscript/discussions" target="_blank" rel="noopener noreferrer" class="ccard">
             <span class="ci">💡</span>
-            <h3>Ideas &amp; Requests</h3>
-            <p>Request native functions or suggest new English keywords.</p>
-            <a href="https://github.com/Tcode-Motion/techscript/discussions" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;">Join Discussion</a>
-          </article>
+            <h3>GitHub Discussions</h3>
+            <p>Propose language features, ask questions, and share project ideas.</p>
+            <span class="btn btn-secondary" style="font-size:0.8rem; padding:0.5rem 1rem;">Join Discussion ↗</span>
+          </a>
 
-          <article class="ccard">
-            <span class="ci">🔀</span>
-            <h3>Submit Code</h3>
-            <p>Fork our repositories to fix warnings or extend tools.</p>
-            <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;">Fork Repo</a>
-          </article>
+          <a href="https://discord.gg/tRtNbuDUr" target="_blank" rel="noopener noreferrer" class="ccard">
+            <span class="ci">💬</span>
+            <h3>Discord Community</h3>
+            <p>Chat directly with contributors and fellow TechScript developers.</p>
+            <span class="btn btn-secondary" style="font-size:0.8rem; padding:0.5rem 1rem;">Join Discord ↗</span>
+          </a>
 
-          <article class="ccard">
-            <span class="ci">⭐</span>
-            <h3>Star Project</h3>
-            <p>Help other developers find this project by starring our repo.</p>
-            <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1rem;">Star GitHub</a>
-          </article>
+          <a href="https://marketplace.visualstudio.com/items?itemName=tanmoy.techscript" target="_blank" rel="noopener noreferrer" class="ccard">
+            <span class="ci">🎨</span>
+            <h3>VS Code Extension</h3>
+            <p>Official language support extension on VS Code Marketplace &amp; Open VSX.</p>
+            <span class="btn btn-secondary" style="font-size:0.8rem; padding:0.5rem 1rem;">Install Extension ↗</span>
+          </a>
         </div>
 
+        <!-- Contributors Section -->
+        <div class="contrib-box">
+          <h3>Project Contributors</h3>
+          <p style="color:var(--text-secondary); margin-bottom: 1.5rem;">Special thanks to everyone contributing to the compiler, docs, and ecosystem tools.</p>
+          <div id="contributorsList" class="contrib-grid" role="list">
+            <div class="contrib-loading">Loading contributors...</div>
+          </div>
+        </div>
+
+        <!-- Quick Contribution Steps -->
         <div class="steps-card">
-          <h3>Your First Contribution — Step-by-Step</h3>
+          <h3>First Steps to Contribute</h3>
           <div role="list">
             <div class="step" role="listitem">
               <span class="step-n" aria-hidden="true">01</span>
               <div class="step-c">
                 <h4>Fork the Repository</h4>
-                <p>Fork the repository via Github CLI or browser to create your personal workspace copy.</p>
                 <code>gh repo fork Tcode-Motion/techscript</code>
               </div>
             </div>
-
             <div class="step" role="listitem">
               <span class="step-n" aria-hidden="true">02</span>
               <div class="step-c">
-                <h4>Clone Local Copy</h4>
-                <p>Pull your fork down and initialize a feature development branch.</p>
-                <code>git clone https://github.com/YOUR_USERNAME/techscript.git &amp;&amp; git checkout -b feat-new-rules</code>
+                <h4>Build and Run Tests</h4>
+                <code>cargo build &amp;&amp; cargo test</code>
               </div>
             </div>
-
             <div class="step" role="listitem">
               <span class="step-n" aria-hidden="true">03</span>
               <div class="step-c">
-                <h4>Edit &amp; Run Tests</h4>
-                <p>Make modifications to standard libraries or compiler engines. Check outputs before commit stages.</p>
-                <code>tech run examples/hello.txs</code>
+                <h4>Run Examples with tsc</h4>
+                <code>cargo run --bin tsc -- run examples/hello_world/hello.txs</code>
               </div>
             </div>
           </div>
@@ -861,22 +1086,21 @@ console.log(fib(10)); // 55</code></pre>
 
   </main>
 
-  <!-- ── COMMAND PALETTE SEARCH MODAL ── -->
+  <!-- ── GLOBAL COMMAND PALETTE SEARCH MODAL (Ctrl+K) ── -->
   <dialog id="searchModal" class="search-modal" aria-labelledby="modalSearchLabel">
     <div class="modal-box" role="document">
       <div class="modal-search-wrapper">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-        <input type="text" id="searchInput" class="modal-search-input" placeholder="Type a section name or command... (e.g. 'install' or 'repl')" aria-label="Search content">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" id="searchInput" class="modal-search-input" placeholder="Search docs, CLI subcommands, stdlib, or FAQs... (Press Esc to close)" aria-label="Search content">
+        <span class="modal-esc">ESC</span>
       </div>
       <div id="searchResults" class="modal-results">
-        <!-- Results handled dynamically by script.js -->
+        <!-- Handled dynamically by script.js -->
       </div>
     </div>
   </dialog>
 
-  <!-- ── PROFESSIONAL FOOTER ── -->
+  <!-- ── FOOTER ── -->
   <footer role="contentinfo">
     <div class="container footer-inner">
       <div class="footer-grid">
@@ -886,64 +1110,60 @@ console.log(fib(10)); // 55</code></pre>
             <span>TechScript</span>
           </a>
           <p>
-            The world's easiest programming language. Write code in plain English, powered by a native Rust VM. Fully free, open-source, and MIT licensed. Created by Tanmoy Majumder.
+            The plain-English programming language. Zero symbols. Zero overhead. Write code like human, run like Rust. Free, open source, and MIT licensed. Created by Tanmoy Majumder.
           </p>
-          <div class="footer-kw" aria-label="Project tags">
+          <div class="footer-kw" aria-label="Keywords">
             <span>techscript</span>
-            <span>easy coding</span>
-            <span>plain English compiler</span>
-            <span>Rust VM runtime</span>
-            <span>no semicolons</span>
+            <span>tsc driver</span>
+            <span>plain english syntax</span>
+            <span>rust stack vm</span>
+            <span>llvm backend</span>
             <span>open source</span>
           </div>
         </div>
 
         <div class="footer-col">
-          <h4>Resources</h4>
+          <h4>Documentation</h4>
           <ul>
-            <li><a href="https://github.com/Tcode-Motion/techscript/blob/master/docs/REFERENCE.md" target="_blank" rel="noopener noreferrer">Docs Reference</a></li>
-            <li><a href="#roadmap">Project Roadmap</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer">All Releases</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+            <li><a href="#docs" class="doc-link-btn" data-doc="installation">Installation Guide</a></li>
+            <li><a href="#docs" class="doc-link-btn" data-doc="syntax">Syntax Cheatsheet</a></li>
+            <li><a href="#docs" class="doc-link-btn" data-doc="cli">CLI Subcommands (<code style="color:var(--accent-cyan)">tsc</code>)</a></li>
+            <li><a href="#docs" class="doc-link-btn" data-doc="stdlib">Standard Library Reference</a></li>
+            <li><a href="#docs" class="doc-link-btn" data-doc="compiler">Compiler Architecture</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Community</h4>
+          <h4>Ecosystem</h4>
           <ul>
-            <li><a href="#contribute">Contributor Portal</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/discussions" target="_blank" rel="noopener noreferrer">Blog Discussions</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a></li>
-            <li><a href="https://github.com/Tcode-Motion" target="_blank" rel="noopener noreferrer">@Tcode-Motion</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://marketplace.visualstudio.com/items?itemName=tanmoy.techscript" target="_blank" rel="noopener noreferrer">VS Code Extension</a></li>
+            <li><a href="https://open-vsx.org/extension/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">Open VSX Registry</a></li>
+            <li><a href="https://pypi.org/project/techscript/" target="_blank" rel="noopener noreferrer">PyPI Package</a></li>
+            <li><a href="projects.html">Hosted Showcase Page ↗</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Contact &amp; Legal</h4>
+          <h4>Community &amp; RSS</h4>
           <ul>
-            <li><a href="mailto:support@techscript.is-a.dev">Support Email</a></li>
-            <li><a href="#" aria-label="Privacy policies">Privacy Policy</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">License Details</a></li>
-            <li style="margin-top: 15px; color: var(--text-muted); font-size: 0.75rem; font-family: var(--font-mono)">version: 1.0.8</li>
+            <li><a href="https://discord.gg/tRtNbuDUr" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/issues" target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/releases.atom" target="_blank" rel="noopener noreferrer">Releases RSS Feed 📡</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>🐉 TechScript — Designed with passion by Tanmoy Majumder (@Tcode-Motion) &copy; 2026. All rights reserved.</p>
-        <p style="font-family: var(--font-mono); font-size: 0.75rem;">tech version --v1.0.8 (Rust VM Edition)</p>
+        <p>🐉 TechScript — Created with passion by Tanmoy Majumder (@Tcode-Motion) &copy; 2026. Released under MIT License.</p>
+        <p style="font-family: var(--font-mono); font-size: 0.75rem;">tsc driver • Rust VM &amp; LLVM Target Engine • <span id="footerVerTag">v2.0</span></p>
       </div>
     </div>
   </footer>
 
-  <!-- Mobile Sticky CTA Banner -->
-  <div class="mobile-sticky-cta" aria-hidden="true">
-    <a href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-primary cta-btn">
-      ⬇ Download TechScript v1.0.8
-    </a>
-  </div>
-
-  <!-- Interactive Scripts -->
+  <!-- Interactive JavaScript Engine -->
   <script src="script.js" defer></script>
 </body>
 </html>

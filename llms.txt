@@ -1,29 +1,32 @@
 # TechScript
 
-> TechScript is the world's most beginner-friendly, plain-English programming language. Write code with natural keywords: `say`, `make`, `when`, `each`, `build`. Powered by a native Rust virtual machine.
+> TechScript is a general-purpose, human-first programming language with zero syntax clutter. Write code with natural keywords: `say`, `do`, `when`, `for`, `send`, `try`, `catch`. Powered by a high-performance stack VM written in Rust and an LLVM native backend.
 
 ## Key Links
 
 - [Official Website](https://techscript.is-a.dev/)
 - [GitHub Repository](https://github.com/Tcode-Motion/techscript)
 - [Latest Releases & Download](https://github.com/Tcode-Motion/techscript/releases/latest)
-- [Language Reference Docs](https://github.com/Tcode-Motion/techscript/blob/master/docs/REFERENCE.md)
-- [Quick Start Guide](https://github.com/Tcode-Motion/techscript/blob/master/docs/QUICKSTART.md)
-- [Web Module Docs](https://github.com/Tcode-Motion/techscript/blob/master/docs/WEB_MODULE.md)
+- [Documentation Portal](https://github.com/Tcode-Motion/techscript/tree/main/docs)
+- [Language Guide](https://github.com/Tcode-Motion/techscript/blob/main/docs/LanguageGuide.md)
+- [Syntax Guide](https://github.com/Tcode-Motion/techscript/blob/main/docs/SyntaxGuide.md)
 - [Projects Showcase](https://techscript.is-a.dev/projects.html)
 
 ## Language Philosophy
-- **Natural Language Readability**: Keywords form spoken English structures (e.g. `say "hello"`, `make score be 100`, `when age >= 18`).
-- **No Punctuation Barriers**: Eliminates semicolons and brackets wherever practical to remove syntax friction for absolute beginners.
-- **High Performance VM**: Compiles to bytecode and executes on a memory-safe, blazing-fast native Rust virtual machine.
-- **Ecosystem Ready**: Ships with TechScript Studio IDE, a CLI toolchain (repl, transpile, check), and a ZeroHTML web builder.
+- **Natural Language Readability**: Keywords form spoken English structures (e.g. `say "hello"`, `x = 10`, `when x > 5`, `do greet(name)` ... `send "Hi "` ... `end`).
+- **Zero Syntax Clutter**: Eliminates curly braces, semicolons, and bracket overhead.
+- **High Performance Stack VM**: Compiles to bytecode and executes on a memory-safe, fast stack VM written in Rust with NaN-boxed values and tracing GC.
+- **Native LLVM Backend**: Generates standalone native machine code executables.
+- **Unified Toolchain Driver**: Single driver executable `tsc` handles `run`, `build`, `check`, `fmt`, `lint`, `test`, `repl`, `publish`, and `dump-ast`.
 
-## CLI Command toolchain
-- `tech run <file.txs>`: Executes a TechScript source file.
-- `tech repl`: Starts the interactive REPL.
-- `tech check <file.txs>`: Validates syntax without executing.
-- `tech transpile <file.txs>`: Transpiles TechScript source code into Python.
-- `tech version`: Shows version information.
+## Unified `tsc` CLI Toolchain
+- `tsc run <file.txs>`: Compiles and executes a single `.txs` script.
+- `tsc build`: Builds the workspace project matching `package.toml`.
+- `tsc check`: Checks workspace for compile-time errors.
+- `tsc fmt`: Standardizes codebase formatting with `tsfmt`.
+- `tsc lint`: Evaluates safety traps and lints codebase.
+- `tsc test`: Executes unit tests.
+- `tsc repl`: Launches interactive REPL shell.
 
 ## Syntax Quick Reference
 
@@ -34,56 +37,50 @@ say "Hello, World!"
 
 ### Variables & Constants
 ```techscript
-make x be 10
-keep PI be 3.14159
+x = 10
+const PI = 3.14159
 ```
 
 ### Conditionals
 ```techscript
-when age >= 18 {
+when age >= 18
   say "Adult"
-} or when age >= 13 {
-  say "Teenager"
-} else {
-  say "Child"
-}
+else
+  when age >= 13
+    say "Teenager"
+  else
+    say "Child"
+  end
+end
 ```
 
 ### Loops
 ```techscript
-each i in 1..5 {
-  say f"Count: {i}"
-}
+for item in list
+  say item
+end
+
+for i in 0..5
+  say i
+end
 ```
 
 ### Functions
 ```techscript
-build greet(name) {
-  say f"Hello, {name}!"
-}
-```
-
-### Classes (OOP)
-```techscript
-model Dog {
-  build init(self, name) {
-    self.name = name
-  }
-  build speak(self) {
-    say f"{self.name}: Woof!"
-  }
-}
+do greet(name)
+  send "Hello, " + name
+end
 ```
 
 ### Error Handling
 ```techscript
-attempt {
-  make x be 10 / 0
-} catch err {
-  say err.message
-}
+try
+  res = divide(10, 0)
+catch err
+  say err
+end
 ```
 
 ## Licensing & Version
-- **License**: MIT License (free, open source, and modification-friendly).
-- **Current Version**: v1.0.8 (Rust VM Edition).
+- **License**: MIT License.
+- **Current Version**: Latest Stable Release (v2.0).

@@ -1,173 +1,78 @@
-# TechScript — Full Documentation & Technical Specifications
+# TechScript (Full Specification & Documentation Summary)
 
-This is the comprehensive technical reference and developer guide for the TechScript programming language (v1.0.8, Rust VM Edition).
+> TechScript is a general-purpose, human-first programming language designed to eliminate syntax clutter. Instead of curly braces, semicolons, and cryptic operator symbols, TechScript uses a clean, keyword-based English grammar. Built in Rust for safety and speed, it compiles source files into bytecode executed on a custom stack-based Virtual Machine (VM) with NaN-boxed values and a tracing garbage collector, or generates native code via an LLVM backend.
 
----
+## Official Resources
+- **Website**: https://techscript.is-a.dev/
+- **GitHub Repository**: https://github.com/Tcode-Motion/techscript
+- **Releases & Installers**: https://github.com/Tcode-Motion/techscript/releases
+- **VS Code Extension**: https://marketplace.visualstudio.com/items?itemName=tanmoy.techscript
+- **Open VSX**: https://open-vsx.org/extension/Tcode-Motion/techscript
+- **PyPI Package**: https://pypi.org/project/techscript/
 
-## 1. Compiler & Runtime Architecture
+## Key Differentiators
+1. **Zero Clutter**: Replace symbols like `{`, `}`, `(`, `)`, `;`, `&&`, and `||` with keywords like `do`, `end`, `when`, `else`, `and`, and `or`.
+2. **Ecosystem Ready**: Runs everywhere (Windows, Linux, macOS, Android/Termux) with LSP support, linting, formatting, and packaging.
+3. **Rust Stack VM & LLVM Native**: Custom stack VM in Rust with NaN-boxed values and LLVM compilation target.
 
-TechScript executes using a two-stage compilation and execution pipeline:
+## Syntax & Keywords Summary
 
-```
-[Source Code (.txs)] ──> [Lexer & Tokenizer] ──> [Parser & AST] ──> [Bytecode Compiler] ──> [Rust VM Execution]
-```
+### Variables & Constants
+- Variables: assigned dynamically without keywords, e.g., `message = "Hello"`
+- Constants: declared with `const`, e.g., `const MAX_SIZE = 100`
 
-### Stage 1: Lexing & Parsing
-- The compiler parses plain-English strings into tokens using structured rules matching natural keywords (`say`, `make`, `be`, `when`, `each`, `build`, `model`).
-- Syntactic structures are validated to build a nested **Abstract Syntax Tree (AST)** representation.
-
-### Stage 2: Custom Bytecode Compilation
-- The AST is converted into a linear stream of instructions matching a custom instruction set (including opcodes for variable binding, logical conditions, jump targets, mathematical ops, and frame allocation).
-
-### Stage 3: High-Performance Rust Virtual Machine
-- The VM executes compiled bytecode instructions sequentially.
-- Written in pure, memory-safe Rust, it operates with zero garbage collection pauses and registers native mathematical, filesystem, and cryptographic bindings for maximum execution speed.
-
----
-
-## 2. Standard Library Specifications
-
-TechScript features a robust standard library with over 150 built-in functions. No imports are required for primary tasks.
-
-### Cryptographic Functions
-- `sha256(text)`: Returns the SHA-256 hash of a string.
-- `md5(text)`: Returns the MD5 hash of a string.
-- `base64_encode(text)`: Returns the Base64-encoded string.
-- `base64_decode(text)`: Decodes a Base64-encoded string.
-
-### Input/Output & Filesystem
-- `say(content)`: Outputs text to stdout.
-- `ask(prompt)`: Displays a prompt and reads a string from stdin.
-- `read_file(path)`: Reads the entire text content of a file.
-- `write_file(path, content)`: Writes content to a file.
-
-### Advanced Math
-- `random(min, max)`: Generates a random number in the specified range.
-- `round(number)`: Rounds a floating-point number.
-- Standard operations for trigonometric, logarithmic, and absolute functions.
-
----
-
-## 3. Web Module (`use web`)
-
-TechScript includes a built-in ZeroHTML layout compiler allowing developers to run websites from a single `.txs` file.
-
-### Web Engine Example:
+### Control Flow
 ```techscript
-use web
-
-make page be WebPage("Interactive Site")
-
-page.style("body", {
-  "background": "#04060f",
-  "color": "#0df28b",
-  "font-family": "sans-serif"
-})
-
-page.body([
-  page.h1("Welcome to TechScript Web Engine"),
-  page.p("Zero HTML, zero CSS files, zero JS files required.")
-])
-
-page.run()
+when status == "active"
+  say "Running"
+else
+  say "Inactive"
+end
 ```
 
-- **Runtime Behavior**: Calling `page.run()` initializes a lightweight HTTP server on `http://localhost:5000` and automatically opens the user's default web browser.
-
----
-
-## 4. Full Language Syntax Reference
-
-### Variables and Types
-TechScript is dynamically typed.
+### Loops
 ```techscript
-// Variable definition
-make score be 99
+for i in 0..5
+  say i
+end
 
-// Constants definition (immutable)
-keep MAX_SCORE be 100
-
-// Lists
-make fruits be ["apple", "mango", "banana"]
-
-// Maps/Dictionaries
-make person be { "name": "Alex", "age": 24 }
+for item in list
+  say item
+end
 ```
 
-### Conditionals & Logic
-Uses natural-sounding logical operators.
+### Functions & Returns
 ```techscript
-make score be 85
-
-when score >= 90 {
-  say "Grade A"
-} or when score >= 80 {
-  say "Grade B"
-} else {
-  say "Grade C"
-}
+do calculate_square(n)
+  send n * n
+end
 ```
 
-### Loops & Iteration
-Loops are designed to read like standard English.
-```techscript
-// Range loop (inclusive)
-each i in 1..5 {
-  say f"Loop index: {i}"
-}
+### Standard Library Modules
+1. `math` — Mathematical operations, square root, trigonometry.
+2. `collections` — List and map utilities.
+3. `file` — File read, write, and removal functions.
+4. `json` — JSON string encoding and decoding.
+5. `http` — HTTP client GET and POST utilities.
+6. `sqlite` — Local relational database connector.
+7. `canvas` — 2D vector viewport shapes and text drawing.
+8. `time` — Clock, scheduling, and thread sleep.
+9. `thread` — Native OS thread spawner and join interfaces.
+10. `ai` — Gemini AI prompt and text generation.
+11. `testing` — Assertion macros for unit testing.
 
-// Collection loop
-each fruit in fruits {
-  say f"I love {fruit}!"
-}
-```
+## Compiler Driver (`tsc`) Subcommands
+- `tsc run`: Compiles and executes a single script.
+- `tsc build`: Builds workspace project.
+- `tsc check`: Checks workspace for compile-time errors.
+- `tsc fmt`: Formats codebase layout.
+- `tsc lint`: Lints codebase for safety traps.
+- `tsc migrate`: Translates legacy v1.x scripts to v2.0 keywords.
+- `tsc test`: Locates and executes unit tests.
+- `tsc repl`: Launches interactive shell REPL.
+- `tsc publish`: Submits package to registry.
+- `tsc dump-ast`: Outputs AST representation.
+- `tsc emit-llvm`: Generates LLVM IR representation.
 
-### Functions
-Created using the `build` keyword. Use the `give` keyword to return values.
-```techscript
-build calculate_area(width, height) {
-  make area be width * height
-  give area
-}
-
-make result be calculate_area(10, 20)
-```
-
-### Object-Oriented Programming (Classes)
-Classes are defined with `model`. Object instantiation references the model name directly.
-```techscript
-model Animal {
-  build init(self, name, sound) {
-    self.name = name
-    self.sound = sound
-  }
-
-  build make_sound(self) {
-    say f"{self.name} says {self.sound}!"
-  }
-}
-
-make cat be Animal("Whiskers", "Meow")
-cat.make_sound()
-```
-
-### Safe Error Handling
-Avoid crash states using `attempt` and `catch`.
-```techscript
-attempt {
-  make val be 100 / 0
-} catch err {
-  say f"Intercepted error: {err.message}"
-}
-```
-
----
-
-## 5. TechScript 2.0 Roadmap
-
-The next major release transitions TechScript from an interpreted scripting layout to a production-grade compiler ecosystem:
-
-1. **LLVM Compiler Backend**: Compiles TechScript source code directly into highly optimized machine code binaries.
-2. **WebAssembly (WASM) Compilation**: Allows running natural-language programs client-side in the browser at native speeds.
-3. **TechPM (Package Manager)**: Command-line tool to publish, share, and fetch third-party modules.
-4. **Language Server Protocol (LSP)**: Intelligent auto-completion, diagnostic indicators, and editor tooltips for VS Code and other editors.
+## License
+TechScript is released under the **MIT License**.
