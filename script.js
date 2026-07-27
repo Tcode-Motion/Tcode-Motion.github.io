@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initPlayground();
   initFaqAccordion();
+  initCopyButtons();
   initOrbFollow();
   initScrollReveal();
   initTerminalTyping();
@@ -240,7 +241,7 @@ function initPlayground() {
   const exButtons = document.querySelectorAll('.exbtn');
 
   if (playCode && playOut && playFname) {
-    window.showEx = function(key, clickedBtn) {
+    function showEx(key, clickedBtn) {
       const data = PLAYGROUND_EXAMPLES[key];
       if (!data) return;
 
@@ -257,10 +258,17 @@ function initPlayground() {
         clickedBtn.classList.add('active');
         clickedBtn.setAttribute('aria-current', 'true');
       }
-    };
+    }
+
+    exButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-example');
+        showEx(key, btn);
+      });
+    });
 
     // Load initial example
-    const defaultBtn = document.querySelector('.exbtn');
+    const defaultBtn = document.querySelector('.exbtn[data-example="hello"]');
     if (defaultBtn) {
       showEx('hello', defaultBtn);
     }
@@ -269,14 +277,55 @@ function initPlayground() {
 
 /* ── FAQ ACCORDION ── */
 function initFaqAccordion() {
-  window.toggleFaq = function(button) {
-    const item = button.closest('.faq-item');
-    const answer = item.querySelector('.faq-a');
-    const isOpen = item.classList.toggle('open');
+  const faqButtons = document.querySelectorAll('.faq-q');
+  faqButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.toggle('open');
 
-    button.setAttribute('aria-expanded', isOpen);
-    answer.hidden = !isOpen;
-  };
+      button.setAttribute('aria-expanded', isOpen);
+      answer.hidden = !isOpen;
+    });
+  });
+}
+
+/* ── DECOUPLED COPY TO CLIPBOARD BUTTONS ── */
+function initCopyButtons() {
+  const copyButtons = document.querySelectorAll('.copy-btn[data-copy]');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const textToCopy = btn.getAttribute('data-copy');
+      if (textToCopy) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = btn.textContent;
+          btn.textContent = "✓ Copied!";
+          btn.style.background = "rgba(16, 185, 129, 0.2)";
+          btn.style.borderColor = "#10b981";
+          
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = "";
+            btn.style.borderColor = "";
+          }, 1500);
+        }).catch(() => {
+          // Fallback
+          const textarea = document.createElement('textarea');
+          textarea.value = textToCopy;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            btn.textContent = "✓ Copied!";
+          } catch(e) {}
+          document.body.removeChild(textarea);
+          setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+        });
+      }
+    });
+  });
 }
 
 /* ── MOUSE PARALLAX ORB INTERACTION ── */
@@ -423,7 +472,7 @@ function initTerminalTyping() {
 const SEARCH_INDEX = [
   { title: "Home", category: "Navigation", desc: "Welcome section, header branding, and CTAs.", link: "#hero" },
   { title: "Why TechScript?", category: "Navigation", desc: "Readability comparisons and main benefits.", link: "#features" },
-  { title: "Ecosystem Tools", category: "Navigation", desc: "Studio IDE, CLI packages, and the ZeroHTML framework.", link: "#ecosystem" },
+  { title: "Ecosystem Tools", category: "Navigation", desc: "Studio IDE, CLI packages, and the ZeroHTML framework.", link: "#features" },
   { title: "Installation & CLI Setup", category: "Navigation", desc: "Windows graphical installers and Python pip instructions.", link: "#install" },
   { title: "Syntax Comparisons", category: "Navigation", desc: "TechScript compared directly with Python and JavaScript.", link: "#compare" },
   { title: "Compiler Pipeline", category: "Navigation", desc: "Stages: Lexer ➔ Parser ➔ AST ➔ Bytecode VM.", link: "#compiler" },
@@ -446,6 +495,11 @@ function initSearchPalette() {
   if (!trigger || !modal || !input || !resultsContainer) return;
 
   function openSearch() {
+    try {
+      modal.showModal();
+    } catch (e) {
+      // Fallback for older browsers
+    }
     modal.classList.add('open');
     input.focus();
     renderResults("");
@@ -453,6 +507,11 @@ function initSearchPalette() {
   }
 
   function closeSearch() {
+    if (modal.hasAttribute('open')) {
+      try {
+        modal.close();
+      } catch (e) {}
+    }
     modal.classList.remove('open');
     input.value = "";
     document.body.style.overflow = "";
@@ -467,14 +526,46 @@ function initSearchPalette() {
     }
   });
 
-  // Close with Escape, open with Ctrl+K / Cmd+K
+  // Track native dialog close event (e.g. Escape key)
+  modal.addEventListener('close', closeSearch);
+
+  // Keyboard accessibility
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeSearch();
-    }
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       openSearch();
+    }
+  });
+
+  input.addEventListener('keydown', (e) => {
+    const results = resultsContainer.querySelectorAll('.search-res-item');
+    if (results.length === 0) return;
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      results[0].focus();
+    }
+  });
+
+  resultsContainer.addEventListener('keydown', (e) => {
+    const results = Array.from(resultsContainer.querySelectorAll('.search-res-item'));
+    const currentIdx = results.indexOf(document.activeElement);
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIdx = (currentIdx + 1) % results.length;
+      results[nextIdx].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (currentIdx === 0) {
+        input.focus();
+      } else {
+        const prevIdx = (currentIdx - 1 + results.length) % results.length;
+        results[prevIdx].focus();
+      }
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      closeSearch();
     }
   });
 
@@ -496,14 +587,18 @@ function initSearchPalette() {
     }
 
     filtered.forEach(item => {
-      const el = document.createElement('div');
+      const el = document.createElement('a');
+      el.href = item.link;
       el.className = "search-res-item";
+      el.setAttribute('role', 'option');
+      el.setAttribute('tabindex', '0');
       el.innerHTML = `
         <span class="search-res-cat">${item.category}</span>
         <span class="search-res-title">${item.title}</span>
         <span class="search-res-desc">${item.desc}</span>
       `;
-      el.addEventListener('click', () => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
         closeSearch();
         window.location.hash = item.link;
         // Adjust for sticky header
@@ -515,37 +610,14 @@ function initSearchPalette() {
           });
         }
       });
+      // Handle activation via Enter key
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          el.click();
+        }
+      });
       resultsContainer.appendChild(el);
     });
   }
 }
-
-/* ── UTILITY: COPY TO CLIPBOARD ── */
-window.copyText = function(text, btn) {
-  navigator.clipboard.writeText(text).then(() => {
-    const originalText = btn.textContent;
-    btn.textContent = "✓ Copied!";
-    btn.style.background = "rgba(16, 185, 129, 0.2)";
-    btn.style.borderColor = "#10b981";
-    
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.style.background = "";
-      btn.style.borderColor = "";
-    }, 1500);
-  }).catch(() => {
-    // Fallback
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-    try {
-      document.execCommand('copy');
-      btn.textContent = "✓ Copied!";
-    } catch(e) {}
-    document.body.removeChild(textarea);
-    setTimeout(() => { btn.textContent = "Copy"; }, 1500);
-  });
-};

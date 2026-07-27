@@ -14,6 +14,8 @@
   <meta name="author" content="Tanmoy Majumder (@Tcode-Motion)">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0df28b">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com;">
 
   <!-- Meta tags for Search Site Name and mobile icons -->
   <meta property="og:site_name" content="TechScript">
@@ -24,10 +26,10 @@
   <link rel="canonical" href="https://techscript.is-a.dev/">
 
   <!-- Favicons & Manifest -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="https://techscript.is-a.dev/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="https://techscript.is-a.dev/favicon.svg">
+  <link rel="apple-touch-icon" href="https://techscript.is-a.dev/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
 
   <!-- Apple Web App Support -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -56,6 +58,19 @@
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://techscript.is-a.dev/#website",
+        "url": "https://techscript.is-a.dev/",
+        "name": "TechScript",
+        "alternateName": "TechScript Programming Language",
+        "description": "TechScript is a modern programming language that lets you write code like English. Fast, safe, open source, and powered by Rust.",
+        "publisher": {
+          "@type": "Person",
+          "name": "Tanmoy Majumder",
+          "url": "https://github.com/Tcode-Motion"
+        }
+      },
       {
         "@type": "SoftwareApplication",
         "name": "TechScript",
@@ -89,7 +104,7 @@
   </script>
 
   <!-- ── PRELOAD LOGO FOR PERFORMANCE ── -->
-  <link rel="preload" as="image" href="/assets/branding/logo-package/source/logo-master-transparent.png">
+  <link rel="preload" as="image" href="assets/branding/logo-package/source/logo-master-transparent.png">
 
   <!-- ── FONTS ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,14 +114,15 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
   
-  <script src="/analytics.js" defer></script>
+  <script src="analytics.js" defer></script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- ── STICKY HEADER NAVBAR ── -->
   <nav id="mainNav" role="navigation" aria-label="Main navigation">
     <a class="nav-logo" href="#hero" aria-label="TechScript home">
-      <img src="/assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript logo" width="34" height="34" decoding="async">
+      <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript logo" width="34" height="34" decoding="async">
       <span class="wordmark">TechScript</span>
     </a>
 
@@ -152,7 +168,7 @@
   </nav>
 
   <!-- ── MAIN CONTENT SECTIONS ── -->
-  <main>
+  <main id="main-content">
 
     <!-- 1. HERO SECTION -->
     <section id="hero" aria-labelledby="hero-title">
@@ -168,7 +184,7 @@
           </a>
         </div>
 
-        <img src="/assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo Logo" class="hero-logo" decoding="async">
+        <img src="/assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" class="hero-logo" decoding="async">
         
         <h1 class="hero-h1" id="hero-title">
           <span class="ln1">TechScript</span>
@@ -319,15 +335,15 @@
         <div class="playground" role="region" aria-label="Interactive code editor">
           <div class="play-sidebar" role="navigation" aria-label="Select code examples">
             <h3>Examples</h3>
-            <button class="exbtn" onclick="showEx('hello', this)" aria-current="true">👋 Hello World</button>
-            <button class="exbtn" onclick="showEx('vars', this)">📦 Variables</button>
-            <button class="exbtn" onclick="showEx('cond', this)">🔀 Conditions</button>
-            <button class="exbtn" onclick="showEx('loops', this)">🔁 Loops</button>
-            <button class="exbtn" onclick="showEx('funcs', this)">🔧 Functions</button>
-            <button class="exbtn" onclick="showEx('classes', this)">🏗️ Classes (OOP)</button>
-            <button class="exbtn" onclick="showEx('errors', this)">⚠️ Error Handling</button>
-            <button class="exbtn" onclick="showEx('web', this)">🌐 Build Website</button>
-            <button class="exbtn" onclick="showEx('crypto', this)">🔐 Cryptography</button>
+            <button class="exbtn" data-example="hello" aria-current="true">👋 Hello World</button>
+            <button class="exbtn" data-example="vars">📦 Variables</button>
+            <button class="exbtn" data-example="cond">🔀 Conditions</button>
+            <button class="exbtn" data-example="loops">🔁 Loops</button>
+            <button class="exbtn" data-example="funcs">🔧 Functions</button>
+            <button class="exbtn" data-example="classes">🏗️ Classes (OOP)</button>
+            <button class="exbtn" data-example="errors">⚠️ Error Handling</button>
+            <button class="exbtn" data-example="web">🌐 Build Website</button>
+            <button class="exbtn" data-example="crypto">🔐 Cryptography</button>
           </div>
 
           <div class="play-editor">
@@ -411,7 +427,7 @@
 
         <div class="code-compare" aria-label="Fibonacci recursion in three languages">
           <div class="cc-block txs-b">
-            <h4 style="color: var(--accent-cyan); margin-bottom: 1rem;">🐉 TechScript</h4>
+            <h3 style="color: var(--accent-cyan); margin-bottom: 1rem;">🐉 TechScript</h3>
             <pre class="cc-code"><code><span class="cmt">// Fibonacci recursion</span>
 <span class="fn-c">build</span> fib(n) {
   <span class="kw2">when</span> n &lt;= <span class="num">1</span> { <span class="kw">give</span> n }
@@ -421,7 +437,7 @@
           </div>
 
           <div class="cc-block">
-            <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">🐍 Python</h4>
+            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">🐍 Python</h3>
             <pre class="cc-code" style="color: var(--text-muted);"><code># Fibonacci recursion
 def fib(n):
     if n &lt;= 1:
@@ -432,7 +448,7 @@ print(fib(10)) # 55</code></pre>
           </div>
 
           <div class="cc-block">
-            <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">🌐 JavaScript</h4>
+            <h3 style="color: var(--text-secondary); margin-bottom: 1rem;">🌐 JavaScript</h3>
             <pre class="cc-code" style="color: var(--text-muted);"><code>// Fibonacci recursion
 function fib(n) {
   if (n &lt;= 1) return n;
@@ -502,7 +518,7 @@ console.log(fib(10)); // 55</code></pre>
             <div class="cmd-box">
               <span class="pr">→</span>
               <span class="ct">TechScript_v1.0.8_x64.exe</span>
-              <button class="copy-btn" onclick="window.open('https://github.com/Tcode-Motion/techscript/releases/latest','_blank')">⬇ Download</button>
+              <a href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn copy-btn" style="text-decoration:none; display:inline-block; text-align:center; padding: 6px 12px; font-size: 0.85rem; border-radius: var(--radius-sm);">⬇ Download</a>
             </div>
             <div class="incl-list" role="list">
               <div class="incl-item" role="listitem"><span class="ic">✓</span><span>TechScript Studio IDE desktop dashboard</span></div>
@@ -518,7 +534,7 @@ console.log(fib(10)); // 55</code></pre>
             <div class="cmd-box">
               <span class="pr">$</span>
               <span id="pipCmd" class="ct">pip install techscript-lang</span>
-              <button class="copy-btn" onclick="copyText('pip install techscript-lang', this)">Copy</button>
+              <button class="copy-btn" data-copy="pip install techscript-lang">Copy</button>
             </div>
             <div class="incl-list" role="list">
               <div class="incl-item" role="listitem"><span class="ic">✓</span><span>CLI utilities (tech run, repl, check)</span></div>
@@ -626,7 +642,7 @@ console.log(fib(10)); // 55</code></pre>
 
         <div class="faq-wrap">
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-q" aria-expanded="false">
               What is TechScript?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
@@ -636,7 +652,7 @@ console.log(fib(10)); // 55</code></pre>
           </div>
 
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-q" aria-expanded="false">
               Is TechScript compiled or interpreted?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
@@ -646,7 +662,7 @@ console.log(fib(10)); // 55</code></pre>
           </div>
 
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-q" aria-expanded="false">
               What is TechScript Studio?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
@@ -656,7 +672,7 @@ console.log(fib(10)); // 55</code></pre>
           </div>
 
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+            <button class="faq-q" aria-expanded="false">
               How does the ZeroHTML web builder function?
               <span class="faq-arr" aria-hidden="true">▶</span>
             </button>
@@ -678,47 +694,47 @@ console.log(fib(10)); // 55</code></pre>
         </header>
 
         <div class="test-grid">
-          <div class="test-card">
+          <article class="test-card">
             <span class="quote-mark">“</span>
             <p class="test-text">
               TechScript removed syntax fear for my introductory computer science students. They began writing loops and variables in minutes without missing semicolons.
             </p>
             <div class="test-user">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop" alt="Sarah Jenkins" class="test-avatar">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop" alt="Sarah Jenkins" class="test-avatar" loading="lazy" decoding="async">
               <div class="user-info">
-                <h4>Sarah Jenkins</h4>
+                <h3>Sarah Jenkins</h3>
                 <p>Computer Science Educator</p>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="test-card">
+          <article class="test-card">
             <span class="quote-mark">“</span>
             <p class="test-text">
               Underneath the simple English syntax, the compiler VM is built in Rust. It feels robust, outputs detailed ASTs, and executes instantly.
             </p>
             <div class="test-user">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop" alt="Marcus Vane" class="test-avatar">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop" alt="Marcus Vane" class="test-avatar" loading="lazy" decoding="async">
               <div class="user-info">
-                <h4>Marcus Vane</h4>
+                <h3>Marcus Vane</h3>
                 <p>Systems Developer</p>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="test-card">
+          <article class="test-card">
             <span class="quote-mark">“</span>
             <p class="test-text">
               The Studio IDE debugger is incredible. Being able to inspect AST structures and compiled VM bytecode makes this an amazing tool to study compilers.
             </p>
             <div class="test-user">
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop" alt="Elena Rostova" class="test-avatar">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop" alt="Elena Rostova" class="test-avatar" loading="lazy" decoding="async">
               <div class="user-info">
-                <h4>Elena Rostova</h4>
+                <h3>Elena Rostova</h3>
                 <p>Curriculum Planner</p>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -735,21 +751,21 @@ console.log(fib(10)); // 55</code></pre>
         <div class="contrib-wrap">
           <div class="contrib-grid" role="list">
             <div class="contrib-card" role="listitem">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img" loading="lazy" decoding="async">
               <div>
                 <span class="contrib-name">Tanmoy Majumder</span>
                 <span class="contrib-role">Lead Architect</span>
               </div>
             </div>
             <div class="contrib-card" role="listitem">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img" loading="lazy" decoding="async">
               <div>
                 <span class="contrib-name">Dave Miller</span>
                 <span class="contrib-role">VM Core Optimizer</span>
               </div>
             </div>
             <div class="contrib-card" role="listitem">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop" alt="Contributor avatar" class="contrib-img" loading="lazy" decoding="async">
               <div>
                 <span class="contrib-name">Jason Parker</span>
                 <span class="contrib-role">LSP &amp; VS Code</span>
@@ -866,7 +882,7 @@ console.log(fib(10)); // 55</code></pre>
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="logo" href="#hero">
-            <img src="/assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" width="32" height="32" decoding="async">
+            <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" width="32" height="32" decoding="async">
             <span>TechScript</span>
           </a>
           <p>

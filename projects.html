@@ -10,13 +10,23 @@
 
   <meta name="description" content="Explore active web applications and open source tools built by Tanmoy Majumder (@Tcode-Motion), dynamically synchronized from GitHub.">
 
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com;">
+
   <title>Tcode-Motion — Hosted Projects Showcase</title>
 
-  <link rel="icon" type="image/png" href="/assets/icons/icon-192.png">
+  <link rel="canonical" href="https://techscript.is-a.dev/projects.html">
 
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link rel="icon" href="https://techscript.is-a.dev/favicon.ico" sizes="any">
 
-  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="https://techscript.is-a.dev/favicon.svg">
+
+  <link rel="apple-touch-icon" href="https://techscript.is-a.dev/apple-touch-icon.png">
+
+  <link rel="manifest" href="manifest.json">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -24,7 +34,48 @@
 
   <meta name="apple-mobile-web-app-title" content="TechScript">
 
-  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://techscript.is-a.dev/projects.html">
+  <meta property="og:title" content="Tcode-Motion — Hosted Projects Showcase">
+  <meta property="og:description" content="Explore active web applications and open source tools built by Tanmoy Majumder (@Tcode-Motion), dynamically synchronized from GitHub.">
+  <meta property="og:image" content="https://techscript.is-a.dev/assets/icons/icon-512.png">
+  <meta property="og:site_name" content="TechScript">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tcode-Motion — Hosted Projects Showcase">
+  <meta name="twitter:description" content="Explore active web applications and open source tools built by Tanmoy Majumder (@Tcode-Motion), dynamically synchronized from GitHub.">
+  <meta name="twitter:image" content="https://techscript.is-a.dev/assets/icons/icon-512.png">
+  <meta name="twitter:creator" content="@Tcode-Motion">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://techscript.is-a.dev/projects.html#webpage",
+        "url": "https://techscript.is-a.dev/projects.html",
+        "name": "Projects Showcase | Tcode-Motion",
+        "description": "Explore active web applications, compilers, operating system simulators, tools, and graphics engines built by Tanmoy Majumder (@Tcode-Motion).",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://techscript.is-a.dev/#website",
+          "name": "TechScript",
+          "url": "https://techscript.is-a.dev/"
+        },
+        "about": {
+          "@type": "Person",
+          "name": "Tanmoy Majumder",
+          "url": "https://github.com/Tcode-Motion"
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- Fonts -->
 
@@ -42,11 +93,13 @@
 
   <link rel="stylesheet" href="projects.css">
 
-  <script src="/analytics.js" defer></script>
+  <script src="analytics.js" defer></script>
 
 </head>
 
 <body class="proj-body">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- Main Navigation Bar -->
 
@@ -54,7 +107,7 @@
 
     <a class="nav-logo" href="index.html" aria-label="TechScript home">
 
-      <img src="/assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" width="34" height="34" decoding="async">
+      <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" width="34" height="34" decoding="async">
 
       <span class="wordmark">TechScript</span>
 
@@ -76,7 +129,7 @@
 
   <!-- Showcase Content Container -->
 
-  <main class="proj-main-container">
+  <main class="proj-main-container" id="main-content">
 
     <div class="container">
 

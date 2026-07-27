@@ -33,7 +33,13 @@
     document.head.appendChild(script);
 
     // If consent was previously granted and saved in localStorage, update the permissions
-    const consentAccepted = localStorage.getItem('cookie_consent') === 'granted';
+    let consentAccepted = false;
+    try {
+      consentAccepted = localStorage.getItem('cookie_consent') === 'granted';
+    } catch (e) {
+      // Safe fallback if localStorage is disabled/restricted
+    }
+    
     if (consentAccepted) {
       gtag('consent', 'update', {
         'analytics_storage': 'granted',

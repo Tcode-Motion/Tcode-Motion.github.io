@@ -2,6 +2,24 @@
    PROJECTS SECTION STYLING (NAMESPACED)
    ═══════════════════════════════════════ */
 
+:root {
+  --bg: var(--bg-primary);
+  --bg2: var(--bg-secondary);
+  --bg3: var(--bg-secondary);
+  --surface: var(--bg-card);
+  --border: var(--border-primary);
+  --border2: var(--border-primary);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --accent: var(--accent-cyan);
+  --accent2: var(--accent-blue);
+  --accent3: #38bdf8;
+  --accent4: #f43f5e;
+  --font-main: var(--font-sans);
+  --font-display: var(--font-sans);
+}
+
 /* Section background and spacing */
 .proj-section {
   background: var(--bg2);
@@ -37,7 +55,7 @@
 /* Search Box */
 .proj-search-wrapper {
   flex: 1;
-  min-width: 280px;
+  min-width: min(280px, 100%);
   position: relative;
 }
 
@@ -155,7 +173,7 @@
 /* Grid Layout */
 .proj-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 24px;
   margin-top: 32px;
 }

@@ -424,7 +424,7 @@
       card.innerHTML = `
         <div class="proj-img-wrapper">
           <div class="proj-img-fallback">${proj.name.substring(0, 2).toUpperCase()}</div>
-          <img class="proj-img" data-src="${proj.preview_image}" alt="Preview screenshot of ${proj.name}" loading="lazy">
+          <img class="proj-img" data-src="${proj.preview_image}" alt="Preview screenshot of ${proj.name}" loading="lazy" decoding="async">
           <div class="proj-badges">
             ${proj.language ? `<span class="proj-badge proj-badge-lang">${proj.language}</span>` : ''}
             ${isNew ? `<span class="proj-badge proj-badge-new" aria-label="Newly updated project">New</span>` : ''}
@@ -433,7 +433,7 @@
         <div class="proj-card-content">
           <div class="proj-card-header">
             ${proj.favicon ? `<img class="proj-favicon" src="${proj.favicon}" alt="" aria-hidden="true" onerror="this.remove()">` : ''}
-            <h3 class="proj-card-title">${proj.display_title || proj.name}</h3>
+            <h2 class="proj-card-title">${proj.display_title || proj.name}</h2>
           </div>
           <p class="proj-card-desc">${proj.description || 'No description available.'}</p>
           

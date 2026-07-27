@@ -12,7 +12,7 @@
   --bg-card-hover: rgba(255, 255, 255, 0.06);
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --text-muted: #94a3b8;
   
   --accent-cyan: #0df28b;
   --accent-blue: #059669;
@@ -45,7 +45,7 @@ body.light-theme {
   --bg-card-hover: rgba(15, 23, 42, 0.06);
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-muted: #64748b;
   
   --accent-cyan: #059669;
   --accent-blue: #0d9488;
@@ -95,6 +95,16 @@ button, input, select {
   color: inherit;
 }
 
+/* Custom focus styles for keyboard users */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -109,6 +119,27 @@ button, input, select {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-hover);
+}
+
+/* Skip Link Accessibility Helper */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--accent-gradient);
+  color: var(--bg-primary);
+  padding: 1rem 1.5rem;
+  z-index: 9999;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius-md) 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: top 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.skip-link:focus {
+  top: 0;
+  color: var(--bg-primary);
+  outline: none;
 }
 
 /* Layout Container */
