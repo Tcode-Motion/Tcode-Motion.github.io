@@ -1,11 +1,16 @@
 {
+  "id": "https://techscript.is-a.dev/",
   "name": "TechScript",
   "short_name": "TechScript",
-  "description": "TechScript is a general-purpose, plain-English programming language. Write code with natural keywords: say, do, when, for, send, try, catch. Powered by a high-performance stack VM written in Rust and LLVM backend.",
-  "start_url": "index.html",
+  "description": "TechScript is an open source, plain-English programming language built in Rust. Write code with natural keywords: say, do, when, for, send, try, catch. Powered by a high-performance stack VM written in Rust and LLVM backend. Download free for Windows, Linux, macOS, and Android.",
+  "start_url": "./",
+  "scope": "/",
   "display": "standalone",
+  "lang": "en-US",
+  "dir": "ltr",
   "background_color": "#0a0a0f",
   "theme_color": "#0DF28B",
+  "categories": ["developer-tools", "productivity", "education", "utilities"],
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
@@ -21,3 +26,4 @@
     }
   ]
 }
+

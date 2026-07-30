@@ -8,17 +8,19 @@
   <!-- ═══════════════════════════════════════════════════════════
        PRIMARY SEO — TITLE, METADATA & CANONICALS
        ═══════════════════════════════════════════════════════════ -->
-  <title>TechScript — Plain-English Programming Language | Written in Rust</title>
-  <meta name="description" content="TechScript is a general-purpose, human-first programming language with zero syntax clutter. Powered by a high-performance stack VM written in Rust and an LLVM native compilation backend.">
-  <meta name="keywords" content="TechScript, TechScript programming language, plain English code, Rust VM, LLVM compiler, tsc compiler driver, zero syntax clutter, open source programming language, developer tools, compiler architecture, virtual machine">
+  <title>TechScript — Plain-English Programming Language | Built in Rust with LLVM</title>
+  <meta name="description" content="TechScript is an open source, plain-English programming language built in Rust. Features a high-performance stack VM, LLVM native backend, tsc compiler driver, VS Code extension, and standard library with AI, SQLite, Canvas, and HTTP. Download free.">
   <meta name="author" content="Tanmoy Majumder (@Tcode-Motion)">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#0DF28B">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="generator" content="TechScript Official Website v2.0">
 
-  <!-- Canonical URL & RSS Feed -->
+  <!-- Canonical URL, Sitemap & RSS Feed -->
   <link rel="canonical" href="https://techscript.is-a.dev/">
-  <link rel="alternate" type="application/rss+xml" title="TechScript Releases RSS" href="https://github.com/Tcode-Motion/techscript/releases.atom">
+  <link rel="sitemap" type="application/xml" href="https://techscript.is-a.dev/sitemap.xml">
+  <link rel="alternate" type="application/rss+xml" title="TechScript Release Notes RSS" href="https://github.com/Tcode-Motion/techscript/releases.atom">
+  <link rel="next" href="https://techscript.is-a.dev/projects.html">
 
   <!-- Search Site Name and Mobile Meta -->
   <meta property="og:site_name" content="TechScript">
@@ -39,21 +41,22 @@
   <!-- ── OPEN GRAPH (SOCIAL PREVIEW) ── -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://techscript.is-a.dev/">
-  <meta property="og:title" content="TechScript — Plain-English Programming Language | Written in Rust">
-  <meta property="og:description" content="Write like a Human. Run like Rust. Plain-English syntax, zero syntax clutter, custom stack VM, and native LLVM backend.">
+  <meta property="og:title" content="TechScript — Plain-English Programming Language | Built in Rust with LLVM">
+  <meta property="og:description" content="Write like a Human. Run like Rust. TechScript is an open source programming language with plain-English syntax, zero clutter, a custom Rust stack VM, LLVM native backend, and built-in AI, SQLite, Canvas & HTTP stdlib modules.">
   <meta property="og:image" content="https://techscript.is-a.dev/assets/icons/icon-512.png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
-  <meta property="og:image:alt" content="TechScript logo">
+  <meta property="og:image:alt" content="TechScript programming language logo — plain-English compiler and runtime built in Rust with LLVM backend">
   <meta property="og:locale" content="en_US">
 
   <!-- ── TWITTER CARDS ── -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@Tcode-Motion">
-  <meta name="twitter:creator" content="@Tcode-Motion">
-  <meta name="twitter:title" content="TechScript — Plain-English Programming Language">
-  <meta name="twitter:description" content="TechScript is a general-purpose programming language. Zero symbols. Zero overhead. Native Rust VM & LLVM backend.">
+  <meta name="twitter:site" content="@TcodeMotion">
+  <meta name="twitter:creator" content="@TcodeMotion">
+  <meta name="twitter:title" content="TechScript — Plain-English Programming Language | Built in Rust">
+  <meta name="twitter:description" content="TechScript: open source programming language with plain-English syntax, Rust stack VM, LLVM backend, tsc CLI driver, VS Code extension. Free download for Windows, Linux, macOS & Android.">
   <meta name="twitter:image" content="https://techscript.is-a.dev/assets/icons/icon-512.png">
+  <meta name="twitter:image:alt" content="TechScript programming language logo — plain-English compiler built in Rust">
 
   <!-- ── STRUCTURED DATA (JSON-LD SCHEMAS) ── -->
   <script type="application/ld+json">
@@ -65,86 +68,189 @@
         "@id": "https://techscript.is-a.dev/#website",
         "url": "https://techscript.is-a.dev/",
         "name": "TechScript",
-        "alternateName": "TechScript Programming Language",
-        "description": "TechScript is a general-purpose, human-first programming language with zero syntax clutter. Powered by a high-performance stack VM written in Rust and an LLVM native backend.",
+        "alternateName": ["TechScript Programming Language", "TechScript Language", "TechScript Compiler"],
+        "description": "TechScript is an open source, plain-English programming language built in Rust. Features a high-performance stack VM, LLVM native compilation backend, and a unified tsc compiler driver toolchain.",
         "publisher": {
           "@type": "Organization",
-          "name": "TechScript Project",
-          "url": "https://techscript.is-a.dev/",
-          "logo": "https://techscript.is-a.dev/assets/techscript-logo.png"
+          "@id": "https://techscript.is-a.dev/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://techscript.is-a.dev/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
         }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://techscript.is-a.dev/#webpage",
+        "url": "https://techscript.is-a.dev/",
+        "name": "TechScript — Plain-English Programming Language | Built in Rust with LLVM",
+        "description": "TechScript is an open source, plain-English programming language built in Rust. Features a high-performance stack VM, LLVM native backend, tsc compiler driver, VS Code extension, and standard library with AI, SQLite, Canvas, and HTTP.",
+        "isPartOf": { "@id": "https://techscript.is-a.dev/#website" },
+        "about": { "@id": "https://techscript.is-a.dev/#software" },
+        "inLanguage": "en-US",
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".hero-h1", ".hero-sub", ".sec-title"]
+        },
+        "breadcrumb": { "@id": "https://techscript.is-a.dev/#breadcrumb" }
       },
       {
         "@type": "SoftwareApplication",
         "@id": "https://techscript.is-a.dev/#software",
         "name": "TechScript",
-        "alternateName": ["TechScript Compiler", "tsc", "techscript-lang", ".txs"],
-        "description": "Human-first programming language compiler and stack VM written in Rust with LLVM backend.",
+        "alternateName": ["TechScript Compiler", "TechScript Language", "tsc", "techscript-lang", "TechScript CLI", "TechScript REPL"],
+        "description": "TechScript is an open source, plain-English programming language and compiler. Powered by a custom Rust stack VM and LLVM native code generation backend. Features built-in AI, SQLite, Canvas, HTTP, JSON, threading, and async/await. Download free for Windows, Linux, macOS, and Android.",
         "url": "https://techscript.is-a.dev/",
         "downloadUrl": "https://github.com/Tcode-Motion/techscript/releases/latest",
         "softwareVersion": "Latest Stable",
+        "releaseNotes": "https://github.com/Tcode-Motion/techscript/releases",
         "applicationCategory": "DeveloperApplication",
-        "applicationSubCategory": "Compiler & Programming Language",
+        "applicationSubCategory": "Compiler & Programming Language Runtime",
         "operatingSystem": "Windows 10, Windows 11, Linux, macOS, Android (Termux)",
-        "offers": { 
-          "@type": "Offer", 
-          "price": "0", 
-          "priceCurrency": "USD", 
-          "availability": "https://schema.org/InStock" 
+        "featureList": [
+          "Plain-English syntax with zero clutter",
+          "Custom Rust stack-based Virtual Machine",
+          "LLVM native compilation backend",
+          "Unified tsc compiler driver CLI",
+          "Built-in AI standard library module (Gemini)",
+          "SQLite database integration",
+          "2D Canvas graphics API",
+          "HTTP client standard library",
+          "TechScript LSP Language Server Protocol",
+          "VS Code extension with syntax highlighting",
+          "TechScript REPL interactive shell",
+          "Cross-platform: Windows, Linux, macOS, Android"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
         },
         "author": {
           "@type": "Person",
           "name": "Tanmoy Majumder",
           "url": "https://github.com/Tcode-Motion"
         },
+        "maintainer": {
+          "@type": "Person",
+          "name": "Tanmoy Majumder",
+          "url": "https://github.com/Tcode-Motion"
+        },
         "license": "https://github.com/Tcode-Motion/techscript/blob/main/LICENSE",
         "codeRepository": "https://github.com/Tcode-Motion/techscript",
-        "programmingLanguage": "Rust"
+        "programmingLanguage": "Rust",
+        "sameAs": [
+          "https://github.com/Tcode-Motion/techscript",
+          "https://pypi.org/project/techscript/",
+          "https://marketplace.visualstudio.com/items?itemName=tanmoy.techscript",
+          "https://open-vsx.org/extension/Tcode-Motion/techscript"
+        ]
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://techscript.is-a.dev/#sourcecode",
+        "name": "TechScript Compiler Source Code",
+        "description": "Source code for the TechScript programming language compiler, stack VM runtime, LLVM backend, and tsc driver toolchain. Written in Rust. MIT licensed and open source.",
+        "codeRepository": "https://github.com/Tcode-Motion/techscript",
+        "programmingLanguage": [
+          { "@type": "ComputerLanguage", "name": "Rust" },
+          { "@type": "ComputerLanguage", "name": "TechScript" }
+        ],
+        "runtimePlatform": "Rust Cargo, LLVM",
+        "targetProduct": { "@id": "https://techscript.is-a.dev/#software" },
+        "license": "https://spdx.org/licenses/MIT.html",
+        "author": {
+          "@type": "Person",
+          "name": "Tanmoy Majumder",
+          "url": "https://github.com/Tcode-Motion"
+        }
       },
       {
         "@type": "Organization",
         "@id": "https://techscript.is-a.dev/#organization",
-        "name": "TechScript Open Source Community",
+        "name": "TechScript Open Source Project",
         "url": "https://techscript.is-a.dev/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://techscript.is-a.dev/assets/icons/icon-512.png",
+          "width": 512,
+          "height": 512,
+          "caption": "TechScript programming language logo"
+        },
+        "foundingDate": "2024",
+        "description": "The TechScript open source project develops and maintains the TechScript programming language, compiler, runtime, standard library, VS Code extension, and developer toolchain.",
         "sameAs": [
           "https://github.com/Tcode-Motion/techscript",
-          "https://discord.gg/tRtNbuDUr"
+          "https://discord.gg/tRtNbuDUr",
+          "https://pypi.org/project/techscript/"
         ]
       },
       {
         "@type": "BreadcrumbList",
+        "@id": "https://techscript.is-a.dev/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://techscript.is-a.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Documentation", "item": "https://techscript.is-a.dev/#docs" },
-          { "@type": "ListItem", "position": 3, "name": "Downloads", "item": "https://techscript.is-a.dev/#install" },
-          { "@type": "ListItem", "position": 4, "name": "Roadmap", "item": "https://techscript.is-a.dev/#roadmap" }
+          { "@type": "ListItem", "position": 1, "name": "TechScript Home", "item": "https://techscript.is-a.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Documentation", "item": "https://techscript.is-a.dev/" },
+          { "@type": "ListItem", "position": 3, "name": "Download TechScript", "item": "https://techscript.is-a.dev/" },
+          { "@type": "ListItem", "position": 4, "name": "TechScript Roadmap", "item": "https://techscript.is-a.dev/" },
+          { "@type": "ListItem", "position": 5, "name": "TechScript Projects", "item": "https://techscript.is-a.dev/projects.html" }
         ]
       },
       {
         "@type": "FAQPage",
+        "@id": "https://techscript.is-a.dev/#faq",
         "mainEntity": [
           {
             "@type": "Question",
             "name": "What is TechScript?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "TechScript is a general-purpose, human-first programming language designed to eliminate syntax clutter. Instead of curly braces and cryptic symbols, TechScript uses clean, keyword-based English grammar executed on a high-speed stack VM written in Rust."
+              "text": "TechScript is an open source, general-purpose, plain-English programming language designed to eliminate syntax clutter. Instead of curly braces, semicolons, and cryptic operator symbols, TechScript uses clean, keyword-based English grammar (do, end, when, say, send) executed on a high-speed stack VM written in Rust, or compiled to native machine code via an LLVM backend."
             }
           },
           {
             "@type": "Question",
-            "name": "How do I run TechScript code?",
+            "name": "How do I install and run TechScript?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Use the unified `tsc` compiler driver toolchain. For example: `tsc run script.txs` compiles and runs your code, while `tsc build` packages your workspace project."
+              "text": "Download the TechScript installer from https://github.com/Tcode-Motion/techscript/releases/latest for Windows, Linux, macOS, or Android (Termux). You can also install via PyPI: pip install techscript. Then use the unified tsc compiler driver: tsc run script.txs to compile and run, tsc build to package a project, or tsc repl to start the interactive REPL."
             }
           },
           {
             "@type": "Question",
-            "name": "What platforms are supported?",
+            "name": "What platforms does TechScript support?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "TechScript runs natively on Windows, Linux, macOS, and Android (Termux). You can install it via native installer binaries, automated shell scripts, or PyPI (`pip install techscript`)."
+              "text": "TechScript runs natively on Windows 10/11, Linux (x86_64 and ARM64), macOS, and Android via Termux. Install via native installer binaries from GitHub Releases, an automated curl shell script (curl -fsSL https://raw.githubusercontent.com/Tcode-Motion/techscript/main/scripts/install.sh | bash), or PyPI (pip install techscript)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the tsc CLI compiler driver?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "tsc is the unified TechScript CLI compiler driver executable. It includes subcommands: tsc run (compile and execute a .txs script), tsc build (build a project), tsc test (run unit tests), tsc fmt (auto-format code), tsc lint (static analysis), tsc repl (interactive shell), and tsc check (type and scope checking). It is the single entry point for all TechScript development workflows."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does TechScript have a VS Code extension?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The official TechScript VS Code extension (search 'TechScript 2.0' by publisher 'tanmoy' in the VS Code Extensions Marketplace or Open VSX Registry) provides full syntax highlighting, auto-completions, code snippets, icon themes, and Language Server Protocol (LSP) integration via techscript-lsp."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is TechScript open source and free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. TechScript is completely free and released under the MIT License. The full source code, compiler, runtime VM, LLVM backend, and standard library are available on GitHub at https://github.com/Tcode-Motion/techscript. Contributions from the community are welcome."
             }
           }
         ]
@@ -156,7 +262,12 @@
   <!-- Preconnect & Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Non-blocking font load for Core Web Vitals (no render-blocking) -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Preload LCP hero image for faster Largest Contentful Paint -->
+  <link rel="preload" as="image" href="assets/branding/logo-package/source/logo-master-transparent.png" fetchpriority="high">
 
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="style.css">
@@ -171,7 +282,7 @@
   <nav id="mainNav" role="navigation" aria-label="Main navigation">
     <div class="nav-left">
       <a class="nav-logo" href="#hero" aria-label="TechScript Home">
-        <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript logo" width="34" height="34" decoding="async">
+        <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript programming language — navigate to homepage" width="34" height="34" decoding="async" fetchpriority="high">
         <span class="wordmark">TechScript</span>
       </a>
 
@@ -325,7 +436,7 @@
         </div>
 
         <div class="hero-brand">
-          <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Dragon Logo" class="hero-logo" decoding="async">
+          <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript programming language dragon logo — the official mascot of the TechScript open source project" class="hero-logo" decoding="async" fetchpriority="high">
         </div>
 
         <h1 class="hero-h1" id="hero-title">
@@ -414,8 +525,8 @@
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// language capabilities</p>
-          <h2 class="sec-title" id="features-title">Designed for Humans. Built for Speed.</h2>
-          <p class="sec-sub">Experience the power of modern compiler engineering combined with readable English grammar.</p>
+          <h2 class="sec-title" id="features-title">TechScript Language Features: Designed for Humans, Built for Speed</h2>
+          <p class="sec-sub">Experience the power of modern compiler engineering combined with plain-English, human-readable grammar. TechScript is a programming language built in Rust, powered by LLVM, with a complete standard library for AI, SQLite, Canvas, HTTP, and more.</p>
         </header>
 
         <div class="feat-grid">
@@ -699,8 +810,8 @@ console.log(fib(10)); // 55</code></pre>
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// installation center</p>
-          <h2 class="sec-title" id="install-title">Install TechScript</h2>
-          <p class="sec-sub">Download native installer packages or install via single command shell scripts on your operating system.</p>
+          <h2 class="sec-title" id="install-title">Download &amp; Install TechScript — Windows, Linux, macOS, Android</h2>
+          <p class="sec-sub">Download the TechScript compiler and tsc CLI driver. Native installers for Windows, automated shell scripts for Linux &amp; macOS, Termux support for Android, and a PyPI package for cross-platform installation via pip.</p>
         </header>
 
         <!-- Dynamic Release Info Banner -->
@@ -824,8 +935,8 @@ console.log(fib(10)); // 55</code></pre>
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// documentation portal</p>
-          <h2 class="sec-title" id="docs-title">Language Documentation &amp; Reference</h2>
-          <p class="sec-sub">Browse full guides for syntax, standard libraries, CLI commands, compiler architecture, and best practices.</p>
+          <h2 class="sec-title" id="docs-title">TechScript Official Documentation &amp; Language Reference</h2>
+          <p class="sec-sub">Browse complete TechScript documentation: getting started guide, syntax reference, CLI commands (tsc), standard library API, compiler architecture, performance benchmarks, examples, and release notes. The official TechScript docs portal.</p>
         </header>
 
         <div class="docs-portal" role="region" aria-label="Documentation Sidebar Portal">
@@ -883,8 +994,8 @@ console.log(fib(10)); // 55</code></pre>
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// project development milestones</p>
-          <h2 class="sec-title" id="road-title">TechScript Roadmap</h2>
-          <p class="sec-sub">Track completed achievements and upcoming milestones in the language roadmap.</p>
+          <h2 class="sec-title" id="road-title">TechScript Development Roadmap &amp; Release Milestones</h2>
+          <p class="sec-sub">Track completed achievements and upcoming milestones for the TechScript programming language, compiler, LLVM backend, package manager (tspm), and LSP extension.</p>
         </header>
 
         <div class="roadmap-timeline" role="region" aria-label="Development Roadmap Timeline">
@@ -933,8 +1044,8 @@ console.log(fib(10)); // 55</code></pre>
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// version changelog</p>
-          <h2 class="sec-title" id="releases-title">Release History &amp; Changelog</h2>
-          <p class="sec-sub">Automatically synchronized from GitHub Releases API.</p>
+          <h2 class="sec-title" id="releases-title">TechScript Release Notes &amp; Version Changelog</h2>
+          <p class="sec-sub">TechScript release notes and version changelog — automatically synchronized from the GitHub Releases API. View the full release history on the <a href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer">TechScript GitHub Releases page</a>.</p>
         </header>
 
         <div id="releaseChangelogList" class="rel-list" role="list">
@@ -948,8 +1059,8 @@ console.log(fib(10)); // 55</code></pre>
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// inquiries</p>
-          <h2 class="sec-title" id="faq-title">Frequently Asked Questions</h2>
-          <p class="sec-sub">Everything you need to know about compiling and writing TechScript applications.</p>
+          <h2 class="sec-title" id="faq-title">TechScript FAQ — Frequently Asked Questions</h2>
+          <p class="sec-sub">Everything you need to know about TechScript: installation, the tsc compiler driver, LLVM backend, VS Code extension, MIT license, supported platforms, and how to get started with the TechScript programming language.</p>
         </header>
 
         <div class="faq-wrap">
@@ -1011,8 +1122,8 @@ console.log(fib(10)); // 55</code></pre>
       <div class="container">
         <header class="sec-hdr">
           <p class="sec-eyebrow">// community &amp; ecosystem</p>
-          <h2 class="sec-title" id="community-title">Open Source Ecosystem</h2>
-          <p class="sec-sub">Join our developer community, contribute code, and build tools around TechScript.</p>
+          <h2 class="sec-title" id="community-title">TechScript Open Source Community &amp; Ecosystem</h2>
+          <p class="sec-sub">Join the TechScript open source community on Discord and GitHub. Contribute to the TechScript compiler, standard library, VS Code extension, or ecosystem tooling. MIT licensed. All contributions welcome.</p>
         </header>
 
         <div class="community-grid">
@@ -1106,7 +1217,7 @@ console.log(fib(10)); // 55</code></pre>
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="logo" href="#hero">
-            <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript Logo" width="32" height="32" decoding="async">
+            <img src="assets/branding/logo-package/source/logo-master-transparent.png" alt="TechScript open source programming language logo" width="32" height="32" decoding="async" loading="lazy">
             <span>TechScript</span>
           </a>
           <p>
