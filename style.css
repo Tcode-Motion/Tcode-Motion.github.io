@@ -190,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sec-hdr {
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -919,7 +919,7 @@ body.light-theme .orb {
 .tline.dim-green { color: #059669; font-size: 0.8rem; }
 
 /* ── FEATURES GRID ── */
-#features { padding: 5rem 0; }
+#features { padding: 3.5rem 0; }
 .feat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -954,7 +954,7 @@ body.light-theme .orb {
 }
 
 /* ── INTERACTIVE PLAYGROUND ── */
-#playground { padding: 5rem 0; background: var(--bg-secondary); }
+#playground { padding: 3.5rem 0; background: var(--bg-secondary); }
 .playground {
   display: flex;
   gap: 1.5rem;
@@ -986,15 +986,17 @@ body.light-theme .orb {
 }
 .exbtn {
   text-align: left;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.85rem;
+  padding: 0.55rem 0.85rem;
+  font-size: var(--fs-sm);
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
   cursor: pointer;
+  margin-bottom: 0.35rem;
+  border-left: 3px solid transparent;
   transition: var(--transition-fast);
 }
 .exbtn:hover { color: var(--text-primary); background: var(--bg-card-hover); }
-.exbtn.active { color: var(--accent-cyan); background: rgba(13, 242, 139, 0.1); font-weight: 700; }
+.exbtn.active { color: var(--accent-cyan); background: rgba(13, 242, 139, 0.15); border-left: 3px solid var(--accent-cyan); font-weight: 700; }
 
 .play-editor-wrap {
   display: flex;
@@ -1092,7 +1094,8 @@ body.light-theme .orb {
 .play-stdout { font-family: var(--font-mono); font-size: var(--fs-sm); color: #10b981; white-space: pre-wrap; margin: 0; }
 
 /* ── COMPARISON TABLE ── */
-#compare { padding: 5rem 0; }
+#compare { padding: 3.5rem 0; }
+#compare .sec-hdr { margin-bottom: 1.75rem; }
 .tbl-wrap { overflow-x: auto; margin-bottom: 3rem; }
 .cmp-tbl {
   width: 100%;
@@ -1117,7 +1120,7 @@ body.light-theme .orb {
 .cc-code { font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; }
 
 /* ── COMPILER PIPELINE FLOW ── */
-#compiler { padding: 5rem 0; background: var(--bg-secondary); }
+#compiler { padding: 3.5rem 0; background: var(--bg-secondary); }
 .pipeline-flow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .pipeline-step {
   flex: 1; min-width: 180px; background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;
@@ -1128,7 +1131,7 @@ body.light-theme .orb {
 .pipe-arrow { font-size: 1.5rem; color: var(--accent-cyan); }
 
 /* ── INSTALLATION CENTER ── */
-#install { padding: 5rem 0; }
+#install { padding: 3.5rem 0; }
 .dl-release-hdr {
   display: flex; align-items: center; justify-content: space-between; background: rgba(13, 242, 139, 0.05); border: 1px solid var(--border-hover); border-radius: var(--radius-md); padding: 1rem 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
 }
@@ -1244,20 +1247,29 @@ body.light-theme .orb {
 @media (max-width: 900px) { .docs-portal { grid-template-columns: 1fr; } }
 
 .docs-sidebar {
-  background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 85px;
+  background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; position: sticky; top: 85px;
 }
 
-/* Issue 15: Sidebar category headers elevated visual hierarchy */
+.docs-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+.docs-group:last-child {
+  margin-bottom: 0;
+}
+
 .docs-group-title {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  padding: 0.35rem 0.5rem 0.15rem 0.5rem;
   margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-  padding-left: 0.25rem;
+  margin-bottom: 0.35rem;
 }
 .docs-group:first-child .docs-group-title {
   margin-top: 0;
@@ -1278,7 +1290,7 @@ body.light-theme .orb {
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
 }
-.doc-title { font-size: var(--fs-xl); margin: 0; color: var(--text-primary); }
+.doc-title { font-size: var(--fs-2xl); font-weight: 800; margin: 0; color: var(--text-primary); }
 .doc-raw-btn {
   display: inline-flex;
   align-items: center;
@@ -1296,26 +1308,32 @@ body.light-theme .orb {
 }
 
 .doc-body { line-height: 1.7; }
-/* Issue 16: Clear visual distinction between section H3 and step H4 */
-.doc-body h3 {
-  margin: 1.75rem 0 1rem 0;
+/* Issue 18 & 17: Heading scale hierarchy (H2 > H3 > H4) and asymmetric step heading proximity */
+.doc-body h2 {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
   color: var(--text-primary);
-  font-size: var(--fs-lg);
+  margin-bottom: 1rem;
+}
+.doc-body h3 {
+  margin: 1.75rem 0 0.75rem 0;
+  color: var(--text-primary);
+  font-size: var(--fs-xl);
   font-weight: 700;
   padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--border-primary);
 }
 .doc-body h4 {
-  margin: 1.25rem 0 0.5rem 0;
+  margin: 2rem 0 0.5rem 0;
   color: var(--accent-cyan);
-  font-size: var(--fs-base);
+  font-size: var(--fs-lg);
   font-weight: 600;
 }
 .doc-code { background: #05040d; border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1rem; overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; margin: 1rem 0; }
 .doc-inline-code { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); background: rgba(13, 242, 139, 0.1); padding: 0.15rem 0.4rem; border-radius: 4px; }
 
 /* ── ROADMAP ── */
-#roadmap { padding: 5rem 0; }
+#roadmap { padding: 3.5rem 0; }
 .roadmap-timeline { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
 .roadmap-phase { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 2rem; position: relative; }
 .roadmap-phase.completed { border-color: rgba(16, 185, 129, 0.3); }
@@ -1326,7 +1344,7 @@ body.light-theme .orb {
 .phase-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; color: var(--text-secondary); }
 
 /* ── RELEASES & CHANGELOG ── */
-#releases { padding: 5rem 0; background: var(--bg-secondary); }
+#releases { padding: 3.5rem 0; background: var(--bg-secondary); }
 .rel-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; margin: 0 auto; }
 .rel-card { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1.5rem; }
 .rel-card.latest { border-color: var(--border-hover); }
@@ -1422,7 +1440,7 @@ body.light-theme .orb {
 }
 
 /* ── FAQ ── */
-#faq { padding: 5rem 0; }
+#faq { padding: 3.5rem 0; }
 .faq-wrap { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
 .faq-item { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); overflow: hidden; }
 .faq-q { width: 100%; text-align: left; padding: 1.25rem 1.5rem; font-size: 1.1rem; font-weight: 600; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
@@ -1431,7 +1449,7 @@ body.light-theme .orb {
 .faq-a { padding: 0 1.5rem 1.25rem 1.5rem; color: var(--text-secondary); font-size: 0.98rem; line-height: 1.7; border-top: 1px solid rgba(255, 255, 255, 0.03); }
 
 /* ── COMMUNITY & ECOSYSTEM ── */
-#community { padding: 5rem 0; background: var(--bg-secondary); }
+#community { padding: 3.5rem 0; background: var(--bg-secondary); }
 .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
 .ccard { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; text-decoration: none; color: inherit; transition: var(--transition-smooth); }
 .ccard:hover { border-color: var(--border-hover); transform: translateY(-4px); }

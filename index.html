@@ -292,12 +292,13 @@
         <span class="wordmark">TechScript</span>
       </a>
 
-      <!-- Version Switcher Dropdown Pill -->
+      <!-- Version Switcher Dropdown Pill (Issue 19: Clear Version: prefix label) -->
       <div class="version-switcher" title="Select TechScript Version Target">
-        <button id="versionBtn" class="version-btn" aria-haspopup="true" aria-expanded="false">
+        <button id="versionBtn" class="version-btn" aria-haspopup="true" aria-expanded="false" aria-label="Select TechScript Target Version">
           <span class="version-badge-dot"></span>
+          <span class="version-label" style="color:var(--text-secondary); font-size:var(--fs-xs);">Version:</span>
           <span id="navVersionTag">v2.0.0</span>
-          <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
         </button>
         <div id="versionDropdown" class="version-dropdown" hidden role="menu">
           <a href="#hero" class="version-opt active" role="menuitem">
@@ -391,14 +392,11 @@
         </div>
       </li>
 
-      <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="nav-proj-highlight">GitHub ★</a></li>
+      <li><button id="searchTrigger" class="search-trigger" aria-label="Search site (Ctrl+K)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-2px; margin-right:4px;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> Search</button></li>
+      <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="nav-proj-highlight"><svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="vertical-align:-2px; margin-right:4px;" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> GitHub ↗</a></li>
     </ul>
 
     <div class="nav-ctas">
-      <button id="searchTrigger" class="search-trigger" aria-label="Search site (Ctrl+K)">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-      </button>
-
       <button class="ham" id="hamBtn" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -462,22 +460,15 @@
           <div class="benefit-chip" role="listitem">🛡️ Zero Syntax Clutter</div>
         </div>
 
+        <!-- Issues 6 & 18: Streamline to 2 primary CTAs to prevent Hick's Law cognitive overload -->
         <div class="hero-cta">
           <a href="#install" class="btn btn-primary">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             Download <span id="btnReleaseVer">Latest</span>
           </a>
           <a href="#docs" class="btn btn-secondary">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             Documentation Portal
-          </a>
-          <a href="#playground" class="btn btn-secondary">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Interactive Examples
-          </a>
-          <a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub Repository
           </a>
         </div>
 
@@ -672,8 +663,10 @@
           <p class="sec-eyebrow">// side-by-side readability</p>
           <h2 class="sec-title" id="compare-title">Compare Readability</h2>
           <p class="sec-sub">See how TechScript syntax eliminates punctuation clutter compared with Python and JavaScript.</p>
-        </header>
-
+        <!-- Issue 10: Clear sub-heading for syntax feature matrix table -->
+        <div class="cmp-table-header">
+          <h3 class="cmp-subtitle" style="font-size: var(--fs-md); color: var(--text-primary); font-weight: 700; margin-bottom: 0.75rem;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-2px; margin-right:6px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg> Syntax Feature Matrix</h3>
+        </div>
         <div class="tbl-wrap" role="region" aria-label="Syntax Comparison Matrix">
           <table class="cmp-tbl">
             <thead>
@@ -826,16 +819,14 @@ console.log(fib(10)); // 55</code></pre>
           <p class="sec-sub">Download the TechScript compiler and tsc CLI driver. Native installers for Windows, automated shell scripts for Linux &amp; macOS, Termux support for Android, and a PyPI package for cross-platform installation via pip.</p>
         </header>
 
-        <!-- Dynamic Release Info Banner -->
+        <!-- Dynamic Release Info Banner (Issue 16: Inline release notes button with tags) -->
         <div class="dl-release-hdr" id="dlReleaseHdr">
           <div class="dl-rel-left">
             <span class="dl-rel-badge">Latest Release</span>
             <span id="dlVersionTag" class="dl-rel-tag">Fetching...</span>
             <span id="dlReleaseDate" class="dl-rel-date">...</span>
-          </div>
-          <div class="dl-rel-right">
-            <a id="btnGhReleasePage" href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-              View Release Notes on GitHub ↗
+            <a id="btnGhReleasePage" href="https://github.com/Tcode-Motion/techscript/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="margin-left: 0.5rem;">
+              Release Notes ↗
             </a>
           </div>
         </div>
@@ -914,7 +905,7 @@ console.log(fib(10)); // 55</code></pre>
             </div>
           </div>
 
-          <!-- Package Managers (Issue 12: Separation of Coming Soon status) -->
+          <!-- Package Managers (Issue 12: Copy button support added) -->
           <div class="install-card">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 0.5rem;">
               <span class="install-badge brew" style="margin-bottom:0;">🍺 Homebrew / Winget / Scoop</span>
@@ -925,13 +916,14 @@ console.log(fib(10)); // 55</code></pre>
             <div class="cmd-box disabled">
               <span class="pr">$</span>
               <span class="ct">brew install techscript</span>
+              <button class="copy-btn" data-copy="brew install techscript">Copy</button>
             </div>
             <div class="incl-list" role="list">
               <div class="incl-item" role="listitem"><span class="ic">✓</span><span>Managed automated software updates</span></div>
             </div>
           </div>
 
-          <!-- Source Code & Archives (Issue 14: Secondary button styling) -->
+          <!-- Source Code & Archives (Issue 12: Copy button support added) -->
           <div class="install-card">
             <span class="install-badge source">📦 Source Code</span>
             <h3>Source Archives</h3>
@@ -939,6 +931,7 @@ console.log(fib(10)); // 55</code></pre>
             <div class="cmd-box">
               <span class="pr">$</span>
               <span class="ct">git clone https://github.com/Tcode-Motion/techscript.git &amp;&amp; cargo build --release</span>
+              <button class="copy-btn" data-copy="git clone https://github.com/Tcode-Motion/techscript.git && cargo build --release">Copy</button>
             </div>
             <div class="dl-sublinks">
               <a id="btnSourceZip" href="https://github.com/Tcode-Motion/techscript/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer">
@@ -1272,10 +1265,10 @@ console.log(fib(10)); // 55</code></pre>
         <div class="footer-col">
           <h4>Ecosystem</h4>
           <ul>
-            <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
-            <li><a href="https://marketplace.visualstudio.com/items?itemName=tanmoy.techscript" target="_blank" rel="noopener noreferrer">VS Code Extension</a></li>
-            <li><a href="https://open-vsx.org/extension/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">Open VSX Registry</a></li>
-            <li><a href="https://pypi.org/project/techscript/" target="_blank" rel="noopener noreferrer">PyPI Package</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></li>
+            <li><a href="https://marketplace.visualstudio.com/items?itemName=tanmoy.techscript" target="_blank" rel="noopener noreferrer">VS Code Extension ↗</a></li>
+            <li><a href="https://open-vsx.org/extension/Tcode-Motion/techscript" target="_blank" rel="noopener noreferrer">Open VSX Registry ↗</a></li>
+            <li><a href="https://pypi.org/project/techscript/" target="_blank" rel="noopener noreferrer">PyPI Package ↗</a></li>
             <li><a href="projects.html">Hosted Showcase Page ↗</a></li>
           </ul>
         </div>
@@ -1283,17 +1276,16 @@ console.log(fib(10)); // 55</code></pre>
         <div class="footer-col">
           <h4>Community &amp; RSS</h4>
           <ul>
-            <li><a href="https://discord.gg/tRtNbuDUr" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/issues" target="_blank" rel="noopener noreferrer">Issue Tracker</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/releases.atom" target="_blank" rel="noopener noreferrer">Releases RSS Feed 📡</a></li>
-            <li><a href="https://github.com/Tcode-Motion/techscript/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+            <li><a href="https://discord.gg/tRtNbuDUr" target="_blank" rel="noopener noreferrer">Discord Server ↗</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions ↗</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/issues" target="_blank" rel="noopener noreferrer">Issue Tracker ↗</a></li>
+            <li><a href="https://github.com/Tcode-Motion/techscript/releases.atom" target="_blank" rel="noopener noreferrer">Releases RSS Feed ↗</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>🐉 TechScript — Created with passion by Tanmoy Majumder (@Tcode-Motion) &copy; 2026. Released under MIT License.</p>
+        <p>🐉 TechScript — Created with passion by Tanmoy Majumder (@Tcode-Motion) &copy; 2026. Released under <a href="https://github.com/Tcode-Motion/techscript/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="color:var(--accent-cyan);">MIT License ↗</a>.</p>
         <p style="font-family: var(--font-mono); font-size: 0.75rem;">tsc driver • Rust VM &amp; LLVM Target Engine • <span id="footerVerTag">v2.0</span></p>
       </div>
     </div>
