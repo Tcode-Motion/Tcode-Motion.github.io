@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollManager();
   initMobileNav();
   initSearchPalette();
+  initCompareTabs();
   
   // Enforce Dark Mode by default
   localStorage.removeItem('theme');
@@ -219,11 +220,14 @@ function renderChangelogTimeline(releases) {
     return;
   }
 
-  container.innerHTML = releases.map((r, i) => {
-    const isLatest = i === 0;
+  // Issue 19: Limit initial display to top 3 releases to prevent wall of content
+  const recentReleases = releases.slice(0, 3);
+  const olderReleases = releases.slice(3);
+
+  const renderCard = (r, i, isRecent = true) => {
+    const isLatest = isRecent && i === 0;
     const dateStr = new Date(r.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     
-    // Strip HTML comments, tags, and markdown formatting
     let rawText = stripMarkdownAndHtml(r.body);
     if (!rawText || rawText.length < 5) {
       rawText = 'Official TechScript release details, installation packages, and binary assets available on GitHub.';
@@ -240,14 +244,50 @@ function renderChangelogTimeline(releases) {
           </span>
           <span class="rel-date">${dateStr}</span>
         </div>
-        <h4 style="margin: 0.5rem 0 0.25rem 0; font-size:1.05rem; color:var(--text-primary);">${releaseTitle}</h4>
+        <!-- Issue 7: Heading hierarchy H2 -> H3 -->
+        <h3 class="rel-title" style="margin: 0.5rem 0 0.25rem 0; font-size:var(--fs-md); color:var(--text-primary); font-weight:700;">${releaseTitle}</h3>
         <p class="rel-desc">${cleanBody}</p>
         <div class="rel-footer-links">
           <a href="${r.html_url}" target="_blank" rel="noopener noreferrer" class="rel-dl">View Release Notes &amp; Assets ↗</a>
         </div>
       </div>
     `;
-  }).join('');
+  };
+
+  let html = recentReleases.map((r, i) => renderCard(r, i, true)).join('');
+
+  if (olderReleases.length > 0) {
+    html += `
+      <div id="relOlderContainer" class="rel-collapsed-wrapper" hidden>
+        ${olderReleases.map((r, i) => renderCard(r, i, false)).join('')}
+      </div>
+      <div class="rel-toggle-wrap">
+        <button id="btnToggleReleases" class="rel-toggle-btn" aria-expanded="false">
+          <span>View All ${releases.length} Releases ▾</span>
+        </button>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+
+  // Toggle button listener
+  const toggleBtn = document.getElementById('btnToggleReleases');
+  const olderContainer = document.getElementById('relOlderContainer');
+  if (toggleBtn && olderContainer) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = olderContainer.hasAttribute('hidden');
+      if (isHidden) {
+        olderContainer.removeAttribute('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        toggleBtn.innerHTML = '<span>Show Fewer Releases ▴</span>';
+      } else {
+        olderContainer.setAttribute('hidden', '');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.innerHTML = `<span>View All ${releases.length} Releases ▾</span>`;
+      }
+    });
+  }
 }
 
 function renderChangelogFallback() {
@@ -261,7 +301,8 @@ function renderChangelogFallback() {
         <span class="rel-badge">Latest Release</span>
         <span class="rel-date">July 2026</span>
       </div>
-      <h4 style="margin: 0.5rem 0 0.25rem 0; font-size:1.05rem;">TechScript 2.0 — Zero Syntax Clutter Release</h4>
+      <!-- Issue 7: Heading hierarchy H2 -> H3 -->
+      <h3 class="rel-title" style="margin: 0.5rem 0 0.25rem 0; font-size:var(--fs-md); font-weight:700;">TechScript 2.0 — Zero Syntax Clutter Release</h3>
       <p class="rel-desc">Complete overhaul introducing Pratt expression parser, custom Rust stack VM with NaN-boxed values, LLVM backend crate, single toolchain driver (tsc), and native AI stdlib module.</p>
       <div class="rel-footer-links">
         <a href="https://github.com/Tcode-Motion/techscript/releases" target="_blank" rel="noopener noreferrer" class="rel-dl">View Release Notes on GitHub ↗</a>
@@ -901,11 +942,14 @@ function renderDoc(key) {
 
   panel.innerHTML = `
     <div class="doc-header">
-      <h2 class="doc-title">${doc.title}</h2>
+      <div class="doc-header-top">
+        <h2 class="doc-title">${doc.title}</h2>
+        <a href="${doc.repoLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm doc-raw-btn">
+          View Raw Source Document on GitHub ↗
+        </a>
+      </div>
       <p class="doc-summary">${doc.summary}</p>
-      <a href="${doc.repoLink}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.5rem;">
-        View Raw Source Document on GitHub ↗
-      </a>
+      <hr class="doc-divider">
     </div>
     <div class="doc-body">
       ${formatMarkdown(doc.body)}
@@ -1216,4 +1260,29 @@ function stripMarkdownAndHtml(str) {
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Convert Markdown links to text
     .replace(/\s+/g, ' ')                    // Normalize multiple spaces/newlines to single space
     .trim();
+}
+
+/* ── READABILITY COMPARISON TABBED CODE SWITCHER (Issue 23) ── */
+function initCompareTabs() {
+  const tabBtns = document.querySelectorAll('.compare-tab-btn');
+  const tabPanes = document.querySelectorAll('.compare-pane');
+
+  if (!tabBtns.length || !tabPanes.length) return;
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetLang = btn.getAttribute('data-lang');
+
+      tabBtns.forEach(b => {
+        const isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      tabPanes.forEach(pane => {
+        const isMatch = pane.getAttribute('data-pane') === targetLang;
+        pane.classList.toggle('active', isMatch);
+      });
+    });
+  });
 }
